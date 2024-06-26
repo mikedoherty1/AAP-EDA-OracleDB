@@ -7,7 +7,7 @@
       - 8192 MB RAM
       - 40 GB Disk space
       - Networking * Add Bridge Adaptor and/or Host-only Netowk
-    
+# Screen shots of build can be found in: Ansible_Control_Server_Build.md    
     - Start OS install
         - RHEL9.4 (used for AAP) Host Name - control.local
         - make sure all networks added are enabled
@@ -42,6 +42,7 @@ Login into newly built rhel9.4 server: control.local
      - 
 # ansible time
 - Setting up the gui
+# Screen shots of build can be found in:
 
  # Step 1
     - from web broweser: https://your_ip_adress or if added to local host /etc/hosts https://control.local
