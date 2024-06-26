@@ -105,7 +105,7 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
 
  # Step 5 - Hosts
 - From the left side under Resources: click Inventories > add 
-  -  name: hostname of system running ansible automation platform (fully qualified, run hostname on host if needed)
+  -  name: control.local
   - Inventory: AAP
 - save
 
