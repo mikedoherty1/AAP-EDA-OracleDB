@@ -56,20 +56,20 @@ Login into newly built rhel9.4 server: control.local
     Login: admin
     Password: redhat
     
-<img width="618" alt="Screenshot 2024-06-26 at 11 27 26 AM" src="https://github.com/mikedoherty1/server_prep/assets/145161084/e8adea15-cae6-41cc-b988-80e30972ee0c">
+
 
  # Step 2
  --
 click username/password
 put in your RedHat subscription and click: Get Subscription 
 
-<img width="946" alt="Screenshot 2024-06-26 at 11 27 49 AM" src="https://github.com/mikedoherty1/server_prep/assets/145161084/05f48cd8-b861-4789-bc79-4b92550866a8">
+
 
  # Step 3
 --
 Select your Subscription; then click next to finsih.  All done you know have AAP running
 
-<img width="802" alt="Screenshot 2024-06-26 at 11 30 03 AM" src="https://github.com/mikedoherty1/server_prep/assets/145161084/9445b05d-9d28-439c-84a5-1540997b881d">
+
 
 # Validate its all working
  # Step 1 - Execution Environments
@@ -140,6 +140,20 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
  -
  # Oracle DB server build
  -
+ # Screen shots of build can be found in: Ansible_Control_Server_Build.md    
+ - Configure server with the following
+      - 8192 MB RAM
+      - 40 GB Disk space
+      - Networking * Add Bridge Adaptor and/or Host-only Netowk
+    - Start OS install
+        - oel7.8 (DB Server) Host Name - dbserver.local
+        - make sure all networks added are enabled
+        - all passwords set = redhat (I know)
+          - root user: Allow root SSH login with password
+
+    - Software Selection:
+      - Minimal Install > Select Standard
+            - Begin Install
  # EDA Server Build
  -
  # Ansible to automate OracleDB build
