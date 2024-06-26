@@ -130,3 +130,13 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
   - Credentials: RootAdmin
 - save
 - Launch
+
+ # ansible validation complete
+ -
+ # Oracle DB server build
+ -
+ # EDA Server Build
+ -
+ # Ansible to automate OracleDB build
+ -
+ # EDA to execute tasks for OracleDB
