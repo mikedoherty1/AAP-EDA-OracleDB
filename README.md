@@ -167,6 +167,8 @@ yum install net-tools -y
  -  vi enp0s# - # being what is shown that is not active
  -  change on_boot to yes
  -  reboot
+ -  to list ip's
+ -  ifconfig |grep inet
 
  # EDA Server Build
  -
