@@ -154,6 +154,20 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
     - Software Selection:
       - Minimal Install > Select Standard
             - Begin Install
+
+-From console as not all network devices start automaticlly on boot
+- add a couple packages since we did minimal server build
+
+yum install net-tools -y
+
+
+ - cd /etc/sysconfig/network-scripts
+ - enable on boot
+ - nmcli c show
+ -  vi enp0s# - # being what is shown that is not active
+ -  change on_boot to yes
+ -  reboot
+
  # EDA Server Build
  -
  # Ansible to automate OracleDB build
