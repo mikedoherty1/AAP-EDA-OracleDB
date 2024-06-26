@@ -42,7 +42,7 @@ Login into newly built rhel9.4 server: control.local
      - 
 # ansible time
 - Setting up the gui
-# Screen shots of build can be found in:
+# Screen shots of build can be found in: Automation-Control_Images.md
 
  # Step 1
     - from web broweser: https://your_ip_adress or if added to local host /etc/hosts https://control.local
