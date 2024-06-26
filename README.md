@@ -27,7 +27,7 @@ Login into newly built rhel9.4 server: control.local
     - dnf install git -y
     - cd /root/git
     - git clone https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
-    - cd server_prep
+    - cd AAP-EDA-OracleDB
 
 - Execute step0.sh
   -- This will prompt for read in variables and configure, install and download software
