@@ -4,7 +4,9 @@
    - Pre-requisits 
       - rhel9.4 & oel7.8 server used to install ansible automation control and oracleDB
         - RedHat Linux found here https://access.redhat.com/downloads/content/rhel > get Red Hat Enterprise Linux 9.4 Boot ISO
-	- Oracle Linux found here https://yum.oracle.com/oracle-linux-isos.html > get OracleLinux-R7-U8-Server-x86_64-dvd.iso
+        - Oracle Linux found here https://yum.oracle.com/oracle-linux-isos.html > get OracleLinux-R7-U8-Server-x86_64-dvd.iso
+	- I used Oracle VirtualBox but anthing can be used (OpenShift, Proxmox etc) https://www.virtualbox.org/wiki/Downloads
+- Configure Service with the following
       - 8192 MB RAM
       - 40 GB Disk space
       - Networking * Add Bridge Adaptor and/or Host-only Netowk
