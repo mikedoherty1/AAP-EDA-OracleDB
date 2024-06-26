@@ -1,5 +1,6 @@
-# Purpose is a beginners how to guide for AAP, EDA 
-- This is not a hands off build, this is a step by step on how to build automation *Not meant to be efficient, steps are purposeful individualized for build practice.   
+# Purpose - how to guide for AAP, EDA (GUI) automates installs, OS configurations, and DB build
+- This is not a hands off build, this is a step by step on how to build automation
+   -    *Not meant to be efficient, steps are purposeful individualized for build practice.   
    - Pre-requisits 
       - rhel9.4 & oel7.8 server used to install ansible automation control and oracleDB
       - 8192 MB RAM
@@ -7,7 +8,8 @@
       - Networking * Add Bridge Adaptor and/or Host-only Netowk
     
     - Start OS install
-        - Add Host Name, make sure all networks added are enabled
+        - RHEL9.4 (used for AAP) Host Name - control.local
+        - make sure all networks added are enabled
         - all passwords set = redhat
           - root user: Allow root SSH login with password
     - Connect to RedHat
@@ -18,7 +20,7 @@
             - Begin Install
   
   
-Login to newly built rhel9.4 server
+Login into newly built rhel9.4 server: control.local
   - Recommend using local host terminal or putty (if you do not remember IP) from console:     ifconfig |grep inet
   - all operations done as root user
     - mkdir -p /root/git
@@ -38,14 +40,10 @@ Login to newly built rhel9.4 server
     
      - 
 # ansible time
-- Soup to nuts AAP 
-    - Playbooks, variable, limits, workflows, execution environments, git integration, projects
-    -- linux root operations
-    -- application user operations
-        -- database build
+- Setting up the gui
 
  # Step 1
-    - from web broweser: https://your_ip_adress
+    - from web broweser: https://your_ip_adress or if added to local host /etc/hosts https://control.local
 
 
     Proceed to your_ip_adress (unsafe)
@@ -59,13 +57,13 @@ Login to newly built rhel9.4 server
  --
 click username/password
 put in your RedHat subscription and click: Get Subscription 
---
+
 <img width="946" alt="Screenshot 2024-06-26 at 11 27 49 AM" src="https://github.com/mikedoherty1/server_prep/assets/145161084/05f48cd8-b861-4789-bc79-4b92550866a8">
 
  # Step 3
 --
 Select your Subscription; then click next to finsih.  All done you know have AAP running
---
+
 <img width="802" alt="Screenshot 2024-06-26 at 11 30 03 AM" src="https://github.com/mikedoherty1/server_prep/assets/145161084/9445b05d-9d28-439c-84a5-1540997b881d">
 
 # Validate its all working
