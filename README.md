@@ -148,6 +148,9 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
     - Start OS install
         - oel7.8 (DB Server) Host Name - dbserver.local
         - make sure all networks added are enabled
+          - click configure on all enabled netwrok devices
+          - Ethernet > Link Negotiation = Automatic
+          - General > also click Automatically connect to this network when available
         - all passwords set = redhat (I know)
           - root user: Allow root SSH login with password
 
@@ -155,20 +158,14 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
       - Minimal Install > Select Standard
             - Begin Install
 
+
 -From console as not all network devices start automaticlly on boot
 - add a couple packages since we did minimal server build
 
-yum install net-tools -y
+# ifconfig not installed use: yum install net-tools -y
 
-
- - cd /etc/sysconfig/network-scripts
- - enable on boot
- - nmcli c show
- -  vi enp0s# - # being what is shown that is not active
- -  change on_boot to yes
- -  reboot
  -  to list ip's
- -  ifconfig |grep inet
+ -  nmcli | grep inet
 
  # EDA Server Build
  -
