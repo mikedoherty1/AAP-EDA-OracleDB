@@ -23,16 +23,16 @@ cat /root/.ssh/id_rsa.pub > /root/.ssh/authorized_keys
 
 clear
 # Installing missing packages for VirtualBox
-echo " Installing missing packages for VirtualBox"
-dnf install kernel-devel -y
-dnf install bzip2 -y 
-dnf install gcc -y
-mkdir -p /media/cdrom
-mount /dev/cdrom /media/cdrom
-cd /media/cdrom
-sh VBoxLinuxAdditions.run
-echo "Complete"
-sleep 5
+#echo " Installing missing packages for VirtualBox"
+#dnf install kernel-devel -y
+#dnf install bzip2 -y 
+#dnf install gcc -y
+#mkdir -p /media/cdrom
+#mount /dev/cdrom /media/cdrom
+#cd /media/cdrom
+#sh VBoxLinuxAdditions.run
+#echo "Complete"
+#sleep 5
 clear
 #Get AAP
 echo "This should take 5 minutes (pending internet speeds - AAP Software, special build to automate inventory config"
