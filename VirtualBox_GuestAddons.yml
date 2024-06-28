@@ -1,4 +1,11 @@
 ---
+- hosts: all
+  tasks:
+
+
+
+
+
 -- name: Installing missing packages for VirtualBox
 #echo " Installing missing packages for VirtualBox"
 #dnf install kernel-devel -y
