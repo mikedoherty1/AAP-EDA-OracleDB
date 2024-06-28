@@ -60,3 +60,6 @@ after ssh works exit to comeback to this session; execute step1.sh to configure 
 Test out ssh 
 
 ssh root@$hn"
+cd /var/lib/awx/projects
+git clone -b VirtualBox https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
+mv AAP-EDA-OracleDB VirtualBox
