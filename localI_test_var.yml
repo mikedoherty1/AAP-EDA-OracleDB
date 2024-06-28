@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks:
+    - name: This command will change the working directory to somedir/
+      ansible.builtin.shell:
+        cmd: pwd
+        chdir: /media/cdrom
+      register: shell
+    - debug: var=shell.stdout_lines
