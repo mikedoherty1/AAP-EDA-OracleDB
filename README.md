@@ -148,6 +148,7 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
     - Start OS install
         - oel7.8 (DB Server) Host Name - dbserver.local
         - make sure all networks added are enabled
+          	* Use IP address to login on ternminal (makes life easier)
           - click configure on all enabled netwrok devices
           - Ethernet > Link Negotiation = Automatic
           - General > also click Automatically connect to this network when available
@@ -159,9 +160,24 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
             - Begin Install
 
 
--From console as not all network devices start automaticlly on boot
-- add a couple packages since we did minimal server build
-
+# VirtualBox specific * In-order to obtain ip's from VBoxManage to dynamically build ansible inventory
+     - Manual setup (ansible-playbook, setup_VBGuest.yml (not written yet))
+	- yum install kernel-devel -y
+ 	- yum install bzip2 -y 
+  	- yum install gcc -y
+  	- click on VBox console > devices > Insert Guest Additions CD Images ..
+   	- mkdir -p /media/cdrom
+    	- mount /dev/cdrom /media/cdrom
+	- sh VBoxLinuxAdditions.run
+ - If error it's becuase it booted in UEK kernel, reboot and select oel7.8 (top choice)
+	- mount /dev/cdrom /media/cdrom
+	- sh VBoxLinuxAdditions.run
+ - From local host terminal
+ 	-  VBoxManage guestproperty get dbserver.local /VirtualBox/GuestInfo/Net/0/V4/IP
+  	-  VBoxManage guestproperty get dbserver.local /VirtualBox/GuestInfo/Net/1/V4/IP
+   	-  VBoxManage guestproperty get dbserver.local /VirtualBox/GuestInfo/Net/2/V4/IP
+   	-  VBoxManage guestproperty get dbserver.local /VirtualBox/GuestInfo/Net/3/V4/IP
+- Ip's will be displayed and you can now create dynamic inventory of all your servers
 # ifconfig not installed use: yum install net-tools -y
 
  -  to list ip's
