@@ -61,5 +61,8 @@ Test out ssh
 
 ssh root@$hn"
 cd /var/lib/awx/projects
+sleep 1
 git clone -b VirtualBox https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
+sleep 1
 mv AAP-EDA-OracleDB VirtualBox
+sleep 1
