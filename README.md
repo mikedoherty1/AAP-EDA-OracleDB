@@ -23,7 +23,7 @@
       - Minimal Install > Select Standard
             - Begin Install
  ** - click on VBox console > devices > Insert Guest Additions CD Images ..  **
-  
+  			** Working on adding this as step 3 but via ansible project *******
 Login into newly built rhel9.4 server: control.local
   - Recommend using local host terminal or putty (if you do not remember IP) from console:     ifconfig |grep inet
   - all operations done as root user
@@ -41,7 +41,9 @@ Login into newly built rhel9.4 server: control.local
        * when validating passwordless ssh, type yes when propmted, then type exit to go back to original session
 - Install Ansible./s   
    - ./step1.sh
-    
+   - add mac ip/hostname into /etc/hosts on control.local
+   - add both entries mac/control into /etc/hosts on mac
+   - might need to enable ssh login into mac >system>general>sharing>remotelogin 
      - 
 # ansible time
 - Setting up the gui
