@@ -1,7 +1,12 @@
 ---
 - hosts: all
   tasks:
-
+    - name: Installing missing packages kernel-devel
+      ansible.builtin.shell:
+        cmd: dnf install kernel-devel -y
+      register: shell
+    - debug: var=shell.stdout_lines
+    
 
 
 
