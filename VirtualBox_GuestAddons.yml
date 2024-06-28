@@ -6,17 +6,34 @@
         cmd: dnf install kernel-devel -y
       register: shell
     - debug: var=shell.stdout_lines
-    
+# bzip2
+    - name: Installing missing packages bzip2
+      ansible.builtin.shell:
+        cmd: dnf install bzip2 -y
+      register: shell
+    - debug: var=shell.stdout_lines
+# gcc
+    - name: Installing missing packages gcc
+      ansible.builtin.shell:
+        cmd: dnf install gcc -y
+      register: shell
+    - debug: var=shell.stdout_lines
+# mkdir
+    - name: make filesystem for mounting cdrom
+      ansible.builtin.shell:
+        cmd: mkdir -p /media/cdrom
+      register: shell
+    - debug: var=shell.stdout_lines
+# mount
+    - name: mount cdrom
+      ansible.builtin.shell:
+        cmd: mount /dev/cdrom /media/cdrom
+      register: shell
+    - debug: var=shell.stdout_lines
+# VBoxLinuxAdditions
+    - name: mount cdrom
+      ansible.builtin.shell:
+        cmd: cd /media/cdrom ; sh VBoxLinuxAdditions.run
+      register: shell
+    - debug: var=shell.stdout_lines
 
-
-
-
--- name: Installing missing packages for VirtualBox
-#echo " Installing missing packages for VirtualBox"
-#dnf install kernel-devel -y
-#dnf install bzip2 -y 
-#dnf install gcc -y
-#mkdir -p /media/cdrom
-#mount /dev/cdrom /media/cdrom
-#cd /media/cdrom
-#sh VBoxLinuxAdditions.run
