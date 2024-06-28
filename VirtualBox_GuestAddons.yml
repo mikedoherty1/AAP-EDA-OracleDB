@@ -1,0 +1,9 @@
+# Installing missing packages for VirtualBox
+#echo " Installing missing packages for VirtualBox"
+#dnf install kernel-devel -y
+#dnf install bzip2 -y 
+#dnf install gcc -y
+#mkdir -p /media/cdrom
+#mount /dev/cdrom /media/cdrom
+#cd /media/cdrom
+#sh VBoxLinuxAdditions.run
