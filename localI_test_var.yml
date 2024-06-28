@@ -4,6 +4,6 @@
     - name: This command will change the working directory to somedir/
       ansible.builtin.shell:
         cmd: pwd
-        chdir: /media/cdrom
+        chdir: /media
       register: shell
     - debug: var=shell.stdout_lines
