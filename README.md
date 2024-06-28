@@ -22,7 +22,7 @@
     - Software Selection:
       - Minimal Install > Select Standard
             - Begin Install
-  
+ ** see below on steps for VirtualBox specific **
   
 Login into newly built rhel9.4 server: control.local
   - Recommend using local host terminal or putty (if you do not remember IP) from console:     ifconfig |grep inet
