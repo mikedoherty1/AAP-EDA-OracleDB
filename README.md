@@ -178,10 +178,7 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
    	-  VBoxManage guestproperty get dbserver.local /VirtualBox/GuestInfo/Net/2/V4/IP
    	-  VBoxManage guestproperty get dbserver.local /VirtualBox/GuestInfo/Net/3/V4/IP
 - Ip's will be displayed and you can now create dynamic inventory of all your servers
-# ifconfig not installed use: yum install net-tools -y
 
- -  to list ip's
- -  nmcli | grep inet
 
  # EDA Server Build
  -
