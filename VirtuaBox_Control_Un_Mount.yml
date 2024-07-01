@@ -3,7 +3,7 @@
   tasks:
     - name:  Shutdown control.local to remove dvd (should be better way) ..
       ansible.builtin.shell:
-        cmd: /Users/ansible
+        cmd: /Users/ansible/ansible_control.sh
       register: shell
     - debug: var=shell.stdout_lines
 
