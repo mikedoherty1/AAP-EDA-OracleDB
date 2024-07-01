@@ -50,7 +50,3 @@
         cmd: umount /media/cdrom
       register: shell
     - debug: var=shell.stdout_lines
-# reboot to unmount (not ideal not putting in time to figure out)
-    - name: umount cdrom on mac by booting Linux
-      ansible.builtin.shell:
-        cmd: reboot
