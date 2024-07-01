@@ -1,8 +1,15 @@
 # Purpose - how to guide for AAP, EDA (GUI) automates installs, OS configurations, and DB build
 - This is not a hands off build, this is a step by step on how to build automation
    -    *Not meant to be efficient, steps are purposeful individualized for build practice.
-   -    Allot if items are hard coded naming, was not meant to be awesome scripting just simple cmds  
-   - Pre-requisits 
+   -    Allot if items are hard coded naming, was not meant to be awesome scripting just simple cmds
+### My laptop setup
+- mac, created new user ansible with admin priv, password redhat, enabled ssh.
+- all software was installed in ansible account (VirtualBox) https://www.virtualbox.org
+- Installed latest Oracle VM VirtualBox Extension Pack
+- Newtorking - Host-only Networks
+- Mask: 255.255.255.0 ; Lower Bound: 192.168.56.100 ; Upper Bound: 192.168.56.199
+   -
+- Pre-requisits 
       - rhel9.4 & oel7.8 server used to install ansible automation control and oracleDB
         - RedHat Linux found here https://access.redhat.com/downloads/content/rhel > get Red Hat Enterprise Linux 9.4 Boot ISO
         - Oracle Linux found here https://yum.oracle.com/oracle-linux-isos.html > get OracleLinux-R7-U8-Server-x86_64-dvd.iso
@@ -10,7 +17,9 @@
 - Configure Service with the following
       - 8192 MB RAM
       - 40 GB Disk space
-      - Networking * Add Bridge Adaptor and/or Host-only Netowk
+      - Networking * Host-only Network on Adapter 2
+  		- This will be hard coded when finding Linux host ip's via VirtualBox for dynamic ansible Inventory
+  -
 # Screen shots of build can be found in: Ansible_Control_Server_Build.md    
     - Start OS install
         - RHEL9.4 (used for AAP) Host Name - control.local
@@ -25,7 +34,8 @@
             - Begin Install
 --
 Login into newly built rhel9.4 server: control.local
-  - Recommend using local host terminal or putty (if you do not remember IP) from console:     ifconfig |grep inet
+  - local mac terminal ssh root@control.local * can get ip from linux console > ifconfig |grep 192
+  - ** Recommend adding control.local to mac /etc/hosts file and adding mac host/ip to control.local **
   - all operations done as root user
 
 ```
@@ -57,29 +67,7 @@ cd AAP-EDA-OracleDB
        * when validating passwordless ssh, type yes when propmted, then type exit to go back to original session
 - Install Ansible./s   
    - ./step1.sh
-   - add entries into /etc/hosts ; From mac
-```
-	ifconfig |grep inet 
-```
 
-- Get fully gualified hostname
-```
-	hostname
-```
-- Add to local host; add IP hostname
-```
-	sudo vi /etc/hosts
-```
-# Results example
-#### 192.168.56.12	control.local
-
-- Copy ip/hostname ; From Mac ; Add entry to control.local
-```
-	vi /etc/hosts
-```
-
-   - might need to enable ssh login into mac >system>general>sharing>remotelogin 
-     - 
 # ansible time
 - Setting up the gui
 # Screen shots of build can be found in: Automation-Control_Images.md
