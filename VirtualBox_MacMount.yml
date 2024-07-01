@@ -6,3 +6,5 @@
         cmd: VBoxManage storageattach control.local --storagectl "IDE" --port 0 --device 1 --type dvddrive --medium additions
       register: shell
     - debug: var=shell.stdout_lines
+# Full cmd
+# VBoxManage storageattach control.local --storagectl "IDE" --port 0 --device 1 --type dvddrive --medium /Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso
