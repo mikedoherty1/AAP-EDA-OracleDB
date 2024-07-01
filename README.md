@@ -68,14 +68,14 @@ cd AAP-EDA-OracleDB
 ```
 - Add to local host; add IP hostname
 ```
-	vi /etc/hosts
+	sudo vi /etc/hosts
 ```
 # Results
 ## 192.168.56.12	control.local
 
-- Copy ip/hostname ; From Mac
+- Copy ip/hostname ; From Mac ; Add entry to control.local
 ```
-	sudo vi /etc/hosts
+	vi /etc/hosts
 ```
 
    - might need to enable ssh login into mac >system>general>sharing>remotelogin 
@@ -85,7 +85,7 @@ cd AAP-EDA-OracleDB
 # Screen shots of build can be found in: Automation-Control_Images.md
 
  # Step 1
-    - from web broweser: https://your_ip_adress or if added to local host /etc/hosts https://control.local
+    - from web broweser: https://control.local
 
 
     Proceed to your_ip_adress (unsafe)
