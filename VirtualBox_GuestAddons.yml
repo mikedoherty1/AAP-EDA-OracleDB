@@ -37,3 +37,16 @@
         chdir: /media/cdrom
       register: shell
     - debug: var=shell.stdout_lines
+# VBoxLinuxAdditions
+    - name: This  will install VBoxLinuxAdditions on RHEL
+      ansible.builtin.shell:
+        cmd: pwd
+        chdir: /root
+      register: shell
+    - debug: var=shell.stdout_lines
+# umount
+    - name: mount cdrom
+      ansible.builtin.shell:
+        cmd: umount /media/cdrom
+      register: shell
+    - debug: var=shell.stdout_lines
