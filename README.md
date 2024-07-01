@@ -1,6 +1,7 @@
 # Purpose - how to guide for AAP, EDA (GUI) automates installs, OS configurations, and DB build
 - This is not a hands off build, this is a step by step on how to build automation
-   -    *Not meant to be efficient, steps are purposeful individualized for build practice.   
+   -    *Not meant to be efficient, steps are purposeful individualized for build practice.
+   -    Allot if items are hard coded naming, was not meant to be awesome scripting just simple cmds  
    - Pre-requisits 
       - rhel9.4 & oel7.8 server used to install ansible automation control and oracleDB
         - RedHat Linux found here https://access.redhat.com/downloads/content/rhel > get Red Hat Enterprise Linux 9.4 Boot ISO
@@ -22,8 +23,7 @@
     - Software Selection:
       - Minimal Install > Select Standard
             - Begin Install
- ** - click on VBox console > devices > Insert Guest Additions CD Images ..  **
-  			** Working on adding this as step 3 but via ansible project *******
+--
 Login into newly built rhel9.4 server: control.local
   - Recommend using local host terminal or putty (if you do not remember IP) from console:     ifconfig |grep inet
   - all operations done as root user
