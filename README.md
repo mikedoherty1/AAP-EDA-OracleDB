@@ -176,7 +176,7 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
   - Privilege Escalation Password: redhat
 - save
 
- # Step 7a - Projects
+ # Step 7 - Projects
 - From the left side under Resources: click Projects > copy > then edit 
   -  name: Hello
   - Organization: HomeLab
@@ -184,7 +184,7 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
 - save
 - sync
 
- # Step 7b - Templates
+ # Step 8 - Templates
 - From the left side under Resources: click Templates > copy > hello > edit
   -  name: Mac Hello
   - Inventory: MAC
