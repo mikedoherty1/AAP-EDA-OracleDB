@@ -40,9 +40,11 @@ Login into newly built rhel9.4 server: control.local
 - Change to directory for git clone
 ```
 	cd /root/git
+
 - Pull environemnt cmds for setup
 ```
 git clone https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
+
 - cd into directory
 ```
 cd AAP-EDA-OracleDB
