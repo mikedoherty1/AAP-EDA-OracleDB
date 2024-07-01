@@ -27,9 +27,13 @@
 Login into newly built rhel9.4 server: control.local
   - Recommend using local host terminal or putty (if you do not remember IP) from console:     ifconfig |grep inet
   - all operations done as root user
-    - mkdir -p /root/git
+```
+	mkdir -p /root/git
+```
     - dnf stuff
-    - dnf install git -y
+```
+	dnf install git -y
+```
     - cd /root/git
     - git clone https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
     - cd AAP-EDA-OracleDB
