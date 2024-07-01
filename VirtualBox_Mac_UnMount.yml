@@ -1,8 +1,20 @@
 ---
 - hosts: all
   tasks:
-    - name:  Mount Insert Guest Additions CD Images ..
+    - name:  Shutdown control.local to remove dvd (should be better way) ..
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxManage controlvm control.local shutdown
+      register: shell
+    - debug: var=shell.stdout_lines
+# Remove dvd
+    - name:  Un Mount Guest Additions CD Images ..
       ansible.builtin.shell:
         cmd: /usr/local/bin/VBoxManage storageattach control.local --storagectl "IDE" --port 1 --device 0 --type dvddrive --medium emptydrive
+      register: shell
+    - debug: var=shell.stdout_lines
+# Startup Control
+    - name:  Shutdown control.local to remove dvd (should be better way) ..
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxHeadless --startvm  control.local 
       register: shell
     - debug: var=shell.stdout_lines
