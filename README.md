@@ -184,7 +184,17 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
 - save
 - sync
 
- # Step 8 - Templates
+ # Step 8a - Templates
+- From the left side under Resources: click Templates > copy > hello > edit
+  -  name: Hello
+  - Inventory: AAP
+  - Project: Hello
+  - Execution Environment: RHEL9
+  - Credentials: RootAdmin
+- save
+- Launch
+ 
+# Step 8b - Templates
 - From the left side under Resources: click Templates > copy > hello > edit
   -  name: Mac Hello
   - Inventory: MAC
