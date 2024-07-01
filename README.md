@@ -125,7 +125,7 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
   - Execution Environment: RHEL9
 - save
 
- # Step 3 - Users
+ # Step 3a - Users
 - From the left side under Access: click Users > add 
   - first name: HomeLabRoot
   - username: root
@@ -133,20 +133,42 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
   - User Type: System Adminstrator
   - Organization: HomeLab
 - save
+ 
+ # Step 3b - Users
+- From the left side under Access: click Users > add 
+  - first name: HomeLabMc
+  - username: ansible
+  - password: redhat
+  - User Type: System Adminstrator
+  - Organization: HomeLab
+- save
 
- # Step 4 - Inventories
+
+ # Step 4a - Inventories
 - From the left side under Resources: click Inventories > add 
   -  name: AAP
   - Organization: HomeLab
 - save
-
- # Step 5 - Hosts
+ 
+ # Step 4b - Inventories
+- From the left side under Resources: click Inventories > add 
+  -  name: MAC
+  - Organization: HomeLab
+- save
+- 
+ # Step 5a - Hosts
 - From the left side under Resources: click Inventories > add 
   -  name: control.local
   - Inventory: AAP
 - save
-
- # Step 6 - Credentials
+- 
+ # Step 5b - Hosts
+- From the left side under Resources: click Inventories > add 
+  -  name: whatevery_your_mac_hostname
+  - Inventory: MAC
+- save
+- 
+ # Step 6a - Credentials
 - From the left side under Resources: click Credentials > add 
   -  name: RootAdmin
   - Organization: HomeLab
@@ -154,8 +176,19 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
   - username: root
   - password: redhat
 - save
+- 
+  # Step 6b - Credentials
+- From the left side under Resources: click Credentials > add 
+  -  name: MacAdmin
+  - Organization: HomeLab
+  - Credential Type: Machine
+  - username: ansible
+  - password: redhat
+  - Privilege Escalation Method: sudo
+  - Privilege Escalation Password: redhat
+- save
 
- # Step 7 - Projects
+ # Step 7a - Projects
 - From the left side under Resources: click Projects > copy > then edit 
   -  name: Hello
   - Organization: HomeLab
@@ -163,13 +196,13 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
 - save
 - sync
 
- # Step 7 - Templates
-- From the left side under Resources: click Templates > add
-  -  name: Run Hello
-  - Inventory: AAP
+ # Step 7b - Templates
+- From the left side under Resources: click Templates > copy > hello > edit
+  -  name: Mac Hello
+  - Inventory: MAC
   - Project: Hello
   - Execution Environment: RHEL9
-  - Credentials: RootAdmin
+  - Credentials: MacAdmin
 - save
 - Launch
 
@@ -183,15 +216,47 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
    	- Source Control Type: Git
    	- Source Control URL: https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
    	- Source Control Branch/Tag/Commit: VirtualBox
- # Step  - Hosts
-- From the left side under Resources: click Inventories > add 
-  -  name: mac_hostname
-  - Inventory: AAP
+   	- 
+# Create Templates from Project GuestInstall
+	- Name: GuestAddons
+ 	- Inventory: AAP
+  	- Project: GuestInstall
+   	- Execution Environment: RHEL9
+    	- Playbook: VirtualBox_GuestAddons.yml
+     	- Credentials: RootAdmin
+      - save
+
+- 2nd of 3 templates
+	- Name: MacMount
+ 	- Inventory: MAC
+  	- Project: GuestInstall
+   	- Execution Environment: RHEL9
+    	- Playbook: VirtualBox_MacMount.yml
+     	- Credentials: MacAdmin
+      - save
+   	 
+- Last template
+	- Name: Mac_un_Mount
+ 	- Inventory: MAC
+  	- Project: GuestInstall
+   	- Execution Environment: RHEL9
+    	- Playbook: VirtualBox_Mac_UnMount.yml
+     	- Credentials: MacAdmin
+      - save
+   	 
+   # Create template workflow from newly created templates to add virtualbox guest software to VM
+  	- Add  Workflow Template
+  	- Name: Install Addon Linux Host
+  	- Organization: HomeLab
+  - save
+  - Please click the Start button to begin.
+  - Start
+  - Select > MacMount
+  - + On Sucess > GuestAddons
+    + On Sucess > Mac_un_Mount
 - save
- # Step  - Templates
- - Launch name:  Hello
-   
- Mikes-MacBook-Pro.local
+- Launch
+
  # Oracle DB server build
  -
  # Screen shots of build can be found in: Ansible_Control_Server_Build.md    
