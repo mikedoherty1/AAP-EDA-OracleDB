@@ -3,6 +3,6 @@
   tasks:
     - name:  Mount Insert Guest Additions CD Images ..
       ansible.builtin.shell:
-        cmd: VBoxManage storageattach control.local --storagectl "IDE" --port 0 --device 1 --type dvddrive --medium emptydrive
+        cmd: /usr/local/bin/VBoxManage storageattach control.local --storagectl "IDE" --port 0 --device 1 --type dvddrive --medium emptydrive
       register: shell
     - debug: var=shell.stdout_lines
