@@ -183,7 +183,15 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
    	- Source Control Type: Git
    	- Source Control URL: https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
    	- Source Control Branch/Tag/Commit: VirtualBox
- 
+ # Step  - Hosts
+- From the left side under Resources: click Inventories > add 
+  -  name: mac_hostname
+  - Inventory: AAP
+- save
+ # Step  - Templates
+ - Launch name:  Hello
+   
+ Mikes-MacBook-Pro.local
  # Oracle DB server build
  -
  # Screen shots of build can be found in: Ansible_Control_Server_Build.md    
