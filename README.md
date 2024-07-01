@@ -70,8 +70,8 @@ cd AAP-EDA-OracleDB
 ```
 	sudo vi /etc/hosts
 ```
-# Results
-## 192.168.56.12	control.local
+# Results example
+#### 192.168.56.12	control.local
 
 - Copy ip/hostname ; From Mac ; Add entry to control.local
 ```
