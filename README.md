@@ -32,7 +32,7 @@ Login into newly built rhel9.4 server: control.local
 	mkdir -p /root/git
 ```
 
-    Install git
+-    Install git
     
 ```
 	dnf install git -y
