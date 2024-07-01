@@ -214,7 +214,7 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
    	- Source Control Type: Git
    	- Source Control URL: https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
    	- Source Control Branch/Tag/Commit: VirtualBox
-   	- 
+   	- Options: Clean
 # Create Templates from Project GuestInstall
 	- Name: GuestAddons
  	- Inventory: AAP
