@@ -50,3 +50,9 @@
         cmd: umount /media/cdrom
       register: shell
     - debug: var=shell.stdout_lines
+# reboot
+    - name: mount cdrom
+      ansible.builtin.shell:
+        cmd: init 6
+      register: shell
+    - debug: var=shell.stdout_lines
