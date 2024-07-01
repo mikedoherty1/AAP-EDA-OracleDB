@@ -57,8 +57,27 @@ cd AAP-EDA-OracleDB
        * when validating passwordless ssh, type yes when propmted, then type exit to go back to original session
 - Install Ansible./s   
    - ./step1.sh
-   - add mac ip/hostname into /etc/hosts on control.local
-   - add both entries mac/control into /etc/hosts on mac
+   - add entries into /etc/hosts ; From mac
+```
+	ifconfig |grep inet 
+```
+
+- Get fully gualified hostname
+```
+	hostname
+```
+- Add to local host; add IP hostname
+```
+	vi /etc/hosts
+```
+# Results
+## 192.168.56.12	control.local
+
+- Copy ip/hostname ; From Mac
+```
+	sudo vi /etc/hosts
+```
+
    - might need to enable ssh login into mac >system>general>sharing>remotelogin 
      - 
 # ansible time
