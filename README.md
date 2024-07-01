@@ -140,6 +140,8 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
 
  # ansible validation complete
  -
+ # Create project to add GuestInstall so Mac can read VM/IP for dynamic inventory
+ -  git clone -b VirtualBox https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
  # Oracle DB server build
  -
  # Screen shots of build can be found in: Ansible_Control_Server_Build.md    
