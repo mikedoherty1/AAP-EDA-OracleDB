@@ -8,6 +8,6 @@
       register: vbvm
     - name: running VMs
       ansible.builtin.shell:
-        cmd: /usr/local/bin/VBoxManage guestproperty get "{{vbvm.stdout}}"  /VirtualBox/GuestInfo/Net/1/V4/IP 
+        cmd: /usr/local/bin/VBoxManage guestproperty get "{{vbvm.stdout}}"  /VirtualBox/GuestInfo/Net/1/V4/IP | awk '{ print $2}'
       register: shell
     - debug: var=shell.stdout_lines
