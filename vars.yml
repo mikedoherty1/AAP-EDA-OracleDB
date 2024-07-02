@@ -1,0 +1,11 @@
+---
+  - name: Magic Vars
+    hosts: all
+    gather_facts: no
+    
+
+    tasks:
+
+    - name: What's My Hostname
+      debug:
+        var: inventory_hostname
