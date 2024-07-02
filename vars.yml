@@ -20,6 +20,9 @@
         cmd: cat /Users/ansible/runningvms.lst 
       register: shell
     - debug: var=shell.stdout_lines
-
+  - name: Set VAR
+    shell:
+      cmd: cat /Users/ansible/runningvms.lst
+    register: VAR
 
 
