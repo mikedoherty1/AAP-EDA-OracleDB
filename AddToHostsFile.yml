@@ -1,0 +1,14 @@
+---
+  - name: Add New VBox server to control.local /etc/hosts file
+    hosts: all
+    vars:
+    tasks:    
+      lineinfile:
+        path:  /etc/hosts
+        line: "{{ vbvm }}     {{ vbname }}"
+      register: action
+    - debug: var=action.stdout_lines
+
+
+
+
