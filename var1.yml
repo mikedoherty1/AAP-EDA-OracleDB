@@ -1,5 +1,24 @@
-- hosts: all
-  vars:
-     contents: "{{ lookup('file', '/Users/ansible/runningvms.lst ') }}"
+---
+- hosts: localhost
+  become: false
+  gather_facts: false
+
   tasks:
-     - debug: msg="the value of runningvms.lst is {{ contents }}"
+
+  - name: Echo example 1
+    shell:
+      cmd: "echo 12:34:56:78:90:AB:CD:EF"
+    register: VAR
+
+  - name: Echo example 2
+    shell:
+      cmd: "echo {{ VAR.stdout_lines }}"
+    register: result
+
+  - name: Show registered variable
+    debug:
+      var: result
+
+  - name: Show result content only
+    debug:
+      msg: "{{ result }}"
