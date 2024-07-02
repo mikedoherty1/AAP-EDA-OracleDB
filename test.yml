@@ -3,15 +3,12 @@
   gather_facts: yes
   tasks:
     - name: Here we are checking ansible_hostname
-    - debug:
-      msg: "hostname is {{ ansible_hostname }}"
-    - name: Here we are checking inventory_hostname
-    - debug:
-      msg: "hostname is {{ inventory_hostname }}"
-    - name: Here we are checking hostvars
-    - debug:
-      msg: "hostvars is {{ hostvars }}"
-  tasks:
-    - name: Print a message
       ansible.builtin.debug:
-        msg: 'Logging in as {{ username }}'
+        msg: "hostname is {{ ansible_hostname }}"
+    - name: Here we are checking inventory_hostname
+      ansible.builtin.debug:
+        msg: "hostname is {{ inventory_hostname }}"
+    - name: Here we are checking hostvars
+      ansible.builtin.debug:
+        msg: "hostvars is {{ hostvars }}"
+
