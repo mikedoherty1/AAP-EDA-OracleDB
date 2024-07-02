@@ -1,6 +1,7 @@
 ---
 - hosts: all
-  vars: "{{ target_host }}"
+  vars: 
+    thost: "oel94.local"
 
   gather_facts: true
 
@@ -16,6 +17,6 @@
   
   - name: Show Gathered Facts targ
     debug:
-      msg: "{{ target_host }}"
+      msg: "{{ thost }}"
 
   
