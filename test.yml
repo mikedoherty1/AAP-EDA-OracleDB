@@ -2,22 +2,18 @@
 - hosts: all
   become: false
 
-  gather_facts: false
+  gather_facts: true
 
   tasks:
 
-  - name: Show Gathered Facts
+  - name: Show Gathered Facts ans
     debug:
-      msg: "{{ hostvars['localhost'].ansible_facts }}"
+      msg: "{{ ansible_hostname }}"
 
-  - name: Gather date and time only
-    setup:
-      gather_subset:
-        - "date_time"
-        - "!min"
-    when: ansible_date_time is not defined
-
-  - name: Show Gathered Facts
+  - name: Show Gathered Facts inv
     debug:
-      msg: "{{ ansible_facts }}"
-
+      msg: "{{ inventory_hostname }}"
+  
+  - name: Show Gathered Facts vars
+    debug:
+      msg: "{{ hostvars }}"
