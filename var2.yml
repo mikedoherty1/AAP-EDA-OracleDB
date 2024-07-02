@@ -10,5 +10,4 @@
       ansible.builtin.shell:
         cmd: /usr/local/bin/VBoxManage showvminfo "{{vbvm.stdout}}" --machinereadable |grep macaddress 
       register: shell
-    - debug: 
-         msg: /usr/local/bin/VBoxManage storageattach "{{vbvm.stdout}}" --storagectl "IDE" --port 1 
+    - debug: var=shell.stdout_lines
