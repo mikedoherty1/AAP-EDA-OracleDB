@@ -3,8 +3,8 @@
   tasks:
     - name: Display resolv.conf contents
     - command:
-        cmd: cat resolv.conf
-        chdir: /tmp/ansible
+        cmd: cat runningvms.lst
+        chdir: /Users/ansible
       register: out
 
     - debug:
