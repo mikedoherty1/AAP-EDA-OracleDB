@@ -1,11 +1,13 @@
 ---
 - hosts: all
-
+  name: Display content of resolv.conf
   tasks:
+    - name: Display resolv.conf contents
+    - ansible.builtin.debug:
+      var: lookup('ansible.builtin.file', '/etc/resolv.conf')
 
-  - name: Cat example 1
-    shell:
-      cmd: cat /Users/ansible/runningvms.lst
-    register: VAR
-  - debug: var=VAR.stdout_lines
+      register: command_output
 
+    - name: Print to console
+      debug:
+        msg:"{{command_output.stdout}}"
