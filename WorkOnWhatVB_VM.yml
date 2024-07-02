@@ -1,0 +1,20 @@
+---
+  - name: Magic Vars
+    hosts: all
+    tasks:
+    
+    - name:  Running VM's
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxManage list vms | awk '{ print $1}' | tr -d '"' > /Users/ansible/runningvms.lst 
+      register: vmlist
+    - debug: var=vmlist.stdout_lines
+    - name:  cat 
+      ansible.builtin.shell:
+        cmd: cat /Users/ansible/runningvms.lst 
+      register: vbvm
+    - debug: var=vbvm.stdout_lines
+    - name: list
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxManage showvminfo "{{ vbvm }}" --machinereadable |grep macaddress1
+      register: vbsh
+    - debug: var=vbsh.stdout_lines
