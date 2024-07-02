@@ -6,5 +6,9 @@
         cmd: cat runningvms.lst
         chdir: /Users/ansible
       register: vbvm
+    - name: running VMs
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxManage showvminfo "{{vbvm.stdout}}" --machinereadable |grep macaddress 
+      register: shell
     - debug: 
          msg: /usr/local/bin/VBoxManage storageattach "{{vbvm.stdout}}" --storagectl "IDE" --port 1 
