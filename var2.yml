@@ -1,4 +1,5 @@
-  name: Display content of resolv.conf
+--
+name: Display content of resolv.conf
   hosts: localhost
   tasks:
     - name: Display resolv.conf contents
