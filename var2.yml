@@ -7,5 +7,14 @@ name: Display content of resolv.conf
       register: command_output
 
     - name: Print to console
-      debug:
-        msg: "{{command_output.stdout}}"
+
+---
+- hosts: all
+  tasks:
+    - name: running VMs
+      ansible.builtin.shell:
+        cmd: cat runningvms.lst
+        chdir: /Users/ansible
+      register: command_output
+    - debug: 
+         msg: "{{command_output.stdout}}"
