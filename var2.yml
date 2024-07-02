@@ -1,6 +1,5 @@
 ---
 - hosts: all
-  name: Display content of resolv.conf
   tasks:
     - name: Display resolv.conf contents
     - ansible.builtin.debug:
@@ -11,3 +10,6 @@
     - name: Print to console
     - debug:
         msg: "{{ out.stdout }}"
+
+
+
