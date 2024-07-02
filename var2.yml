@@ -2,11 +2,11 @@
 - hosts: all
   tasks:
     - name: Display resolv.conf contents
-      ansible.builtin.debug:
-        var: lookup('ansible.builtin.file', '/etc/resolv.conf')
-      register: command_output
+    - command:
+        cmd: cat resolv.conf
+        chdir: /tmp/ansible
+      register: out
 
-    - name: Print to console
     - debug:
-        msg: "{{ out.stdout }}"
+        var: out.stdout
 
