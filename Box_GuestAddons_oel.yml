@@ -1,0 +1,52 @@
+---
+- hosts: all
+  tasks:
+    - name: Installing missing packages kernel-devel
+      ansible.builtin.shell:
+        cmd: yum install kernel-devel -y
+      register: shell
+    - debug: var=shell.stdout_lines
+# bzip2
+    - name: Installing missing packages bzip2
+      ansible.builtin.shell:
+        cmd: yum install bzip2 -y
+      register: shell
+    - debug: var=shell.stdout_lines
+# gcc
+    - name: Installing missing packages gcc
+      ansible.builtin.shell:
+        cmd: yum install gcc -y
+      register: shell
+    - debug: var=shell.stdout_lines
+# mkdir
+    - name: make filesystem for mounting cdrom
+      ansible.builtin.shell:
+        cmd: mkdir -p /media/cdrom
+      register: shell
+    - debug: var=shell.stdout_lines
+# mount
+    - name: mount cdrom
+      ansible.builtin.shell:
+        cmd: mount /dev/cdrom /media/cdrom
+      register: shell
+    - debug: var=shell.stdout_lines
+# VBoxLinuxAdditions
+    - name: This  will install VBoxLinuxAdditions on RHEL
+      ansible.builtin.shell:
+        cmd: sh VBoxLinuxAdditions.run
+        chdir: /media/cdrom
+      register: shell
+    - debug: var=shell.stdout_lines
+# VBoxLinuxAdditions
+    - name: This  will install VBoxLinuxAdditions on RHEL
+      ansible.builtin.shell:
+        cmd: pwd
+        chdir: /root
+      register: shell
+    - debug: var=shell.stdout_lines
+# umount
+    - name: mount cdrom
+      ansible.builtin.shell:
+        cmd: umount /media/cdrom
+      register: shell
+    - debug: var=shell.stdout_lines
