@@ -1,7 +1,7 @@
 ---
 - hosts: all
   vars: 
-    thost: "oel94.local"
+    
 
   gather_facts: true
 
@@ -17,4 +17,4 @@
   
   - name: Show Gathered Facts targ
     debug:
-      msg: "{{ thost }} next ASU = {{ acu }} next {{ ac }}"
+      msg: "{{ thost }}"
