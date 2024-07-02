@@ -8,7 +8,8 @@
       cmd: cat /Users/ansible/runningvms.lst
     register: VAR
     debug:
-    msg: "{{ VAR }}"
+      msg: "{{ VAR }}"
+    
   - name: Echo example 2
     shell:
       cmd: "echo {{ VAR.stdout_lines }}"
