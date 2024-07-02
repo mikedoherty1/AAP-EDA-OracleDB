@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  become: false
+  vars: "{{ target_host }}"
 
   gather_facts: true
 
@@ -14,6 +14,8 @@
     debug:
       msg: "{{ inventory_hostname }}"
   
-  - name: Show Gathered Facts vars
+  - name: Show Gathered Facts targ
     debug:
-      msg: "{{ hostvars }}"
+      msg: "{{ target_host }}"
+
+  
