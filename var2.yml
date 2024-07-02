@@ -1,13 +1,3 @@
---
-name: Display content of resolv.conf
-  hosts: localhost
-  tasks:
-    - name: Display resolv.conf contents
-      command: cat resolv.conf chdir=/etc
-      register: command_output
-
-    - name: Print to console
-
 ---
 - hosts: all
   tasks:
