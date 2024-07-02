@@ -12,6 +12,6 @@
     
     - name:  test var
       ansible.builtin.shell:
-        cmd: VBoxManage showvminfo "{{ inventory_hostname }}" --machinereadable |grep macaddress1 
+        cmd: /usr/local/bin/VBoxManage showvminfo "{{ inventory_hostname }}" --machinereadable |grep macaddress1 
       register: shell
     - debug: var=shell.stdout_lines
