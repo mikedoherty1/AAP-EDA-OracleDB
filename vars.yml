@@ -12,6 +12,6 @@
     
     - name:  test var
       ansible.builtin.shell:
-        cmd: ls "{{ inventory_hostname }}"
+        cmd: cat /etc/hosts | grep "{{ inventory_hostname }}"
       register: shell
     - debug: var=shell.stdout_lines
