@@ -1,9 +1,9 @@
 ---
   - name: Magic Vars
     hosts: all
-    tasks:
-    
-    - name:  Running VM's
+    vars:
+    tasks:    
+    - name:  What Linux host are we adding VirtualGuest Image
       ansible.builtin.shell:
         cmd: /usr/local/bin/VBoxManage list vms | awk '{ print $1}' | tr -d '"' > /Users/ansible/runningvms.lst 
       register: vmlist
