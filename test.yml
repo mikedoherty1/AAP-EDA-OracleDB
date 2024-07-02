@@ -1,7 +1,7 @@
 ---
 - hosts: all
   vars: 
-    thost: "oel94.local"
+    thost: 
 
   gather_facts: true
 
