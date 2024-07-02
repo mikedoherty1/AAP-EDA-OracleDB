@@ -1,13 +1,14 @@
 ---
-  - name: Variables what are they
-    hosts: all
-    gather_facts: true
-    tasks:
-      - debug: var=inventory_hostname
-      - debug: var=ansible_hostname
-      - debug: var=hostvars 
-    
-    
-    
-    
+- hosts: all
+gather_facts: yes
+tasks:
+- name: Here we are checking ansible_hostname
+debug:
+msg: "hostname is {{ ansible_hostname }}"
+- name: Here we are checking inventory_hostname
+debug:
+msg: "hostname is {{ inventory_hostname }}"
+- name: Here we are checking hostvars
+debug:
+msg: "hostname is {{ hostvars }}"    
 
