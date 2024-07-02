@@ -1,11 +1,10 @@
----
-- hosts: all
+  name: Display content of resolv.conf
+  hosts: localhost
   tasks:
-    - name: Display runningvms contents
-    - command:
-        cmd: cat runningvms.lst
-        chdir: /Users/ansible
-        register: out
+    - name: Display resolv.conf contents
+      command: cat resolv.conf chdir=/etc
+      register: command_output
 
-    - debug:
-        var: out.stdout
+    - name: Print to console
+      debug:
+        msg: "{{command_output.stdout}}"
