@@ -1,4 +1,7 @@
-
+---
+  - name: Magic Vars
+    hosts: all
+    tasks:
 
 
 tasks:
