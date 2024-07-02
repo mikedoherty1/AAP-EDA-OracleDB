@@ -9,3 +9,9 @@
     - name: What's My Hostname
       debug:
         var: inventory_hostname
+    
+    - name:  test var
+      ansible.builtin.shell:
+        cmd: ls "{{ inventory_hostname }}"
+      register: shell
+    - debug: var=shell.stdout_lines
