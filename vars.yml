@@ -1,28 +1,22 @@
 ---
   - name: Magic Vars
     hosts: all
-    gather_facts: no
-    
-
     tasks:
-
-    - name: What's My Hostname
-      debug:
-        var: inventory_hostname
     
-    - name:  test var
+    - name:  Running VM's
       ansible.builtin.shell:
         cmd: /usr/local/bin/VBoxManage list vms | awk '{ print $1}' | tr -d '"' > /Users/ansible/runningvms.lst 
-      register: shell
-    - debug: var=shell.stdout_lines
+      register: vmlist
+    - debug: var=vmlist.stdout_lines
     - name:  cat 
       ansible.builtin.shell:
         cmd: cat /Users/ansible/runningvms.lst 
-      register: shell
-    - debug: var=shell.stdout_lines
-  - name: Set VAR
-    shell:
-      cmd: cat /Users/ansible/runningvms.lst
-    register: VAR
+      register: vbvm
+    - debug: var=vbvm.stdout_lines
+    - name: list
+      ansible.builtin.shell:
+        cmd: asdfasdfasdf
+      register: vbvm
+    - debug: var=vbvm.stdout_lines
 
 
