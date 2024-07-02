@@ -11,3 +11,7 @@
     - name: Here we are checking hostvars
     - debug:
       msg: "hostvars is {{ hostvars }}"
+  tasks:
+    - name: Print a message
+      ansible.builtin.debug:
+        msg: 'Logging in as {{ username }}'
