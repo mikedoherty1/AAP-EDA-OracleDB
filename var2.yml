@@ -7,4 +7,4 @@
         chdir: /Users/ansible
       register: vbvm
     - debug: 
-         msg: "{{vbvm.stdout}}"
+         msg: /usr/local/bin/VBoxManage storageattach "{{vbvm.stdout}}" --storagectl "IDE" --port 1 
