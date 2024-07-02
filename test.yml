@@ -1,14 +1,23 @@
 ---
-- hosts: all
-  gather_facts: yes
+- hosts: localhost
+  become: false
+
+  gather_facts: false
+
   tasks:
-    - name: Here we are checking ansible_hostname
-      ansible.builtin.debug:
-        msg: "hostname is {{ ansible_hostname }}"
-    - name: Here we are checking inventory_hostname
-      ansible.builtin.debug:
-        msg: "hostname is {{ inventory_hostname }}"
-    - name: Here we are checking hostvars
-      ansible.builtin.debug:
-        msg: "hostvars is {{ hostvars }}"
+
+  - name: Show Gathered Facts
+    debug:
+      msg: "{{ hostvars['localhost'].ansible_facts }}"
+
+  - name: Gather date and time only
+    setup:
+      gather_subset:
+        - "date_time"
+        - "!min"
+    when: ansible_date_time is not defined
+
+  - name: Show Gathered Facts
+    debug:
+      msg: "{{ ansible_facts }}"
 
