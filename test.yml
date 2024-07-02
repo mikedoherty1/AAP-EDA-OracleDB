@@ -3,11 +3,11 @@
   gather_facts: yes
   tasks:
     - name: Here we are checking ansible_hostname
-    - debug: 
+    - debug:
       msg: "hostname is {{ ansible_hostname }}"
     - name: Here we are checking inventory_hostname
-    - debug: 
+    - debug:
       msg: "hostname is {{ inventory_hostname }}"
     - name: Here we are checking hostvars
-    - debug: 
+    - debug:
       msg: "hostvars is {{ hostvars }}"
