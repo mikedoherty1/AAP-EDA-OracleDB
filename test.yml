@@ -1,10 +1,13 @@
 ---
-  - name: Magic Vars
+  - name: Variables what are they
     hosts: all
+    gather_facts: true
     tasks:
+      - debug: var=inventory_hostname
+      - debug: var=ansible_hostname
+      - debug: var=hostvars 
+    
+    
+    
+    
 
-
-tasks:
-    - debug: var=inventory_hostname
-    - debug: var=ansible_hostname
-    - debug: var=hostvars
