@@ -7,5 +7,5 @@
     shell:
       cmd: cat /Users/ansible/runningvms.lst
     register: VAR
-    - debug: var=VAR.stdout_lines
+  - debug: var=VAR.stdout_lines
 
