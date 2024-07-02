@@ -20,10 +20,6 @@
         cmd: cat /Users/ansible/runningvms.lst 
       register: shell
     - debug: var=shell.stdout_lines
-    - name:  vvv 
-      vars:
-        contents: "{{ lookup('file', '/Users/ansible/runningvms.lst ') }}"
-      tasks:
-        - debug: msg="the value of runningvms.lst is {{ contents }}"
+
 
 
