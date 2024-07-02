@@ -15,7 +15,7 @@
     - debug: var=vbvm.stdout_lines
     - name: list
       ansible.builtin.shell:
-        cmd: /usr/local/bin/VBoxManage showvminfo {{ vbvm }} --machinereadable |grep macaddress1
+        cmd: /usr/local/bin/VBoxManage showvminfo "{{ vbvm }}" --machinereadable |grep macaddress1
       register: vbsh
     - debug: var=vbsh.stdout_lines
 
