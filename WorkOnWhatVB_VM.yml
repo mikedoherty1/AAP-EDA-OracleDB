@@ -3,38 +3,20 @@
     hosts: all
     vars:
     tasks:    
-    - name:  What Linux host are we adding VirtualGuest Image
+    - name:  Create file for host are we adding VirtualGuest Image
       ansible.builtin.shell:
-        cmd: touch addGI /Users/ansible/runningvms.lst 
-      register: vmlist
-    - debug: var=vmlist.stdout_lines
-    - name:  cat 
-      ansible.builtin.shell:
-        cmd: cat /Users/ansible/runningvms.lst 
-      register: vbvm
-    - debug: var=vbvm.stdout_lines
-    - name: list
-      ansible.builtin.shell:
-        cmd: /usr/local/bin/VBoxManage showvminfo "{{ vbvm }}" --machinereadable |grep macaddress1
-      register: vbsh
-    - debug: var=vbsh.stdout_lines
+        cmd: touch addGI 
+        chdir: /Users/ansible 
+    - name:  Add host to file
+      lineinfile:
+        path:  /Users/ansible/addGI 
+        line: "{{ vbvm }}"
+#    - name: list
+#      ansible.builtin.shell:
+#        cmd: /usr/local/bin/VBoxManage showvminfo "{{ vbvm }}" --machinereadable |grep macaddress1
+#      register: vbsh
+#    - debug: var=vbsh.stdout_lines
 
 
 
----
-- hosts: all
-  tasks:
-  - name: create empty file
-    file:
-      path: "/root/testfile"
-      state: touch
-  - name: line insert
-    lineinfile:
-      path: "/root/testfile"
-      line: This is the second line
-      insertbefore: BOF
-  - name: line insert
-    lineinfile:
-      path: "/root/testfile"
-      line: This is the first line
-      insertbefore: BOF
+
