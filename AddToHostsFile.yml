@@ -4,6 +4,6 @@
   tasks:
   - name: Add New VBox server to control.local /etc/hosts file   
     lineinfile:
-    path:  /etc/hosts
+    path: /etc/hosts
     line: "{{ vbvmip }}     {{ vbname }}"
 
