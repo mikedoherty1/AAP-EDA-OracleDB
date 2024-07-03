@@ -5,7 +5,7 @@
     tasks:    
       lineinfile:
         path:  /etc/hosts
-        line: "{{ vbvm }}     {{ vbname }}"
+        line: "{{ vbvmip }}     {{ vbname }}"
       register: action
     - debug: var=action.stdout_lines
 
