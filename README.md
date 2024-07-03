@@ -232,7 +232,7 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
      	- Credentials: RootAdmin
       - save
 # Next Template	
- 	- Name: Install GuestAddons YUM
+ 	- Name: Install GuestAddons OEL 7.8
  	- Inventory: HomeLab
   	- Project: GuestInstall
    	- Execution Environment: RHEL9
