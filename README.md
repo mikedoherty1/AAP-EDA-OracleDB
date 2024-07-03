@@ -22,7 +22,8 @@
       - 40 GB Disk space
       - Networking * Host-only Network on Adapter 2
   		- This will be hard coded when finding Linux host ip's via VirtualBox for dynamic ansible Inventory
-  -
+  - all other nodes I used default minimums
+  - 
 # Screen shots of build can be found in: Ansible_Control_Server_Build.md    
     - Start OS install
         - RHEL9.4 (used for AAP) Host Name: **control.local**
@@ -191,7 +192,7 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
 
  # Step 8a - Templates
 - From the left side under Resources: click Templates > copy > hello > edit
-  -  name: Hello
+  -  name: Linux Hello
   - Inventory: AAP
   - Project: Hello
   - Execution Environment: RHEL9
@@ -266,24 +267,38 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
 # Launch AddNewVM2Control.Local
 	- Variables will prompt at launch
  		- vbvmip: 192.168.56.???
-   		- vbname: name_of_VBoxVM
+   		- vbname: <name_of_VBoxVM>
 
-# Add all Linux hosts to HomeLab Inventory
+# Add  hosts to HomeLab Inventory
+ # Step 5b - Hosts
+- From the left side under Resources: click Inventories > add 
+  -  name: <name_of_VBoxVM>
+  - Inventory: HomeLab
+- save
 
+- From the left side under Resources: click Templates > edit > hello > edit
+  -  Change Inventory = HomeLab
+- save
+- Launch
+
+- 
 # Create template workflow from newly created templates to add virtualbox guest software to VM
   	- Add  Workflow Template
   	- Name: Install Addon Linux Host
   	- Organization: HomeLab
+   	- Limit: check prompt on Launch
+        - Variables: check prompt on Launch
+		Add: vbvm:
   - save
   - Please click the Start button to begin.
   - Start
   - Select > MacMount
-  - + On Sucess > Install GuestAddons DNF
-  	- + On Failure > Install GuestAddons Yum
-    + On Sucess > Mac_un_Mount
-    	- + On Sucess > Mac_un_Mount 
+  - + On Sucess > Install GuestAddons DNF > On Failure > Install GuestAddons Yum > On Sucess > Mac_un_Mount
+  - + On Failure > Install GuestAddons Yum > On Sucess > Mac_un_Mount
 - save
 - Launch
+- Limit: <name_of_VBoxVM>
+- Variable: vbvm: <name_of_VBoxVM>
 
  # Oracle DB server build
  -
@@ -295,6 +310,7 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
     - Start OS install
         - oel7.8 (DB Server) Host Name - dbserver.local
         - make sure all networks added are enabled
+        - 
           	* Use IP address to login on ternminal (makes life easier)
           - click configure on all enabled netwrok devices
           - Ethernet > Link Negotiation = Automatic
@@ -308,6 +324,15 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
 
 
 # VirtualBox specific * In-order to obtain ip's from VBoxManage to dynamically build ansible inventory
+    
+     Workflow Template
+     Launch: Install Addon Linux Host
+     - Limit: <name_of_VBoxVM>
+     - Variable: vbvm: <name_of_VBoxVM>
+
+
+     
+     
      - Manual setup (ansible-playbook, setup_VBGuest.yml (not written yet))
 	- yum install kernel-devel -y
  	- yum install bzip2 -y 
