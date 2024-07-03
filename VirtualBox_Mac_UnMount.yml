@@ -1,7 +1,7 @@
 ---
 - hosts: all
-  tasks:
   vars:
+  tasks:
     - name:  Shutdown control.local to remove dvd (should be better way) ..
       ansible.builtin.shell:
         cmd: /usr/local/bin/VBoxManage controlvm "{{ vbvm }}" shutdown
