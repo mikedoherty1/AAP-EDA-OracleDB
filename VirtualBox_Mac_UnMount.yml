@@ -8,7 +8,7 @@
       register: shell
     - debug: var=shell.stdout_lines
 # Adding pause so vm can stop to remove locks
-    - name: Pause for 10 seconds before starting again
+    - name: Pause for 30 seconds before starting again
       pause:
         seconds: 30
 # Remove dvd
@@ -18,7 +18,7 @@
       register: shell
     - debug: var=shell.stdout_lines
 # Startup Control
-    - name:  Shutdown control.local to remove dvd (should be better way) ..
+    - name:  Startup "{{ vbvm }}" to remove dvd should take 10 Seconds ..
       ansible.builtin.shell:
         cmd: /usr/local/bin/VBoxManage startvm "{{ vbvm }}" --type headless 
       register: shell
