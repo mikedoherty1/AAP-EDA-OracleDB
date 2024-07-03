@@ -7,6 +7,10 @@
         cmd: /usr/local/bin/VBoxManage controlvm "{{ vbvm }}" shutdown
       register: shell
     - debug: var=shell.stdout_lines
+# Adding pause so vm can stop to remove locks
+    - name: Pause for 10 seconds before starting again
+      pause:
+        seconds: 30
 # Remove dvd
     - name:  Un Mount Guest Additions CD Images ..
       ansible.builtin.shell:
