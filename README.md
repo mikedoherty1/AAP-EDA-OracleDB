@@ -319,28 +319,21 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
 
  # Create project to add Oracle
  -
- 
+copy GuestAddons > edit
+Name: Oracle Build
+Source Control Branch/Tag/Commit: OraBuild
+Save
+
+Template
+Add
+Name: Oracle Build step 1 - root
 
 
 
-# VirtualBox specific * In-order to obtain ip's from VBoxManage to dynamically build ansible inventory
-    
-     Workflow Template
-     Launch: Install Addon Linux Host
-     - Limit: <name_of_VBoxVM>
-     - Variable: vbvm: <name_of_VBoxVM>
 
-
- - From local host terminal
- 	-  VBoxManage guestproperty get dbserver.local /VirtualBox/GuestInfo/Net/0/V4/IP
-  	-  VBoxManage guestproperty get dbserver.local /VirtualBox/GuestInfo/Net/1/V4/IP
-   	-  VBoxManage guestproperty get dbserver.local /VirtualBox/GuestInfo/Net/2/V4/IP
-   	-  VBoxManage guestproperty get dbserver.local /VirtualBox/GuestInfo/Net/3/V4/IP
-- Ip's will be displayed and you can now create dynamic inventory of all your servers
 
 
  # EDA Server Build
  -
- # Ansible to automate OracleDB build
  -
  # EDA to execute tasks for OracleDB
