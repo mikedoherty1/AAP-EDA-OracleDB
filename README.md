@@ -283,6 +283,8 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
  		- vbvmip: 192.168.56.???
    		- vbname: <name_of_VBoxVM>
 
+** When Oracle server completes cont....
+
 # Add  hosts to HomeLab Inventory
  # Step 5b - Hosts
 - From the left side under Resources: click Inventories > add 
@@ -295,7 +297,7 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
 - save
 - Launch
 
-** When Oracle server completes cont....
+
 
 # Create template workflow from newly created templates to add virtualbox guest software to VM
   	- Add  Workflow Template
