@@ -212,7 +212,7 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
 
  # ansible validation complete
  -
- # Create project to add GuestInstall so Mac can read VM/IP for dynamic inventory
+ # Create project to add GuestInstall 
 - From the left side under Resources: click Projects > add
 	- name: GuestInstall
 	- Organization: HomeLab
@@ -264,6 +264,20 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
      	- Credentials: RootAdmin
       - save
 
+# Create Oracle VBox Server
+ -  
+ - Configure server with the following
+      - 8192 MB RAM
+      - 40 GB Disk space
+      - Networking * Add Bridge Adaptor and/or Host-only Netowk
+    - Start OS install
+        - oel7.8 (DB Server) Host Name: dbserver.local
+        - make sure all networks added are enabled
+          	- When Server is being built you can run AddNewVM2Control.Local, put IP from above and hostname
+      - Software Selection:
+      - Minimal Install 
+            - Begin Install
+
 # Launch AddNewVM2Control.Local
 	- Variables will prompt at launch
  		- vbvmip: 192.168.56.???
@@ -281,7 +295,8 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
 - save
 - Launch
 
-- 
+** When Oracle server completes cont....
+
 # Create template workflow from newly created templates to add virtualbox guest software to VM
   	- Add  Workflow Template
   	- Name: Install Addon Linux Host
@@ -293,34 +308,17 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
   - Please click the Start button to begin.
   - Start
   - Select > MacMount
-  - + On Sucess > Install GuestAddons DNF > On Failure > Install GuestAddons Yum > On Sucess > Mac_un_Mount
-  - + On Failure > Install GuestAddons Yum > On Sucess > Mac_un_Mount
+  - + On Sucess > Install GuestAddons DNF > On Sucess > Mac_un_Mount
+  					- + On Failure > Install GuestAddons OEL 7.8 > On Sucess > Mac_un_Mount
 - save
 - Launch
 - Limit: <name_of_VBoxVM>
 - Variable: vbvm: <name_of_VBoxVM>
 
- # Oracle DB server build
+ # Create project to add Oracle
  -
- # Screen shots of build can be found in: Ansible_Control_Server_Build.md    
- - Configure server with the following
-      - 8192 MB RAM
-      - 40 GB Disk space
-      - Networking * Add Bridge Adaptor and/or Host-only Netowk
-    - Start OS install
-        - oel7.8 (DB Server) Host Name - dbserver.local
-        - make sure all networks added are enabled
-        - 
-          	* Use IP address to login on ternminal (makes life easier)
-          - click configure on all enabled netwrok devices
-          - Ethernet > Link Negotiation = Automatic
-          - General > also click Automatically connect to this network when available
-        - all passwords set = redhat (I know)
-          - root user: Allow root SSH login with password
+ 
 
-    - Software Selection:
-      - Minimal Install > Select Standard
-            - Begin Install
 
 
 # VirtualBox specific * In-order to obtain ip's from VBoxManage to dynamically build ansible inventory
@@ -331,19 +329,6 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
      - Variable: vbvm: <name_of_VBoxVM>
 
 
-     
-     
-     - Manual setup (ansible-playbook, setup_VBGuest.yml (not written yet))
-	- yum install kernel-devel -y
- 	- yum install bzip2 -y 
-  	- yum install gcc -y
-  	- click on VBox console > devices > Insert Guest Additions CD Images ..
-   	- mkdir -p /media/cdrom
-    	- mount /dev/cdrom /media/cdrom
-	- sh VBoxLinuxAdditions.run
- - If error it's becuase it booted in UEK kernel, reboot and select oel7.8 (top choice)
-	- mount /dev/cdrom /media/cdrom
-	- sh VBoxLinuxAdditions.run
  - From local host terminal
  	-  VBoxManage guestproperty get dbserver.local /VirtualBox/GuestInfo/Net/0/V4/IP
   	-  VBoxManage guestproperty get dbserver.local /VirtualBox/GuestInfo/Net/1/V4/IP
