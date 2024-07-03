@@ -1,5 +1,12 @@
 # Oracle Build 
 
+- Create Oracle user and Groups
+- Create FileSystem
+- get oracle binaries
+- get starter DB
+- relink
+- startup DB
+- veryify connection
 
 
 
@@ -7,13 +14,6 @@
 
 
 
-
-
-
-
-
-
-# Validate its all working
  # Step 1 - Execution Environments
 - From the left side under Administration: click Execution Environments > copy Default execution environment
   - edit your copy
