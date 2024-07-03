@@ -1,6 +1,12 @@
 ---
 - hosts: all
   tasks:
+    - name: Changing boot kernal default as UEK does not play nice with Addons
+      ansible.builtin.shell:
+        cmd: grubby --set-default /boot/vmlinuz-3.10.0-1127.el7.x86_64
+      register: shell
+    - debug: var=shell.stdout_lines
+# Missing packages GIT
     - name: Installing missing packages git
       ansible.builtin.shell:
         cmd: dnf install git -y
