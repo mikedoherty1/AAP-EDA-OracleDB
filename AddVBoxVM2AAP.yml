@@ -9,5 +9,10 @@
   - name:  build variable list 
     ansible.builtin.shell:
       cmd: cat /etc/hosts
-      register: my_items
-  - debug: var=my_items.stdout_lines
+    register: newe
+  - debug: var=newe.stdout_lines
+
+
+
+
+
