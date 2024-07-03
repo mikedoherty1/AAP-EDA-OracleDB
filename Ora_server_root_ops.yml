@@ -1,0 +1,9 @@
+- name: Add the user 'oracle' with a bash shell, appending the group 'dba' and 'oinstall' to the user's groups
+  ansible.builtin.user:
+    name: james
+    shell: /bin/bash
+    groups: dba,oinstall,oper,backupdba
+    append: yes
+    create_home: yes
+    comment: Oracle Admin
+    password: oracle
