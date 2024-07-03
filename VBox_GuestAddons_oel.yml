@@ -1,6 +1,19 @@
 ---
 - hosts: all
   tasks:
+    - name: Installing missing packages kernel-devel
+      ansible.builtin.shell:
+        cmd: grubby --set-default /boot/vmlinuz-3.10.0-1127.el7.x86_64
+      register: shell
+    - debug: var=shell.stdout_lines
+# restart
+    - name: restart server for el7.x86_64
+      shell: reboot
+      ignore_unreachable: true
+    - name: wait for server to come back
+      wait_for_connection: 
+        timeout: 120
+# Install GIT
     - name: Installing missing packages git
       ansible.builtin.shell:
         cmd: yum install git -y
