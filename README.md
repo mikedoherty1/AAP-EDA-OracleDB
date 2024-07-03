@@ -309,9 +309,9 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
   - save
   - Please click the Start button to begin.
   - Start
-  - Select > MacMount
-  - + On Sucess > Install GuestAddons DNF > On Sucess > Mac_un_Mount
-  					- + On Failure > Install GuestAddons OEL 7.8 > On Sucess > Mac_un_Mount
+  - Select > MacMount > Next > Save
+  - + On Sucess > Install GuestAddons DNF > Next > Save > On Sucess > Mac_un_Mount > Next > Save
+  					- + On Failure > Install GuestAddons OEL 7.8 > Next > Save > On Sucess > Mac_un_Mount > Next > Save
 - save
 - Launch
 - Limit: <name_of_VBoxVM>
