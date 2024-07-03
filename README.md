@@ -1,20 +1,23 @@
-# Purpose - how to guide for AAP, EDA (GUI) automates installs, OS configurations, and DB build
+# Purpose - Step by Step guide for AAP (GUI), EDA  
+### To install , TO Automates , To Configurations, and To Build
 - This is not a hands off build, this is a step by step on how to build automation
    -    *Not meant to be efficient, steps are purposeful individualized for build practice.
    -    Allot if items are hard coded naming, was not meant to be awesome scripting just simple cmds
-### My laptop setup
+### My  setup
 - mac, created new user ansible with admin priv, password redhat, enabled ssh.
 - all software was installed in ansible account (VirtualBox) https://www.virtualbox.org
 - Installed latest Oracle VM VirtualBox Extension Pack
-- Newtorking - Host-only Networks
+- Newtorking - Host-only Networks on Adapter 2 * Important as hard coded VboxManage to search IP here
 - Mask: 255.255.255.0 ; Lower Bound: 192.168.56.100 ; Upper Bound: 192.168.56.199
    -
 - Pre-requisits 
       - rhel9.4 & oel7.8 server used to install ansible automation control and oracleDB
-        - RedHat Linux found here https://access.redhat.com/downloads/content/rhel > get Red Hat Enterprise Linux 9.4 Boot ISO
-        - Oracle Linux found here https://yum.oracle.com/oracle-linux-isos.html > get OracleLinux-R7-U8-Server-x86_64-dvd.iso
-	- I used Oracle VirtualBox but anthing can be used (OpenShift, Proxmox etc) https://www.virtualbox.org/wiki/Downloads
-- Configure Service with the following
+        - RedHat Linux found here:
+   https://access.redhat.com/downloads/content/rhel > get Red Hat Enterprise Linux 9.4 Boot ISO
+        - Oracle Linux found here:
+   https://yum.oracle.com/oracle-linux-isos.html > get OracleLinux-R7-U8-Server-x86_64-dvd.iso
+
+- Configure AAP Control and DB Server with the following:
       - 8192 MB RAM
       - 40 GB Disk space
       - Networking * Host-only Network on Adapter 2
@@ -22,7 +25,7 @@
   -
 # Screen shots of build can be found in: Ansible_Control_Server_Build.md    
     - Start OS install
-        - RHEL9.4 (used for AAP) Host Name - control.local
+        - RHEL9.4 (used for AAP) Host Name: **control.local**
         - make sure all networks added are enabled
         - all passwords set = redhat
           - root user: Allow root SSH login with password
@@ -33,9 +36,9 @@
       - Minimal Install > Select Standard
             - Begin Install
 --
-Login into newly built rhel9.4 server: control.local
+Login into newly built rhel9.4 server: **control.local**
   - local mac terminal ssh root@control.local * can get ip from linux console > ifconfig |grep 192
-  - ** Recommend adding control.local to mac /etc/hosts file and adding mac host/ip to control.local **
+  - ** Recommend adding control.local to mac /etc/hosts file  **
   - all operations done as root user
 
 ```
@@ -69,9 +72,6 @@ cd AAP-EDA-OracleDB
    - ./step1.sh
 
 # ansible time
-- Setting up the gui
-# Screen shots of build can be found in: Automation-Control_Images.md
-
  # Step 1
     - from web broweser: https://control.local
 
@@ -144,7 +144,12 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
   - Organization: HomeLab
 - save
 - 
- # Step 5a - Hosts
+  # Step 4c - Inventories
+- From the left side under Resources: click Inventories > add 
+  -  name: HomeLab
+  - Organization: HomeLab
+- save
+# Step 5a - Hosts
 - From the left side under Resources: click Inventories > add 
   -  name: control.local
   - Inventory: AAP
@@ -218,15 +223,22 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
 - All project will be created in /var/lib/awx/projects ****** 
 
 # Create Templates from Project GuestInstall
-	- Name: GuestAddons
- 	- Inventory: AAP
+	- Name: Install GuestAddons DNF
+ 	- Inventory: HomeLab
   	- Project: GuestInstall
    	- Execution Environment: RHEL9
-    	- Playbook: VirtualBox_GuestAddons.yml
+    	- Playbook: VBox_GuestAddons_rhel.yml
      	- Credentials: RootAdmin
       - save
-
-- 2nd of 3 templates
+# Next Template	
+ 	- Name: Install GuestAddons YUM
+ 	- Inventory: HomeLab
+  	- Project: GuestInstall
+   	- Execution Environment: RHEL9
+    	- Playbook: VBox_GuestAddons_oel.yml
+     	- Credentials: RootAdmin
+      - save
+# Next Template
 	- Name: MacMount
  	- Inventory: MAC
   	- Project: GuestInstall
@@ -234,8 +246,7 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
     	- Playbook: VirtualBox_MacMount.yml
      	- Credentials: MacAdmin
       - save
-   	 
-- Last template
+# Next Template
 	- Name: Mac_un_Mount
  	- Inventory: MAC
   	- Project: GuestInstall
@@ -243,8 +254,23 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
     	- Playbook: VirtualBox_Mac_UnMount.yml
      	- Credentials: MacAdmin
       - save
-   	 
-   # Create template workflow from newly created templates to add virtualbox guest software to VM
+# Next Template
+	- Name: AddNewVM2Control.Local
+ 	- Inventory: AAP
+  	- Project: GuestInstall
+   	- Execution Environment: RHEL9
+    	- Playbook: AddToHostsFile.yml
+     	- Credentials: RootAdmin
+      - save
+
+# Launch AddNewVM2Control.Local
+	- Variables will prompt at launch
+ 		- vbvmip: 192.168.56.???
+   		- vbname: name_of_VBoxVM
+
+# Add all Linux hosts to HomeLab Inventory
+
+# Create template workflow from newly created templates to add virtualbox guest software to VM
   	- Add  Workflow Template
   	- Name: Install Addon Linux Host
   	- Organization: HomeLab
@@ -252,8 +278,10 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
   - Please click the Start button to begin.
   - Start
   - Select > MacMount
-  - + On Sucess > GuestAddons
+  - + On Sucess > Install GuestAddons DNF
+  	- + On Failure > Install GuestAddons Yum
     + On Sucess > Mac_un_Mount
+    	- + On Sucess > Mac_un_Mount 
 - save
 - Launch
 
