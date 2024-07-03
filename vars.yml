@@ -8,15 +8,14 @@
         cmd: /usr/local/bin/VBoxManage list vms | awk '{ print $1}' | tr -d '"' > /Users/ansible/runningvms.lst 
       register: vmlist
     - debug: var=vmlist.stdout_lines
-    - name:  cat 
+    - name:  build variable list 
       ansible.builtin.shell:
         cmd: cat /Users/ansible/runningvms.lst 
-      register: vbvm
-    - debug: var=vbvm.stdout_lines
-    - name: list
+      register: my_items
+    - debug: var=my_items.stdout_lines
+    - name: list Vms that are running
       ansible.builtin.shell:
-        cmd: /usr/local/bin/VBoxManage showvminfo "{{ vbvm }}" --machinereadable |grep macaddress1
+        cmd: /usr/local/bin/VBoxManage showvminfo "{{ item }}" --machinereadable |grep macaddress1
+        with_items: my_items.stdout_lines
       register: vbsh
     - debug: var=vbsh.stdout_lines
-
-
