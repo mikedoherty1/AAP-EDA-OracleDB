@@ -19,3 +19,11 @@
         cmd: yum -y install oracle-database-preinstall-19c
       register: shell
     - debug: var=shell.stdout_lines
+# Filesystem
+    - name: Creates directory
+      ansible.builtin.file:
+        path: /oracle
+        state: directory
+        owner: oracle
+        group: dba
+        mode: 0775
