@@ -13,3 +13,9 @@
         password: oracle
       register: out
     - debug: var=out.stdout_lines
+# Install GIT
+    - name: Installing oracle 19c packages
+      ansible.builtin.shell:
+        cmd: yum -y install oracle-database-preinstall-19c
+      register: shell
+    - debug: var=shell.stdout_lines
