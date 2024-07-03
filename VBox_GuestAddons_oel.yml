@@ -50,7 +50,7 @@
       register: shell
     - debug: var=shell.stdout_lines
 # VBoxLinuxAdditions
-    - name: This  will install VBoxLinuxAdditions on RHEL
+    - name: This  will install VBoxLinuxAdditions on OEL
       ansible.builtin.shell:
         cmd: sh VBoxLinuxAdditions.run
         chdir: /media/cdrom
