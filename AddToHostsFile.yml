@@ -1,7 +1,7 @@
 ---
   - name: Add New VBox server to control.local /etc/hosts file
-    hosts: all
     vars:
+    hosts: all
     tasks:    
       lineinfile:
         path:  /etc/hosts
