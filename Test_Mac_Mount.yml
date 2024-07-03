@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+  vars:
+  
+    - name:  Mount Insert Guest Additions CD Images ..
+    debug:
+      msg: /usr/local/bin/VBoxManage storageattach "{{ vbvm }}" --storagectl "IDE" --port 1 --device 0 --type dvddrive --medium /Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso
