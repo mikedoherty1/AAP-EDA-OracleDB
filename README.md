@@ -236,7 +236,7 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
  	- Inventory: HomeLab
   	- Project: GuestInstall
    	- Execution Environment: RHEL9
-    	- Playbook: VBox_GuestAddons_oel.yml
+    	- Playbook: VBox_GuestAddons_oel78.yml
      	- Credentials: RootAdmin
       - save
 # Next Template
