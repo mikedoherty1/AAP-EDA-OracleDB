@@ -6,4 +6,4 @@
       ansible.builtin.shell:
         cmd: /usr/local/bin/VBoxManage storageattach "{{ vbvm }}" --storagectl "IDE" --port 1 --device 0 --type dvddrive --medium /Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso
       register: out
- - debug: msg="{{ out.stdout }}"
+    - debug: msg="{{ out.stdout }}"
