@@ -37,6 +37,12 @@
         cmd: yum install gcc -y
       register: shell
     - debug: var=shell.stdout_lines
+# kernel-devel
+    - name: Installing devel kernel specific
+      ansible.builtin.shell:
+        cmd: yum install "kernel-devel-uname-r == $(uname -r)" -y
+      register: shell
+    - debug: var=shell.stdout_lines
 # mkdir
     - name: make filesystem for mounting cdrom
       ansible.builtin.shell:
