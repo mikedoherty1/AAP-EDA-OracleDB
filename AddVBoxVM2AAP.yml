@@ -8,7 +8,8 @@
       line: "{{ vbvmip }}     {{ vbname }}"
   - name:  build variable list 
     ansible.builtin.shell:
-      cmd: cat /etc/hosts
+      cmd: cat hosts
+      chdir: /etc
     register: newe
   - debug: var=newe.stdout_lines
 
