@@ -1,8 +1,12 @@
 ---
 - hosts: all
+  vars: 
+    
+
+  gather_facts: true
+
   tasks:
-  vars:
-  
-    - name:  Mount Insert Guest Additions CD Images ..
+
+  - name: Show Gathered Facts ans
     debug:
-      msg: /usr/local/bin/VBoxManage storageattach "{{ vbvm }}" --storagectl "IDE" --port 1 --device 0 --type dvddrive --medium /Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso
+      msg: "/usr/local/bin/VBoxManage storageattach {{ vbvm }} --storagectl "IDE" --port 1 --device 0 --type dvddrive --medium /Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso"
