@@ -1,99 +1,15 @@
-# Purpose - Step by Step guide for AAP (GUI), EDA  
-### To install , TO Automates , To Configurations, and To Build
-- This is not a hands off build, this is a step by step on how to build automation
-   -    *Not meant to be efficient, steps are purposeful individualized for build practice.
-   -    Allot if items are hard coded naming, was not meant to be awesome scripting just simple cmds
-### My  setup
-- mac, created new user ansible with admin priv, password redhat, enabled ssh.
-- all software was installed in ansible account (VirtualBox) https://www.virtualbox.org
-- Installed latest Oracle VM VirtualBox Extension Pack
-- Newtorking - Host-only Networks on Adapter 2 * Important as hard coded VboxManage to search IP here
-- Mask: 255.255.255.0 ; Lower Bound: 192.168.56.100 ; Upper Bound: 192.168.56.199
-   -
-- Pre-requisits 
-      - rhel9.4 & oel7.8 server used to install ansible automation control and oracleDB
-        - RedHat Linux found here:
-   https://access.redhat.com/downloads/content/rhel > get Red Hat Enterprise Linux 9.4 Boot ISO
-        - Oracle Linux found here:
-   https://yum.oracle.com/oracle-linux-isos.html > get OracleLinux-R7-U8-Server-x86_64-dvd.iso
-
-- Configure AAP Control and DB Server with the following:
-      - 8192 MB RAM
-      - 40 GB Disk space
-      - Networking * Host-only Network on Adapter 2
-  		- This will be hard coded when finding Linux host ip's via VirtualBox for dynamic ansible Inventory
-  - all other nodes I used default minimums
-  - 
-# Screen shots of build can be found in: Ansible_Control_Server_Build.md    
-    - Start OS install
-        - RHEL9.4 (used for AAP) Host Name: **control.local**
-        - make sure all networks added are enabled
-        - all passwords set = redhat
-          - root user: Allow root SSH login with password
-    - Connect to RedHat
-      - If you do not already, signup for personal account ** REQUIRED
-        - These credentials will be used when installing Automation Platform
-    - Software Selection:
-      - Minimal Install > Select Standard
-            - Begin Install
---
-Login into newly built rhel9.4 server: **control.local**
-  - local mac terminal ssh root@control.local * can get ip from linux console > ifconfig |grep 192
-  - ** Recommend adding control.local to mac /etc/hosts file  **
-  - all operations done as root user
-
-```
-	mkdir -p /root/git
-```
-
--    Install git
-    
-```
-	dnf install git -y
-```
-- Change to directory for git clone
-```
-	cd /root/git
-```
-- Pull environemnt cmds for setup
-```
-git clone https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
-```
-- cd into directory
-```
-cd AAP-EDA-OracleDB
-```
-- Execute step0.sh
-  -- This will prompt for read in variables and configure, install and download software
-   - ./step0.sh
-     - This will ask a couple questions and setup the necessary settings to install ansible platform
-     - * When asked about key and phrases just hit return
-       * when validating passwordless ssh, type yes when propmted, then type exit to go back to original session
-- Install Ansible./s   
-   - ./step1.sh
-
-# ansible time
- # Step 1
-    - from web broweser: https://control.local
-
-
-    Proceed to your_ip_adress (unsafe)
-
-    Login: admin
-    Password: redhat
-    
-
-
- # Step 2
- --
-click username/password
-put in your RedHat subscription and click: Get Subscription 
+# Oracle Build 
 
 
 
- # Step 3
---
-Select your Subscription; then click next to finsih.  All done you know have AAP running
+
+
+
+
+
+
+
+
 
 
 
@@ -321,26 +237,3 @@ Select your Subscription; then click next to finsih.  All done you know have AAP
  -
  
 
-
-
-# VirtualBox specific * In-order to obtain ip's from VBoxManage to dynamically build ansible inventory
-    
-     Workflow Template
-     Launch: Install Addon Linux Host
-     - Limit: <name_of_VBoxVM>
-     - Variable: vbvm: <name_of_VBoxVM>
-
-
- - From local host terminal
- 	-  VBoxManage guestproperty get dbserver.local /VirtualBox/GuestInfo/Net/0/V4/IP
-  	-  VBoxManage guestproperty get dbserver.local /VirtualBox/GuestInfo/Net/1/V4/IP
-   	-  VBoxManage guestproperty get dbserver.local /VirtualBox/GuestInfo/Net/2/V4/IP
-   	-  VBoxManage guestproperty get dbserver.local /VirtualBox/GuestInfo/Net/3/V4/IP
-- Ip's will be displayed and you can now create dynamic inventory of all your servers
-
-
- # EDA Server Build
- -
- # Ansible to automate OracleDB build
- -
- # EDA to execute tasks for OracleDB
