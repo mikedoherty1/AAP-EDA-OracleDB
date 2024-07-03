@@ -1,0 +1,13 @@
+---
+- hosts: all
+  vars:
+  tasks:
+  - name: Add New VBox server to control.local /etc/hosts file   
+    lineinfile:
+      path: /etc/hosts
+      line: "{{ vbvmip }}     {{ vbname }}"
+  - name:  build variable list 
+    ansible.builtin.shell:
+      cmd: cat /etc/hosts
+      register: my_items
+  - debug: var=my_items.stdout_lines
