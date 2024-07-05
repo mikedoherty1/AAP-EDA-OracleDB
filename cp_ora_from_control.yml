@@ -5,6 +5,6 @@
       ansible.builtin.copy:
         src: /root/software/ora19c.tar.gz
         dest: /oracle/ora19c.tar.gz
-            owner: oracle
+        owner: oracle
       register: copy
     - debug: var=copy.stdout_lines
