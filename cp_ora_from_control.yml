@@ -7,5 +7,5 @@
       ansible.builtin.copy:
         src: /root/software/ora19c.tar.gz
         dest: /oracle/ora19c.tar.gz
-
+        owner: oracle
 
