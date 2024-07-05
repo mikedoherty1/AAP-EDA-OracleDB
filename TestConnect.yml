@@ -3,7 +3,7 @@
   tasks:
     - name: This command will change the working directory - Just verifiying connection to host
       ansible.builtin.shell:
-        cmd: ls -lrt
-        chdir: /Users/ansible/Downloads
+        cmd: ls
+        chdir: /home
       register: shell
     - debug: var=shell.stdout_lines
