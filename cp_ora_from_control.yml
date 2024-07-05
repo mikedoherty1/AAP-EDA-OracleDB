@@ -1,8 +1,10 @@
 ---
 - hosts: all
+- hosts: "{{ srcserv }}"
   tasks:
-    - name: Copy file and set permissions with Ansible
-      ansible.builtin.copy:
+    - name: Transfer file from "{{ srcserv }} to {{ destserv }}"
+      synchronize:
         src: /root/software/ora19c.tar.gz
         dest: /oracle/ora19c.tar.gz
-
+        mode: pull
+      delegate_to: "{{ destserv }}"
