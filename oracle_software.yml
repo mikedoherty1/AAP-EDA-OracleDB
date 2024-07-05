@@ -2,7 +2,7 @@
 - hosts: all
   tasks:
   - name: Download Oracle from google drive
-      get_url:
-        url: https://drive.google.com/uc?export=download&id=1xZGxmOtrLig4fNhhCMjoEzMRqcC0uXWe
-        dest: /oracle/ora19c.tar.gz
+    get_url:
+      url: https://drive.google.com/uc?export=download&id=1xZGxmOtrLig4fNhhCMjoEzMRqcC0uXWe
+      dest: /oracle/ora19c.tar.gz
 #https://drive.google.com/file/d/1xZGxmOtrLig4fNhhCMjoEzMRqcC0uXWe/view?usp=share_link
