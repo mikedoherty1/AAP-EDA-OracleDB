@@ -1,0 +1,8 @@
+---
+- name: Copy Oracle from control to DB Server
+  ansible.builtin.copy:
+    src: /root/software/ora19c.tar.gz
+    dest: /oracle/ora19c.tar.gz
+    owner: oracle
+    group: dba
+    mode: '0644'
