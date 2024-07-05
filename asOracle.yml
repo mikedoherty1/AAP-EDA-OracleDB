@@ -22,13 +22,13 @@
         chdir: /oracle/app/product/19c/network/admin
       register: shell
     - debug: var=shell.stdout_lines
-      - name: start listener
+    - name: start listener
       ansible.builtin.shell:
         cmd: lsnrctl start 
       register: shell
     - debug: var=shell.stdout_lines
-     - name: Start DB
-       shell: |
+    - name: Start DB
+      shell: |
              sqlplus / as sysdba
              startup;
              EOF
