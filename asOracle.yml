@@ -1,0 +1,10 @@
+
+
+
+# VBoxLinuxAdditions
+    - name: This  will install VBoxLinuxAdditions on OEL
+      ansible.builtin.shell:
+        cmd: sh VBoxLinuxAdditions.run
+        chdir: /media/cdrom
+      register: shell
+    - debug: var=shell.stdout_lines
