@@ -1,5 +1,5 @@
 ---
-- hosts: oraservers
+- hosts: all
   tasks:
     - name: Copy file and set permissions with Ansible
       ansible.builtin.copy:
