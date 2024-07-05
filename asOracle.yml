@@ -2,7 +2,7 @@
 - hosts: all
   vars:
     ansible_python_interpreter: auto_silent
-  gather_facts: true
+
   tasks:
     - name: Untar Oracle Binaries
       ansible.builtin.shell:
@@ -12,13 +12,13 @@
     - debug: var=shell.stdout_lines
     - name: Set correct hostname in listener.ora
       ansible.builtin.shell:
-        cmd: sed -i 's/change_hostname/$inventory_hostname/g' listener.ora
+        cmd: sed -i 's/change_hostname/"{{ vbvm }}"/g' listener.ora
         chdir: /oracle/app/product/19c/network/admin
       register: shell
     - debug: var=shell.stdout_lines
     - name: Set correct hostname in tnsnames.ora
       ansible.builtin.shell:
-        cmd: sed -i 's/change_hostname/$inventory_hostname/g' tnsnames.ora
+        cmd: sed -i 's/change_hostname/"{{ vbvm }}"/g' tnsnames.ora
         chdir: /oracle/app/product/19c/network/admin
       register: shell
     - debug: var=shell.stdout_lines
