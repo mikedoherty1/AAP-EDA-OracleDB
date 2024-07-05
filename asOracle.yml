@@ -1,10 +1,11 @@
-
-
-
-# VBoxLinuxAdditions
-    - name: This  will install VBoxLinuxAdditions on OEL
+---
+- hosts: all
+  vars:
+    ansible_python_interpreter: auto_silent
+  tasks:
+    - name: Untar Oracle Binaries
       ansible.builtin.shell:
-        cmd: sh VBoxLinuxAdditions.run
-        chdir: /media/cdrom
+        cmd: tar -xzvf ora19c.tar.gz
+        chdir: /oracle
       register: shell
     - debug: var=shell.stdout_lines
