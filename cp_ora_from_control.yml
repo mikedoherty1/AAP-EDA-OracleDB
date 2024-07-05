@@ -1,9 +1,10 @@
 ---
 - hosts: all
-- name: Copy file and set permissions with Ansible
-  copy:
-    src: /root/software/ora19c.tar.gz
-    dest: /oracle/ora19c.tar.gz
-    owner: oracle
-    group: dba
-    mode: '0644'
+  tasks:
+    - name: Copy file and set permissions with Ansible
+      ansible.builtin.copy:
+        src: /root/software/ora19c.tar.gz
+        dest: /oracle/ora19c.tar.gz
+            owner: oracle
+      register: copy
+    - debug: var=copy.stdout_lines
