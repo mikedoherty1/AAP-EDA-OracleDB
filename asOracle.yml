@@ -19,3 +19,8 @@
         path: /oracle/app/product/19c/network/admin/tnsnames.ora
         regexp: change_hostname
         replace: $(hostname)
+      - name: start listener
+      ansible.builtin.shell:
+        cmd: lsnrctl start 
+      register: shell
+    - debug: var=shell.stdout_lines
