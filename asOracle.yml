@@ -9,3 +9,13 @@
         chdir: /oracle
       register: shell
     - debug: var=shell.stdout_lines
+    - name: Set correct hostname in listener.ora
+      ansible.builtin.replace:
+        path: /etc/hosts
+        regexp: change_hostname
+        replace: 
+    - name: Set correct hostname in tnsnames.ora
+      ansible.builtin.replace:
+        path: /etc/hosts
+        regexp: change_hostname
+        replace:
