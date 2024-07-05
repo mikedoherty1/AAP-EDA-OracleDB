@@ -2,6 +2,7 @@
 - hosts: all
   vars:
     ansible_python_interpreter: auto_silent
+  gather_facts: true
   tasks:
     - name: Untar Oracle Binaries
       ansible.builtin.shell:
