@@ -14,12 +14,12 @@
       ansible.builtin.replace:
         path: /oracle/app/product/19c/network/admin/listener.ora
         regexp: change_hostname
-        replace: '{{ inventory_hostname }}'
+        replace: "{{ inventory_hostname }}"
     - name: Set correct hostname in tnsnames.ora
       ansible.builtin.replace:
         path: /oracle/app/product/19c/network/admin/tnsnames.ora
         regexp: change_hostname
-        replace: '{{ inventory_hostname }}'
+        replace: "{{ inventory_hostname }}"
       - name: start listener
       ansible.builtin.shell:
         cmd: lsnrctl start 
