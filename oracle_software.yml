@@ -1,10 +1,8 @@
 ---
 - hosts: all
   tasks:
-- name: Copy Oracle from control to DB Server
-  ansible.builtin.copy:
-    src: /root/software/ora19c.tar.gz
-    dest: /oracle/ora19c.tar.gz
-    owner: oracle
-    group: dba
-    mode: '0644'
+    - name: Work Around for copy file in GUI 
+      ansible.builtin.shell:
+        cmd: ansible-playbook -i /root/dbhost /var/lib/awx/projects/_28__guestaddons_050537537_pm/cp_ora_from_control.yml
+      register: shell
+    - debug: var=shell.stdout_lines
