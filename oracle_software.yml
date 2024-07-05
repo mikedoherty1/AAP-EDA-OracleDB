@@ -1,8 +1,10 @@
 ---
 - hosts: all
   tasks:
-  - name: Download Oracle from google drive
-    get_url:
-      url: https://drive.google.com/uc?export=download&id=1xZGxmOtrLig4fNhhCMjoEzMRqcC0uXWe
-      dest: /oracle/ora19c.tar.gz
-#https://drive.google.com/file/d/1xZGxmOtrLig4fNhhCMjoEzMRqcC0uXWe/view?usp=share_link
+- name: Copy Oracle from control to DB Server
+  ansible.builtin.copy:
+    src: /root/software/ora19c.tar.gz
+    dest: /oracle/ora19c.tar.gz
+    owner: oracle
+    group: dba
+    mode: '0644'
