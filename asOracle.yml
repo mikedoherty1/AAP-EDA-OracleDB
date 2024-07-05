@@ -11,11 +11,11 @@
     - debug: var=shell.stdout_lines
     - name: Set correct hostname in listener.ora
       ansible.builtin.replace:
-        path: /etc/hosts
+        path: /oracle/app/product/19c/network/admin
         regexp: change_hostname
-        replace: 
+        replace: $(hostname)
     - name: Set correct hostname in tnsnames.ora
       ansible.builtin.replace:
-        path: /etc/hosts
+        path: /oracle/app/product/19c/network/admin
         regexp: change_hostname
-        replace:
+        replace: $(hostname)
