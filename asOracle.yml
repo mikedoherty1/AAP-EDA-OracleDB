@@ -32,5 +32,5 @@
              sqlplus / as sysdba
              startup;
              EOF
-       register: user_output
+      register: user_output
     - debug: var=user_output.stdout_lines 
