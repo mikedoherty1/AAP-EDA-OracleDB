@@ -1,8 +1,11 @@
 ---
-- hosts: all
-  tasks: 
+- hosts: ora19DB.local
+  vars:
+    ansible_python_interpreter: auto_silent
+  tasks:
     - name: Copy file to remote host
-      copy:
+      ansible.builtin.fetch:
         src: /root/ABC.txt
         dest: /oracle/ABC.txt
+
 
