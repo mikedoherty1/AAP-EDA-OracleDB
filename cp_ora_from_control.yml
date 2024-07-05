@@ -1,9 +1,9 @@
 ---
 - hosts: all
-- name: Copy Oracle from control to DB Server
-  tasks:
-    - ansible.builtin.copy:
-        src: /root/software/ora19c.tar.gz
-        dest: /oracle/ora19c.tar.gz
-      register: copy
-    - debug: var=copy.stdout_lines
+- name: Copy file and set permissions with Ansible
+  copy:
+    src: /root/software/ora19c.tar.gz
+    dest: /oracle/ora19c.tar.gz
+    owner: oracle
+    group: dba
+    mode: '0644'
