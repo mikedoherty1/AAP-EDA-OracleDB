@@ -19,6 +19,12 @@
         cmd: yum install git -y
       register: shell
     - debug: var=shell.stdout_lines
+# Install wget
+    - name: Installing missing packages git
+      ansible.builtin.shell:
+        cmd: yum install wget -y
+      register: shell
+    - debug: var=shell.stdout_lines
 # devel
     - name: Installing missing packages kernel-devel
       ansible.builtin.shell:
