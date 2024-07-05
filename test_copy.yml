@@ -1,0 +1,10 @@
+---
+- hosts: all
+  vars:
+    ansible_python_interpreter: auto_silent
+  tasks:
+    - name: copy file sftp
+      ansible.netcommon.net_put:
+        src: /root/software/ora19c.tar.gz
+        protocol: sftp
+        dest: /oracle/ora19c.tar.gz
