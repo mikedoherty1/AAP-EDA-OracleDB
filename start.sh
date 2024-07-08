@@ -71,7 +71,7 @@ sed -i "s/REDHAT_PWD/$REDHAT_PWD/g" /root/software/aap-bundle-2.4-6.2/inventory
 
 /root/software/aap-bundle-2.4-6.2/setup.sh
 clear
-echo "all done goto chrome/firefox https:$ips"
+
 #Get Oracle
 echo "Ansible complete start working in GUI - This should also take 15 minutes (pending internet speeds - Oracle software used to automate oel7.8 build via Ansible platform"
 sleep 10
@@ -90,6 +90,5 @@ wget --header="Host: drive.usercontent.google.com" --header="User-Agent: Mozilla
 mv ora19c.tar.gz /root/software
 clear
 echo "All OS steps complete, everything else will be done in Ansible Automation Platform
-
-
 "
+echo "all done goto chrome/firefox https:$ips"
