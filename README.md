@@ -1,8 +1,10 @@
-# Purpose - Step by Step Ansible Automation Platform
+# Simple - Step by Step Ansible Automation Platform
 
 ### To install (AAP)(EDA)(Oracle) , To Configure AAP (), and To Build (Oracle)
 
-> ### This is not a hands off build, this is a step by step on how to build automation
+> ### This is not a hands off build, this is a step by step on how to build automation with some basic playbooks and builtin modules:
+> 
+> shell:copy:inline edit:Linux packages:add users:add hosts:projects:templates:GIT:Database
 > 
 > ### \*Not meant to be efficient, steps are purposeful individualized for build practice.
 > 
@@ -10,7 +12,7 @@
 
 ---
 
-### My exact setup (naming included)
+### My setup (naming included)
 
 MacBook Pro, created new user ansible with admin priv, password = redhat, enabled ssh, added ansible user to sudoers file.
 
@@ -39,8 +41,6 @@ Configure AAP Control :
     *   This will be hard coded when finding Linux host ip's via VirtualBox for dynamic ansible Inventory
 
 all other nodes I used default minimums
-
-# Screen shots of build can be found in: Ansible\_Control\_Server\_Build.md
 
 ```
 - Start OS install
