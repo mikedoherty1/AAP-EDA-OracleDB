@@ -249,7 +249,7 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 
 # ansible validation complete
 
-*   \\
+     Hello Linux should complete sucessfull while Hello Mac should fail, we will fix this in next section
 
 # Create project to add GuestInstall
 
@@ -314,16 +314,27 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 # Next Template
 
 ```
+Add Mac host information
+
 - Name: AddNewVM2Control.Local
 - Inventory: AAP
 - Project: GuestInstall
 - Execution Environment: RHEL9
     - Playbook: AddToHostsFile.yml
      - Credentials: RootAdmin
+     - Variables - prompt at launch
+    	- vbvmip: 
+    	- vbname: <name_of_VBoxVM>
   - save
+  - Launch
+  		- Enter Variables
+  			vbvmip: <IP_Address>
+    		vbname: <name_of_VBoxVM>
+  
+  - ReLaunch Template Hello Mac to verify connectivity 
 ```
 
-# Create Oracle VBox Server
+## Create Oracle VBox Server
 
 *   \\
 *   Configure server with the following
@@ -338,7 +349,7 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
         *   Minimal Install  
             \- Begin Install
 
-# Launch AddNewVM2Control.Local
+## Launch AddNewVM2Control.Local to add Oracle Server to AAP control
 
 ```
 - Variables will prompt at launch
