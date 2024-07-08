@@ -26,13 +26,5 @@
         owner: oracle
         group: dba
         mode: 0775
-    - name: Add New VBox server to control.local /etc/hosts file   
-      lineinfile:
-      path: /root/dbhost
-      line: "{{ vbvmip }}     {{ vbname }}"
-#    - name: Work Around for file copy in GUI - calling cp_ora_from_control.yml
-#      ansible.builtin.shell:
-#        cmd: ansible-playbook -i /root/dbhost /root/AAP-EDA-OracleDB/cp_ora.yml
-#      register: shell
-#    - debug: var=shell.stdout_lines
+
 
