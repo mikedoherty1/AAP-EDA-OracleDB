@@ -69,14 +69,14 @@
       register: shell
     - debug: var=shell.stdout_lines
 # VBoxLinuxAdditions
-    - name: This  will install VBoxLinuxAdditions on RHEL
+    - name: umount VBoxLinuxAdditions on OEL
       ansible.builtin.shell:
         cmd: pwd
         chdir: /root
       register: shell
     - debug: var=shell.stdout_lines
 # umount
-    - name: mount cdrom
+    - name: umount cdrom
       ansible.builtin.shell:
         cmd: umount /media/cdrom
       register: shell
