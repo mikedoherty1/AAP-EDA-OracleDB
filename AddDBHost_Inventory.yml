@@ -16,5 +16,5 @@
 # add hack entry
     - name: oracle server added to hack job inventory file   
       lineinfile:
-      path: /root/dbhost
-      line: "{{ vbname }}"
+        path: /root/dbhost
+        line: "{{ vbname }}"
