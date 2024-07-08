@@ -1,0 +1,8 @@
+---
+- hosts: all
+  vars:
+  tasks:
+  - name: Add New Oracle server to control.local inventory file for hack copy    
+    lineinfile:
+      path: /root/dbhost
+      line: "{{ vbvmip }}     {{ vbname }}"
