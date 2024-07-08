@@ -26,9 +26,9 @@
         owner: oracle
         group: dba
         mode: 0775
-    - name: Work Around for file copy in GUI - calling cp_ora_from_control.yml
-      ansible.builtin.shell:
-        cmd: ansible-playbook -i /root/dbhost /var/lib/awx/projects/_28__guestaddons_050537537_pm/cp_ora_from_control.yml
-      register: shell
-    - debug: var=shell.stdout_lines
+#    - name: Work Around for file copy in GUI - calling cp_ora_from_control.yml
+#      ansible.builtin.shell:
+#        cmd: ansible-playbook -i /root/dbhost /root/AAP-EDA-OracleDB/cp_ora.yml
+#      register: shell
+#    - debug: var=shell.stdout_lines
 
