@@ -3,12 +3,12 @@
   vars:
 
   tasks:
-    - name: create file
-      ansible.builtin.shell:
-        cmd: touch /root/dbhost
-      register: shell
-    - debug: var=shell.stdout_lines
-    - name: Add Oracle server to inventory for hack copy /root/dbhost file  
+    - name: Touch a file, using symbolic modes to set the permissions (equivalent to 0644)
+      ansible.builtin.file:
+        path: /etc/foo.conf
+        state: touch
+        mode: u=rw,g=r,o=r
+    - name: Add oracle server to /root/dbhost inventory file for hack copy job
       lineinfile:
       path: /root/dbhost
       line: "{{ vbname }}"
