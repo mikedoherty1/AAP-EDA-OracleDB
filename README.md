@@ -370,15 +370,14 @@ Add Mac host information
 
 \*\* When Oracle server completes cont....
 
-# Add hosts to HomeLab Inventory
+# Add all Linux hosts to HomeLab Inventory
 
 # Step 5b - Hosts
 
-*   From the left side under Resources: click Inventories > add
-    *   name:
-    *   Inventory: HomeLab
+*   From the left side under Resources: click Inventories > HomeLab
+    *   Hosts: Add Oracle Server, add Control.local
 *   save
-*   From the left side under Resources: click Templates > edit > hello > edit
+*   From the left side under Resources: click Templates > edit > Linux hello > edit
     *   Change Inventory = HomeLab
 *   save
 *   Launch
@@ -403,7 +402,7 @@ Add Mac host information
         \- + On Failure > Install GuestAddons OEL 7.8 > Next > Save > On Sucess > Mac\_un\_Mount > Next > Save
 *   save
 *   Launch
-*   Limit:
+*   Limit: 
 *   Variable: vbvm:
 
 # Create project to add Oracle
