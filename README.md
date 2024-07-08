@@ -87,6 +87,7 @@ cd AAP-EDA-OracleDB
 *   Execute start.sh  
     \-- This will configure, install and download software
     *   ./start.sh
+        *   A couple read in prompts, a couple hit returns and a type yes ......
 
 # ansible time
 
