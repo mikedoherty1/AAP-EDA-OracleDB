@@ -9,3 +9,9 @@
         dest: /oracle/ora19c.tar.gz
         owner: oracle
         group: dba
+    - name: Copy bash_profile remote host
+      ansible.builtin.copy:
+        src: /root/software/ora_bash_profile
+        dest: /home/oracle/.bash_profile
+        owner: oracle
+        group: dba
