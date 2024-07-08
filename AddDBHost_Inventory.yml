@@ -2,7 +2,13 @@
 - hosts: all
   vars:
   tasks:
-  - name: Add New Oracle server to control.local inventory file for hack copy    
+  # Install preinstall-19c packages
+    - name: create file
+      ansible.builtin.shell:
+        cmd: touch /root/dbhost
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: Add New Oracle server to control.local inventory file for hack copy    
     lineinfile:
       path: /root/dbhost
       line: "{{ vbvmip }}     {{ vbname }}"
