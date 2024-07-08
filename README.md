@@ -263,6 +263,17 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
     *   Options: Clean
 *   All project will be created in /var/lib/awx/projects \*\*\*\*\*\*
 
+# Create project to add OraDB
+
+*   From the left side under Resources: click Projects > add
+    *   name: OraB
+    *   Organization: HomeLab
+    *   Execution Environment: RHEL9
+    *   Source Control Type: Git
+    *   Source Control URL: https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
+    *   Source Control Branch/Tag/Commit: OraBuild
+    *   Options: Clean
+
 # Create Templates from Project GuestInstall
 
 ```
@@ -323,13 +334,13 @@ Add Mac host information
     - Playbook: AddToHostsFile.yml
      - Credentials: RootAdmin
      - Variables - prompt at launch
-    	- vbvmip: 
-    	- vbname: <name_of_VBoxVM>
+        - vbvmip: 
+        - vbname: <name_of_VBoxVM>
   - save
   - Launch
-  		- Enter Variables
-  			vbvmip: <IP_Address>
-    		vbname: <name_of_VBoxVM>
+          - Enter Variables
+              vbvmip: <IP_Address>
+            vbname: <name_of_VBoxVM>
   
   - ReLaunch Template Hello Mac to verify connectivity 
 ```
