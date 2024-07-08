@@ -1,36 +1,44 @@
-# Purpose - Step by Step Ansible Automation Platform 
+# Purpose - Step by Step Ansible Automation Platform
 
 ### To install (AAP)(EDA)(Oracle) , To Configure AAP (), and To Build (Oracle)
 
 > ### This is not a hands off build, this is a step by step on how to build automation
 > 
-> ###      \*Not meant to be efficient, steps are purposeful individualized for build practice.
+> ### \*Not meant to be efficient, steps are purposeful individualized for build practice.
 > 
-> ###      Allot if items are hard coded (MAYBE FIXED) , was not meant to be awesome scripting just simple cmds
+> ### Allot if items are hard coded (MAYBE FIXED) , was not meant to be awesome scripting just simple cmds
 
 ---
 
 ### My exact setup (naming included)
 
-*   MacBook Pro, created new user ansible with admin priv, password = redhat, enabled ssh.
-*   all software was installed in ansible account (VirtualBox) https://www.virtualbox.org
-*   Installed latest Oracle VM VirtualBox Extension Pack
-*   Newtorking - Host-only Networks on Adapter 2 \* Important as hard coded VboxManage to search IP here
-    *   Mask: 255.255.255.0 ; Lower Bound: 192.168.56.100 ; Upper Bound: 192.168.56.199
+MacBook Pro, created new user ansible with admin priv, password = redhat, enabled ssh, added ansible user to sudoers file.
 
-*   Linux Software Used  
-    RedHat 9.4 found here:  https://access.redhat.com/downloads/content/rhel > get Red Hat Enterprise Linux 9.4 Boot ISO 
-    *   Used for AAP,EDA
-*   OracleLinux 7.8 found here: https://yum.oracle.com/oracle-linux-isos.html > get OracleLinux-R7-U8-Server-x86\_64-dvd.iso
-    *   Used for database builds  
-          
-         
-*   Configure AAP Control :
-    *   8192 MB RAM
-    *   40 GB Disk space
-    *   Networking \* Host-only Network on Adapter 2
-        *   This will be hard coded when finding Linux host ip's via VirtualBox for dynamic ansible Inventory
-*   all other nodes I used default minimums
+all software was installed in ansible account (VirtualBox) https://www.virtualbox.org
+
+Installed latest Oracle VM VirtualBox Extension Pack
+
+Newtorking - Host-only Networks on Adapter 2 \* Important as hard coded VboxManage to search IP here
+
+*   Mask: 255.255.255.0 ; Lower Bound: 192.168.56.100 ; Upper Bound: 192.168.56.199
+
+Linux Software Used  
+RedHat 9.4 found here:  https://access.redhat.com/downloads/content/rhel > get Red Hat Enterprise Linux 9.4 Boot ISO 
+
+*   Used for AAP,EDA
+
+OracleLinux 7.8 found here: https://yum.oracle.com/oracle-linux-isos.html > get OracleLinux-R7-U8-Server-x86\_64-dvd.iso
+
+*   Used for database builds
+
+Configure AAP Control :
+
+*   8192 MB RAM
+*   40 GB Disk space
+*   Networking \* Host-only Network on Adapter 2
+    *   This will be hard coded when finding Linux host ip's via VirtualBox for dynamic ansible Inventory
+
+all other nodes I used default minimums
 
 # Screen shots of build can be found in: Ansible\_Control\_Server\_Build.md
 
@@ -38,7 +46,7 @@
 - Start OS install
     - RHEL9.4 (used for AAP) Host Name: **control.local**
     - enable Network Adapter 2
-    	Use  Host-only Networks   
+        Use  Host-only Networks   
     - all passwords set = redhat
     - root user: Allow root SSH login with password
 - Connect to RedHat
@@ -52,11 +60,13 @@
 \--  
 Login into newly built rhel9.4 server: **control.local**
 
-*   local mac terminal ssh root@control.local \* can get ip from linux console > ifconfig |grep 192
-*   \*\* Recommend adding control.local to mac /etc/hosts file \*\*
-*   all operations done as root user
+local mac terminal ssh root@control.local \* can get ip from linux console > ifconfig |grep 192
 
-*   Install git
+\*\* Recommend adding control.local to mac /etc/hosts file \*\*
+
+all operations done as root user
+
+Install git
 
 ```
     dnf install git -y
