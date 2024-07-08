@@ -56,20 +56,10 @@ Login into newly built rhel9.4 server: **control.local**
 *   \*\* Recommend adding control.local to mac /etc/hosts file \*\*
 *   all operations done as root user
 
-```
-    mkdir -p /root/git
-```
-
 *   Install git
 
 ```
     dnf install git -y
-```
-
-*   Change to directory for git clone
-
-```
-    cd /root/git
 ```
 
 *   Pull environemnt cmds for setup
@@ -84,15 +74,9 @@ git clone https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
 cd AAP-EDA-OracleDB
 ```
 
-*   Execute step0.sh  
-    \-- This will prompt for read in variables and configure, install and download software
-    *   ./step0.sh
-        *   This will ask a couple questions and setup the necessary settings to install ansible platform
-        *   \\
-            *   When asked about key and phrases just hit return
-            *   when validating passwordless ssh, type yes when propmted, then type exit to go back to original session
-*   Install Ansible./s
-    *   ./step1.sh
+*   Execute start.sh  
+    \-- This will configure, install and download software
+    *   ./start.sh
 
 # ansible time
 
