@@ -8,7 +8,7 @@
         cmd: touch /root/dbhost
       register: shell
     - debug: var=shell.stdout_lines
-    - name: Add New Oracle server to control.local inventory file for hack copy    
-    lineinfile:
-      path: /root/dbhost
-      line: "{{ vbvmip }}     {{ vbname }}"
+    - name: Add New VBox server to control.local /etc/hosts file   
+      lineinfile:
+      path: /etc/hosts
+      line: "{{ vbname }}"
