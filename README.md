@@ -249,7 +249,7 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 
 # ansible validation complete
 
-     Hello Linux should complete sucessfull while Hello Mac should fail, we will fix this in next section
+    **Hello Linux** should complete sucessfull while **Hello Mac** should fail, we will fix this in next section
 
 # Create project to add GuestInstall
 
@@ -283,6 +283,8 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 - Execution Environment: RHEL9
     - Playbook: VBox_GuestAddons_rhel.yml
      - Credentials: RootAdmin
+     - Variables: vbvm:
+     prompt on launch
   - save
 ```
 
@@ -293,8 +295,10 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 - Inventory: HomeLab
 - Project: GuestInstall
 - Execution Environment: RHEL9
-    - Playbook: VBox_GuestAddons_oel78.yml
+     - Playbook: VBox_GuestAddons_oel78.yml
      - Credentials: RootAdmin
+          - Variables: vbvm:
+     prompt on launch
   - save
 ```
 
@@ -307,6 +311,8 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 - Execution Environment: RHEL9
     - Playbook: VirtualBox_MacMount.yml
      - Credentials: MacAdmin
+          - Variables: vbvm:
+     prompt on launch
   - save
 ```
 
@@ -319,6 +325,8 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 - Execution Environment: RHEL9
     - Playbook: VirtualBox_Mac_UnMount.yml
      - Credentials: MacAdmin
+          - Variables: vbvm:
+     prompt on launch
   - save
 ```
 
@@ -414,8 +422,8 @@ Name: **OraDB**
 Source Control Branch/Tag/Commit: **OraBuild**  
 Save
 
-### Add Template:  
-  
+### Add Template:
+
 \- Name: **AddHost4Copy**  
 \- Inventory: AAP  
 \- Project: OraDB  
