@@ -3,6 +3,6 @@
   tasks:
     - name: Work Around for copy file in GUI - calling cp_ora_from_control.yml
       ansible.builtin.shell:
-        cmd: ansible-playbook -i /root/dbhost /var/lib/awx/projects/cp_ora.yml
+        cmd: ansible-playbook -i /root/dbhost /root/AAP-EDA-OracleDB/cp_ora.yml
       register: shell
     - debug: var=shell.stdout_lines
