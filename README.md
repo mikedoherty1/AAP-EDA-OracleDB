@@ -411,13 +411,26 @@ Add Mac host information
 *   \\
 
 copy GuestAddons > edit  
-Name: Oracle Build  
-Source Control Branch/Tag/Commit: OraBuild  
+Name: **OraDB**  
+Source Control Branch/Tag/Commit: **OraBuild**  
 Save
 
-Template  
-Add  
-Name: Oracle Build step 1 - root
+### Add Template:  
+  
+\- Name: **AddHost4Copy**  
+\- Inventory: AAP  
+\- Project: OraDB  
+\- Execution Environment: RHEL9  
+    - Playbook: AddDBHost\_Inventory.yml  
+     - Credentials: RootAdmin  
+     - Variables - prompt at launch  
+        - vbvmip:   
+        - vbname:   
+  - save  
+  - Launch  
+          - Enter Variables  
+              vbvmip: \<IP\_Address>  
+              vbname: \<name\_of\_VBoxVM>
 
 # EDA Server Build
 
