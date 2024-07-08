@@ -92,4 +92,4 @@ mv ora_bash_profile /root/software
 clear
 echo "All OS steps complete, everything else will be done in Ansible Automation Platform
 "
-echo "all done goto chrome/firefox https:$ips"
+echo "all done goto chrome/firefox https://$ips or https://control.local if added to local /etc/hosts file"
