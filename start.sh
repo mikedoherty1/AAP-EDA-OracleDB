@@ -50,24 +50,24 @@ tar -xzvf AAP-bundle-2.4-6.2-x86_64.tar.gz
 rm AAP-bundle-2.4-6.2-x86_64.tar.gz
 
 echo "setup inventory file"
-#echo "#
-#
-#Enter your RedHat subscription login
-#"
-#read REDHAT_UID
-#
-#echo "
-#
-#Enter your RedHat subscription password
-#"
-#read REDHAT_PWD
-#echo "
-#
-#"
+echo "#
+
+Enter your RedHat subscription login
+"
+read REDHAT_UID
+
+echo "
+
+Enter your RedHat subscription password
+"
+read REDHAT_PWD
+echo "
+
+"
 
 sed -i "s/change_host_name/$hn/g" /root/software/aap-bundle-2.4-6.2/inventory
-#sed -i "s/REDHAT_UID/$REDHAT_UID/g" /root/software/aap-bundle-2.4-6.2/inventory
-#sed -i "s/REDHAT_PWD/$REDHAT_PWD/g" /root/software/aap-bundle-2.4-6.2/inventory
+sed -i "s/REDHAT_UID/$REDHAT_UID/g" /root/software/aap-bundle-2.4-6.2/inventory
+sed -i "s/REDHAT_PWD/$REDHAT_PWD/g" /root/software/aap-bundle-2.4-6.2/inventory
 
 /root/software/aap-bundle-2.4-6.2/setup.sh
 clear
@@ -76,11 +76,6 @@ clear
 echo "Ansible complete start working in GUI - This should also take 15 minutes (pending internet speeds - Oracle software used to automate oel7.8 build via Ansible platform"
 sleep 10
 echo "
-
-
-
-
-
 
 
 Download Oracle for new server DB build
