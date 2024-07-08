@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  vars:
   tasks:
     - name: Installing missing packages kernel-devel
       ansible.builtin.shell:
