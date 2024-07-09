@@ -61,4 +61,4 @@
         dest: "/etc/sudoers" 
         state: "present"
         regexp: "^%oracle"
-        line: "%oracle ALL=(ALL) NOPASSWD: ALL"
+        line: "oracle ALL=(ALL) NOPASSWD: ALL"
