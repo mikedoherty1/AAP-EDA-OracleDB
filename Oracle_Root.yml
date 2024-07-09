@@ -1,6 +1,5 @@
 ---
 - hosts: all
-  vars:
   tasks:
 # Missing packages GIT
     - name: Add the user 'oracle' with a bash shell, appending the group 'dba' and 'oinstall' to the user's groups
