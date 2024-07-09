@@ -8,7 +8,7 @@
   tasks:
     - name: start listener
       ansible.builtin.shell:
-        cmd: export ORACLE_HOME={{ oracle_home }}; export  ORACLE_BASE:={{ oracle_base }}; export ORACLE_SID:={{ oracle_sid }}; $ORACLE_HOME/bin/lsnrctl start
+        cmd: export ORACLE_HOME={{ oracle_home }}; export  ORACLE_BASE={{ oracle_base }}; export ORACLE_SID={{ oracle_sid }}; $ORACLE_HOME/bin/lsnrctl start
       ignore_errors: true
       register: shell
     - debug: var=shell.stdout_lines
@@ -16,8 +16,8 @@
       ansible.builtin.shell: 
         cmd: | 
           export ORACLE_HOME={{ oracle_home }}; 
-          export ORACLE_BASE:={{ oracle_base }}; 
-          export ORACLE_SID:={{ oracle_sid }};
+          export ORACLE_BASE={{ oracle_base }}; 
+          export ORACLE_SID={{ oracle_sid }};
           $ORACLE_HOME/bin/sqlplus / as sysdba << eof 
           startup 
           eof 
