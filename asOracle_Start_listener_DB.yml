@@ -15,6 +15,9 @@
     - name: start database
       ansible.builtin.shell: 
         cmd: | 
+          export ORACLE_HOME={{ oracle_home }}; 
+          export ORACLE_BASE:={{ oracle_base }}; 
+          export ORACLE_SID:={{ oracle_sid }};
           $ORACLE_HOME/bin/sqlplus / as sysdba << eof 
           startup 
           eof 
