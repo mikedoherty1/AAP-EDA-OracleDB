@@ -2,10 +2,10 @@
 - hosts: all
   vars:
     ansible_python_interpreter: auto_silent
-    ORACLE_SID=ANSDB 
-    ORACLE_BASE=/oracle/app
-    ORACLE_HOME=/oracle/app/product/19c
-    PATH=$PATH:/oracle/app/product/19c/bin
+    ORACLE_SID: ANSDB 
+    ORACLE_BASE: /oracle/app
+    ORACLE_HOME: /oracle/app/product/19c
+    PATH: $PATH:/oracle/app/product/19c/bin
   tasks:
     - name: Untar Oracle Binaries
       ansible.builtin.shell:
