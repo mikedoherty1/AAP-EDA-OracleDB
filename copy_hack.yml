@@ -1,7 +1,7 @@
 ---
 - hosts: all
   tasks:
-    - name: Work Around for copy file in GUI - calling cp_ora_from_control.yml
+    - name: Work Around for copy file in GUI - using hack inv file and pre-built hardcoded yml file
       ansible.builtin.shell:
         cmd: ansible-playbook -i /root/dbhost /root/AAP-EDA-OracleDB/cp_ora.yml
       register: shell
