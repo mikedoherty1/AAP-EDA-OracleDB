@@ -17,4 +17,4 @@
     - name: oracle server added to hack job inventory file   
       lineinfile:
         path: /root/dbhost
-        line: "{{ vbname }}"
+        line: "{{ vbname }} ansible_user=root ansible_password=redhat "
