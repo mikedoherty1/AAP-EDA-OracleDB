@@ -249,7 +249,7 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 
 # ansible validation complete
 
-    **Hello Linux** should complete sucessfull while **Hello Mac** should fail, we will fix this in next section
+    **Hello Linux** should complete sucessfull while **Hello Mac** should fail, we will fix this in next section
 
 # Create project to add GuestInstall
 
@@ -430,14 +430,28 @@ Save
 \- Execution Environment: RHEL9  
     - Playbook: AddDBHost\_Inventory.yml  
      - Credentials: RootAdmin  
-     - Variables - prompt at launch  
-        - vbvmip:   
-        - vbname:   
   - save  
   - Launch  
           - Enter Variables  
-              vbvmip: \<IP\_Address>  
               vbname: \<name\_of\_VBoxVM>
+
+---
+
+# Create Templates from Project OraDB
+
+```
+- Name: Oracle Root OS
+- Inventory: HomeLab
+- Project: OraDB
+- Execution Environment: RHEL9
+    - Playbook: Oracle_Root.yml
+     - Credentials: RootAdmin
+     - Variables: check prompt on Launch
+        Add: opass:
+     - Limit: prompt on launch
+  - save
+  - launch
+```
 
 # EDA Server Build
 
