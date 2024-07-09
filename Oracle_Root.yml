@@ -27,6 +27,9 @@
         create_home: yes
         comment: Oracle Admin
         password: "{{ opass | password_hash('sha512') }}"
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
 # Install preinstall-19c packages
     - name: Installing oracle 19c packages
       ansible.builtin.shell:
@@ -47,6 +50,5 @@
         line: "PermitRootLogin yes"
         state: present
         backup: yes
-
 
 
