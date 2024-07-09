@@ -64,6 +64,6 @@
         line: "oracle ALL=(ALL) NOPASSWD: ALL"
     - name: Set authorized key taken from file 
       ansible.posix.authorized_key:
-        user: oracle
+        user: root
         state: present
-        key: "{{ lookup('file', '/home/oracle/.ssh/id_rsa.pub') }}"
+        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
