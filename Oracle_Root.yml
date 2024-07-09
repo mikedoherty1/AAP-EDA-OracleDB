@@ -11,7 +11,6 @@
         append: yes
         create_home: yes
         comment: Oracle Admin
-        password: "{{ opass | password_hash('sha512') }}"
 # Install preinstall-19c packages
     - name: Installing oracle 19c packages
       ansible.builtin.shell:
