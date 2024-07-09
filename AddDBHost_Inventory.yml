@@ -18,8 +18,13 @@
       lineinfile:
         path: /root/dbhost
         line: "{{ vbname }} ansible_user=root ansible_password=redhat "
-    - name: Work Around for copy file in GUI - using hack inv file and pre-built hardcoded yml file
+    - name: Work Around for copy file in GUI - using hack inv file gen auth_keys
       ansible.builtin.shell:
         cmd: ansible-playbook -i /root/dbhost /root/AAP-EDA-OracleDB/keys.yml
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: Work Around for copy file in GUI - using hack inv file and pre-built hardcoded yml file
+      ansible.builtin.shell:
+        cmd: ansible-playbook -i /root/dbhost /root/AAP-EDA-OracleDB/cp_ora.yml
       register: shell
     - debug: var=shell.stdout_lines
