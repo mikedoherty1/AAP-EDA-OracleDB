@@ -3,14 +3,9 @@
   vars:
     ansible_python_interpreter: auto_silent
 
-  gather_facts: true
-
   tasks:
-
-  - name: Show Gathered Facts ans_hn
-    debug:
-      msg: "{{ ansible_hostname }}"
-
-  - name: Show Gathered Facts inv_hn
-    debug:
-      msg: "{{ inventory_hostname }}"
+    - name: Untar Oracle Binaries
+      ansible.builtin.shell:
+        cmd: env
+      register: shell
+    - debug: var=shell.stdout_lines
