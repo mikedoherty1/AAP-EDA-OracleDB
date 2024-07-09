@@ -50,6 +50,12 @@
         line: "PermitRootLogin yes"
         state: present
         backup: yes
+# Restart sshd
+    - name: Installing oracle 19c packages
+      ansible.builtin.shell:
+        cmd: systemctl restart sshd
+      register: shell
+    - debug: var=shell.stdout_lines
     - name: Generate ssh keys
       ansible.builtin.user:
         name: root
