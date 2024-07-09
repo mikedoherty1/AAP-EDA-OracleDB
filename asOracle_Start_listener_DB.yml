@@ -12,10 +12,9 @@
       register: shell
     - debug: var=shell.stdout_lines
     - name: start database
-      ansible.builtin.shell:
-        cmd: |
-        $ORACLE_HOME/bin/sqlplus / as sysdba << EOF
-        startup 
-        EOF
+      ansible.builtin.shell: |
+        echo $ORACLE_HOME
+        echo $ORACLE_BASE
+        echo $ORACLE_SID
       register: shell
     - debug: var=shell.stdout_lines
