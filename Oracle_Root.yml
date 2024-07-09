@@ -2,6 +2,22 @@
 - hosts: all
   tasks:
 # Missing packages GIT
+    - name: Ensure group "dba" exists
+      ansible.builtin.group:
+        name: dba
+        state: present
+    - name: Ensure group "oinstall" exists
+      ansible.builtin.group:
+        name: oinstall
+        state: present
+    - name: Ensure group "oper" exists
+      ansible.builtin.group:
+        name: oper
+        state: present
+    - name: Ensure group "backupdba" exists
+      ansible.builtin.group:
+        name: backupdba
+        state: present
     - name: Add the user 'oracle' with a bash shell, appending the group 'dba' and 'oinstall' to the user's groups
       ansible.builtin.user:
         name: oracle
@@ -10,6 +26,7 @@
         append: yes
         create_home: yes
         comment: Oracle Admin
+        password: "{{ opass | password_hash('sha512') }}"
 # Install preinstall-19c packages
     - name: Installing oracle 19c packages
       ansible.builtin.shell:
