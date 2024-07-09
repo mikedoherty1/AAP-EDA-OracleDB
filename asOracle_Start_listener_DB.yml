@@ -30,7 +30,7 @@
           export ORACLE_BASE={{ oracle_base }}; 
           export ORACLE_SID={{ oracle_sid }};
           $ORACLE_HOME/bin/sqlplus / as sysdba << eof 
-          select host_name,instance_name,status from v$instance;
+          select host_name,instance_name,status from v\$instance;
           eof 
       register: shell
     - debug: var=shell.stdout_lines
