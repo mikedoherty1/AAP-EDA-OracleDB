@@ -2,13 +2,12 @@
 - hosts: all
   vars:
     ansible_python_interpreter: auto_silent
-    ORACLE_SID: ANSDB 
-    ORACLE_BASE: /oracle/app
-    ORACLE_HOME: /oracle/app/product/19c
-    PATH: $PATH:/oracle/app/product/19c/bin
+    oracle_sid: ANSDB 
+    oracle_base: /oracle/app
+    oracle_home: /oracle/app/product/19c
   tasks:
-    - name: Untar Oracle Binaries
+    - name: start listener
       ansible.builtin.shell:
-        cmd: env
+        cmd: export ORACLE_HOME={{ oracle_home }}; export  ORACLE_BASE:={{ oracle_base }}; export ORACLE_SID:={{ oracle_sid }}; $ORACLE_HOME/bin/lsnrctl start
       register: shell
     - debug: var=shell.stdout_lines
