@@ -24,7 +24,7 @@
     - debug: var=shell.stdout_lines
     - name: Start listener
       ansible.builtin.shell:
-        cmd: lsnrctl start
+        cmd: /oracle/app/product/19c/bin/lsnrctl start
         chdir: /oracle/app/product/19c/bin
       register: shell
     - debug: var=shell.stdout_lines
