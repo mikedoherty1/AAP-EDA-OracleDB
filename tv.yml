@@ -9,6 +9,6 @@
   tasks:
     - name: Untar Oracle Binaries
       ansible.builtin.shell:
-        cmd: echo $ORACLE_SID
+        cmd: env
       register: shell
     - debug: var=shell.stdout_lines
