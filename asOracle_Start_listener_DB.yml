@@ -9,13 +9,14 @@
     - name: start listener
       ansible.builtin.shell:
         cmd: export ORACLE_HOME={{ oracle_home }}; export  ORACLE_BASE:={{ oracle_base }}; export ORACLE_SID:={{ oracle_sid }}; $ORACLE_HOME/bin/lsnrctl start
+      ignore_errors: true
       register: shell
     - debug: var=shell.stdout_lines
     - name: start database
-      ansible.builtin.shell: | cat << EOF
-       dhdfa asdf 
-       adsf 
-       asdf 
-       EOF 
+      ansible.builtin.shell: 
+        cmd: | 
+          $ORACLE_HOME/bin/sqlplus / as sysdba << eof 
+          startup 
+          eof 
       register: shell
     - debug: var=shell.stdout_lines
