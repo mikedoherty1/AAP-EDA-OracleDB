@@ -62,8 +62,8 @@
         state: "present"
         regexp: "^%oracle"
         line: "oracle ALL=(ALL) NOPASSWD: ALL"
-    - name: Set authorized key taken from file 
-      ansible.posix.authorized_key:
+    - name: Set authorized key taken from file
+      authorized_key:
         user: root
         state: present
-        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+        key: "{{lookup('file', '/root/.ssh/id_rsa.pub')}}"
