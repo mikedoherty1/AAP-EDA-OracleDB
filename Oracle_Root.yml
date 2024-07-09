@@ -47,13 +47,6 @@
         line: "PermitRootLogin yes"
         state: present
         backup: yes
-      become: yes
-      notify:
-       - restart ssh
-      handlers:
-    - name: restart ssh
-      systemctl:
-        name: sshd
-        state: restarted
+
 
 
