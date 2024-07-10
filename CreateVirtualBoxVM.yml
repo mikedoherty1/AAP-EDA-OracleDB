@@ -2,15 +2,47 @@
 - hosts: all
   vars:
   tasks:
-    - name:  Mount Insert Guest Additions CD Images ..
+    - name:  Create VM 
       ansible.builtin.shell:
-        cmd: /usr/local/bin/VBoxManage storageattach "{{ vbvm }}" --storagectl "IDE" --port 1 --device 0 --type dvddrive --medium /Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso
-      register: out
-    - debug: var=out.stdout_lines
-# Adding pause so vm can mount be iso
-    - name: Pause for 30 seconds before starting again
-      pause:
-        seconds: 30
-
-
-
+        cmd: /usr/local/bin/VBoxManage createvm --name="{{ vbvm }}" --basefolder=/Users/ansible/VirtualBox\ VMs/ --ostype=RedHat9_64 --register 
+    - name:  Modify VM 
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxManage modifyvm "{{ vbvm }}" --ioapic on
+    - name:  Modify VM memory "{{ mem }}"
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxManage modifyvm "{{ vbvm }}" --memory "{{ mem }}" --vram 128 
+    - name:  Modify VM network 1
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxManage modifyvm "{{ vbvm }}" --nic1 nat
+    - name:  Modify VM network 2
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxManage modifyvm "{{ vbvm }}" --nic2 hostonlynet
+    - name:  Modify VM Add vdi disk "{{ ds }}"
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxManage createhd --filename /Users/ansible/VirtualBox\ VMs/"{{ vbvm }}"/"{{ vbvm }}".vdi   --size "{{ ds }}" --format VDI 
+    - name:  Modify VM storage 
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxManage storagectl "{{ vbvm }}" --name "SATA Controller" --add sata --controller IntelAhci 
+    - name:  Modify VM storage attach
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxManage storageattach "{{ vbvm }}" --storagectl "SATA Controller" --port 0 --device 0 --type hdd --medium  /Users/ansible/VirtualBox\ VMs/"{{ vbvm }}"/"{{ vbvm }}".vdi
+    - name:  Modify VM storage
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxManage storagectl "{{ vbvm }}" --name "IDE Controller" --add ide --controller PIIX4 
+    - name:  Modify VM ISO 
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxManage storageattach "{{ vbvm }}" --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium /Users/ansible/Downloads/rhel-9.4-x86_64-boot.iso   
+    - name:  Modify boot order 
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxManage modifyvm "{{ vbvm }}" --boot1 dvd --boot2 disk --boot3 none --boot4 none 
+    - name:  Modify  
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxManage modifyvm "{{ vbvm }}" --vrde on 
+    - name:  Modify  
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxManage modifyvm "{{ vbvm }}" --vrdemulticon on --vrdeport 10001
+    - name:  Starting VM in Headless mode  
+      ansible.builtin.shell:
+        cmd: /usr/local/bin/VBoxHeadless --startvm "{{ vbvm }}"
+#Remove
+#VBoxManage unregistervm "{{ vbvm }}" --delete
