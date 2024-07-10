@@ -43,6 +43,6 @@
         cmd: /usr/local/bin/VBoxManage modifyvm "{{ vbvm }}" --vrdemulticon on --vrdeport 10001
     - name:  Starting VM in Headless mode  
       ansible.builtin.shell:
-        cmd: /usr/local/bin/VBoxHeadless --startvm "{{ vbvm }}"
+        cmd: /usr/local/bin/VBoxManage startvm "{{ vbvm }}" --type headless 
 #Remove
 #VBoxManage unregistervm "{{ vbvm }}" --delete
