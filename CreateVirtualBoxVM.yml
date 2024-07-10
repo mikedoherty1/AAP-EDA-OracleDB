@@ -16,7 +16,7 @@
         cmd: /usr/local/bin/VBoxManage modifyvm "{{ vbvm }}" --nic1 nat
     - name:  Modify VM network 2
       ansible.builtin.shell:
-        cmd: /usr/local/bin/VBoxManage modifyvm "{{ vbvm }}" --nic2 hostonlynet
+        cmd: /usr/local/bin/VBoxManage modifyvm "{{ vbvm }}" --nic2 hostonlynet --host-only-net2=HostNetwork
     - name:  Modify VM Add vdi disk "{{ ds }}"
       ansible.builtin.shell:
         cmd: /usr/local/bin/VBoxManage createhd --filename /Users/ansible/VirtualBox\ VMs/"{{ vbvm }}"/"{{ vbvm }}".vdi   --size "{{ ds }}" --format VDI 
