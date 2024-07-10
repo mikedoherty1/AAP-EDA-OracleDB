@@ -46,6 +46,6 @@
         cmd: /usr/local/bin/VBoxManage modifyvm "{{ vbvm }}" --graphicscontroller vmsvga        
     - name:  Starting VM in Headless mode  
       ansible.builtin.shell:
-        cmd: /usr/local/bin/VBoxManage startvm "{{ vbvm }}" --type headless 
+        cmd: /usr/local/bin/VBoxHeadless --startvm "{{ vbvm }}"   
 #Remove
 #VBoxManage unregistervm "{{ vbvm }}" --delete
