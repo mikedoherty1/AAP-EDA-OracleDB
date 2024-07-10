@@ -4,10 +4,10 @@
   tasks:
     - name:  Mount Insert Guest Additions CD Images ..
       ansible.builtin.shell:
-        cmd: /usr/local/bin/VBoxManage storageattach "{{ vbvm }}" --storagectl "IDE" --port 1 --device 0 --type dvddrive --medium /Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso
+        cmd: /usr/local/bin/VBoxManage storageattach "{{ vbvm }}" --storagectl "IDE" --port 0 --device 1 --type dvddrive --medium /Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso
       register: out
     - debug: var=out.stdout_lines
 # Adding pause so vm can mount be iso
-    - name: Pause for 30 seconds before starting again
+    - name: Pause for 15 seconds before starting again
       pause:
-        seconds: 30
+        seconds: 15
