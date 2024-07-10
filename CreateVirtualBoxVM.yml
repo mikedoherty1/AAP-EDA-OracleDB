@@ -31,7 +31,7 @@
         cmd: /usr/local/bin/VBoxManage storagectl "{{ vbvm }}" --name "IDE Controller" --add ide --controller PIIX4 
     - name:  Modify VM ISO 
       ansible.builtin.shell:
-        cmd: /usr/local/bin/VBoxManage storageattach "{{ vbvm }}" --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium /Users/ansible/Downloads/rhel-9.4-x86_64-boot.iso   
+        cmd: /usr/local/bin/VBoxManage storageattach "{{ vbvm }}" --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium /Users/ansible/Downloads/"{{ ostv }}"   
     - name:  Modify boot order 
       ansible.builtin.shell:
         cmd: /usr/local/bin/VBoxManage modifyvm "{{ vbvm }}" --boot1 dvd --boot2 disk --boot3 none --boot4 none 
