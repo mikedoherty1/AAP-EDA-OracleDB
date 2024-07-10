@@ -11,10 +11,10 @@
     - name:  build variable list 
       ansible.builtin.shell:
         cmd: cat /Users/ansible/runningvms.lst 
-      register: my_items
-    - debug: var=my_items.stdout_lines
+      register: vbvm
+    - debug: var=vbvm.stdout_lines
     - name: list Vms that are running
       ansible.builtin.shell:
-        cmd: /usr/local/bin/VBoxManage showvminfo "{{ item }}" --machinereadable |grep macaddress1
-        with_items: my_items.stdout_lines
+        cmd: /usr/local/bin/VBoxManage showvminfo "{{ vbvm }}" --machinereadable |grep macaddress1
+        with_items: vbvm.stdout_lines
 
