@@ -44,8 +44,12 @@
     - name:  Change Default Display   
       ansible.builtin.shell:
         cmd: /usr/local/bin/VBoxManage modifyvm "{{ vbvm }}" --graphicscontroller vmsvga        
-    - name:  Starting VM in Headless mode  
+    - name:  Starting VM   
       ansible.builtin.shell:
-        cmd: /usr/local/bin/VBoxHeadless --startvm "{{ vbvm }}"   
+        cmd: /usr/local/bin/VBoxManage startvm  "{{ vbvm }}"   
 #Remove
 #VBoxManage unregistervm "{{ vbvm }}" --delete
+# in Headless mode ()
+#    - name:  Starting VM in Headless mode  
+#      ansible.builtin.shell:
+#        cmd: /usr/local/bin/VBoxHeadless --startvm "{{ vbvm }}"   
