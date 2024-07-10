@@ -1,0 +1,25 @@
+---
+- hosts: all
+  vars:
+  tasks:
+    - name: remove inventory file for hack copy
+      ansible.builtin.shell:
+        cmd: rm -rf /root/dbhost
+      register: shell
+    - debug: var=shell.stdout_lines
+# Touch File
+    - name: create inventory file for hack copy
+      ansible.builtin.shell:
+        cmd: touch /root/dbhost
+      register: shell
+    - debug: var=shell.stdout_lines
+# add hack entry
+    - name: Create local inventory file /root/dbhost on AAP server   
+      lineinfile:
+        path: /root/dbhost
+        line: "{{ vbname }} ansible_user=root ansible_password=redhat "
+    - name: Work Around for copy file in GUI - gen auth_keys inventory file /root/dbhost on AAP
+      ansible.builtin.shell:
+        cmd: ansible-playbook -i /root/dbhost /root/AAP-EDA-OracleDB/keys.yml
+      register: shell
+    - debug: var=shell.stdout_lines
