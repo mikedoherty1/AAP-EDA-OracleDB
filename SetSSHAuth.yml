@@ -18,6 +18,11 @@
       lineinfile:
         path: /root/dbhost
         line: "{{ vbvm }} ansible_user=root ansible_password=redhat "
+    - name: Add ssh fingerprint to known_hosts file on AAP server 
+      ansible.builtin.shell:
+        cmd: ssh-keyscan -H worker01.local >> ~/.ssh/known_hosts
+      register: shell
+    - debug: var=shell.stdout_lines
     - name: Work Around for copy file in GUI - gen auth_keys inventory file /root/dbhost on AAP
       ansible.builtin.shell:
         cmd: ansible-playbook -i /root/dbhost /root/AAP-EDA-OracleDB/keys.yml
