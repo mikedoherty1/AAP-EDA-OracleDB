@@ -1,107 +1,205 @@
-# Simple - Step by Step 
+---
 
-## Ansible Automation Platform
+# Ansible Automation Platform (GUI)- Built from MacBook
 
-## Oracle VirtualBox
+### VirtualBox VM creation
 
-## Oracle Database
+### Linux setup (RHEL & OEL)
 
-## Event Driven Ansible 
+### Setup and start Oracle DB (OEL)
 
-# Event Driven Ansible 
+## Integrate EDA for Oracle - Part Deaux
 
-### To install (AAP)(EDA)(Oracle) , To Configure AAP (), and To Build (Oracle)
-
-> ### This is not a hands off build, this is a step by step on how to build automation with some basic playbooks and builtin modules:
+> ### This is not a hands off build, how to build automation with some basic playbooks and builtin modules:
 > 
-> shell:copy:inline edit:Linux packages:add users:add hosts:projects:templates:GIT:Database
+> ### shell:copy:inline edit:Linux packages:add users:add hosts:projects:templates:GIT:Database etc.....
 > 
-> ### \*Not meant to be efficient, steps are purposeful individualized for build practice.
+> ### \*Not meant to be efficient, steps are purposeful individualized for build practice. (GUI stuff)
 > 
-> ### Allot if items are hard coded (MAYBE FIXED) , was not meant to be awesome scripting just simple cmds
+> ### simple scripting and simple cmds
 
 ---
 
+## My Setup / Whats Required:
+
+Mac: Create new user ansible "THERE ARE SOME HARDCODED PATHS"  - Section below what's hardcoded
+
 ### My setup (naming included)
 
-MacBook Pro, created new user ansible with admin priv, password = redhat, enabled ssh, added ansible user to sudoers file.
+MacBook Pro
 
-all software was installed in ansible account (VirtualBox) https://www.virtualbox.org
+1.  created new user **ansible** with admin priv, password = redhat (this password is used for practically everything) HomeLab easy
+2.  enabled ssh ( System Settings > General > Remote Login > Click to enable and add **ansible** (mac user)
+3.  Log into **ansible** for the remainder of operations
+4.  sudoers file > . vi etc/sudoers 
 
-Installed latest Oracle VM VirtualBox Extension Pack
+<table><tbody><tr><td><p>%admin ALL = (ALL) ALL</p><p>ansible ALL = (ALL) ALL</p></td></tr></tbody></table>
 
-Newtorking - Host-only Networks on Adapter 2 \* Important as hard coded VboxManage to search IP here
+---
+
+## Whats Required:
+
+1.  VirtualBox
+2.  VirtualBox Extension Pack
+3.  RedHat 9.4 found here:  https://access.redhat.com/downloads/content/rhel > get Red Hat Enterprise Linux 9.4 Boot ISO 
+4.  OracleLinux 7.8 found here: https://yum.oracle.com/oracle-linux-isos.html > get OracleLinux-R7-U8-Server-x86\_64-dvd.iso
+
+> 1.   `**Ansible & Oracle software will be automatically downloaded and deployed within execution of templates in AAP**` 
+
+> easier when select what ISO to use when executing template
+> 
+> ln -s /Users/ansible/Downloads/OracleLinux-R7-U8-Server-x86\_64-dvd.iso /Users/ansible/Downloads/oel78  
+> ln -s /Users/ansible/Downloads/rhel-9.4-x86\_64-boot.iso /Users/ansible/Downloads/rhel94
+
+RedHat Account:  (Free)
+
+*   [https://access.redhat.com](https://access.redhat.com) 
+    *   This will be used for OS and AAP
+
+After VirtualBox install & Extension Pack (Install from VirtualBox gui, click three lines > Extensions > install
+
+Newtorking - Host-only Networks > Create > Name = HostNetwork
+
+Tools > Media > Optical disks > Add > select ISO's from Downloads
 
 *   Mask: 255.255.255.0 ; Lower Bound: 192.168.56.100 ; Upper Bound: 192.168.56.199
+    *   \*\* Used on nic2 
 
-Linux Software Used  
-RedHat 9.4 found here:  https://access.redhat.com/downloads/content/rhel > get Red Hat Enterprise Linux 9.4 Boot ISO 
+\*\* Make sure you have enough space / RAM as each VM will be 30TB w/8GB RAM
 
-*   Used for AAP,EDA
+---
 
-OracleLinux 7.8 found here: https://yum.oracle.com/oracle-linux-isos.html > get OracleLinux-R7-U8-Server-x86\_64-dvd.iso
+**Hard Coded**
 
-*   Used for database builds
+**VirtualBox Host-only Networks  Name = HostNetwork**
 
-Configure AAP Control :
+**HARDCODED PATHS**
 
-*   8192 MB RAM
-*   40 GB Disk space
-*   Networking \* Host-only Network on Adapter 2
-    *   This will be hard coded when finding Linux host ip's via VirtualBox for dynamic ansible Inventory
+/Users/ansible/VirtualBox\\ VMs/  
+/usr/local/bin/VBoxManage  
+/Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso  
+/Users/ansible/Downloads
 
-all other nodes I used default minimums
+**Coresponding playbooks found in branch ( VirtualBox )**
+
+VirtualBox\_MacMount.yml  
+VirtualBox\_Mac\_UnMount.yml  
+CreateVirtualBoxVM.yml
+
+---
+
+### First VM setup Manual - all others are done via Ansible
+
+> VirtualBox to create AAP server
+> 
+> Machine > New
+> 
+> Host Name: control.local
+> 
+> ISO Image: rhel-9.4-x86\_64-boot.iso
+> 
+> Type: Linux
+> 
+> Version: Red Hat 9.x (64-bit)
+> 
+> click > skip Unattended Installation
+> 
+> Hardware: 
+> 
+>      Base Memory = 8192
+> 
+>      Processors = 4
+> 
+> Hard Drive:
+> 
+>      40GB
+> 
+> Finish
+> 
+> settings > Network > Adapter 2 > Enable Network Adaprter > Host-Only Network > OK
+> 
+> Start
+
+*   All other VM's are created with Ansible
 
 ```
-- Start OS install
-    - RHEL9.4 (used for AAP) Host Name: **control.local**
-    - enable Network Adapter 2
-        Use  Host-only Networks   
-    - all passwords set = redhat
-    - root user: Allow root SSH login with password
-- Connect to RedHat
-  - If you do not already, signup for personal account ** REQUIRED
-    - These credentials will be used when installing Automation Platform
-- Software Selection:
-  - Minimal Install > Select Standard
-        - Begin Install
+- Install Red Hat Enterprise Linux 9.4
+    - English > Continue
+    - Security Profile > disable > Done
+    - NETWORK & HOSTNAME > Make sure both are enables
+    		Use the 2nd interface IP 192.168.56.XXX - add this to mac /etc/hosts file
+    	Host Name:  control.local > Apply > Done
+    - KDUMP > Disable > Done
+    - Installation Destination > Done 
+    - Connect to Red Hat > 
+    	username
+    	password > Register > Done
+    - Software Selection:
+        Minimal Install > Select Standard > Done
+    - Root Password
+    	Root Password = redhat
+    	Confirm = redhat > Done
+    
+    Begin Install
 ```
 
-\--  
-Login into newly built rhel9.4 server: **control.local**
+---
 
-local mac terminal ssh root@control.local \* can get ip from linux console > ifconfig |grep 192
+> From Mac > Terminal
+> 
+> hostname
+> 
+> ifconfig | grep inet (use 192.x.x.x or 10.0.0.x)
+> 
+> Add > IP    hostname  > etc/hosts
+> 
+> example: 
+> 
+> ###### ##
+> 
+> ###### \# Host Database
+> 
+> ###### #
+> 
+> ###### \# localhost is used to configure the loopback interface
+> 
+> ###### \# when the system is booting.  Do not change this entry.
+> 
+> ###### ##
+> 
+> ###### 127.0.0.1 localhost
+> 
+> ###### 255.255.255.255 broadcasthost
+> 
+> ###### ::1             localhost
+> 
+> ###### 192.168.56.101    control.local
+> 
+> ###### 10.0.0.54     Mikes-MacBook-Pro.local
+> 
+> ssh [root@control.local](mailto:root@control.local)  > password = redhat
+> 
+> pwd to verify /root directory
 
-\*\* Recommend adding control.local to mac /etc/hosts file \*\*
+---
 
-all operations done as root user
+> Setup pre-reqs for ansible automation install
+> 
+> `dnf install git -y`
+> 
+> git clone [https://github.com/mikedoherty1/AAP-EDA-OracleDB.git](https://github.com/mikedoherty1/AAP-EDA-OracleDB.git)
+> 
+>      Setup script to build / Install everything
+> 
+> cd AAP-EDA-OracleDB
+> 
+> ./start.sh
+> 
+>    A couple read in prompts (copy and paste) , a couple hit returns and a type yes ......
+> 
+> Ansible Automation is Complete
 
-Install git
-
-```
-    dnf install git -y
-```
-
-*   Pull environemnt cmds for setup
-
-```
-git clone https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
-```
-
-*   cd into directory
-
-```
-cd AAP-EDA-OracleDB
-```
-
-*   Execute start.sh  
-    \-- This will configure, install and download software
-    *   ./start.sh
-        *   A couple read in prompts, a couple hit returns and a type yes ......
-
-# ansible time
-
-# Step 1
+# Ansible Time
 
 ```
 - from web broweser: https://control.local
@@ -112,22 +210,18 @@ Proceed to your\_ip\_adress (unsafe)
 ```
 Login: admin
 Password: redhat
-```
 
-# Step 2
-
-\--  
-click username/password  
+click username/password
 put in your RedHat subscription and click: Get Subscription
 
-# Step 3
-
-\--  
 Select your Subscription; then click next to finsih. All done you know have AAP running
+```
+
+---
 
 # Validate its all working
 
-# Step 1 - Execution Environments
+# Execution Environments
 
 *   From the left side under Administration: click Execution Environments > copy Default execution environment
     *   edit your copy
@@ -138,14 +232,18 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 *   Pull: Only pull if not present
 *   save
 
-# Step 2 - Organizations
+---
+
+# Organizations
 
 *   From the left side under Access: click Organizations > add
     *   name: HomeLab
     *   Execution Environment: RHEL9
 *   save
 
-# Step 3a - Users
+---
+
+# Users - (3)
 
 *   From the left side under Access: click Users > add
     *   first name: HomeLabRoot
@@ -154,9 +252,6 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
     *   User Type: System Adminstrator
     *   Organization: HomeLab
 *   save
-
-# Step 3b - Users
-
 *   From the left side under Access: click Users > add
     *   first name: HomeLabMc
     *   username: ansible
@@ -164,46 +259,41 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
     *   User Type: System Adminstrator
     *   Organization: HomeLab
 *   save
+*   From the left side under Access: click Users > add
+    *   first name: OraAdmin
+    *   username: oracle
+    *   password: oracle
+    *   User Type: System Adminstrator
+    *   Organization: HomeLab
+*   save
 
-# Step 4a - Inventories
+# Inventories (3)
 
 *   From the left side under Resources: click Inventories > add
     *   name: AAP
     *   Organization: HomeLab
 *   save
-
-# Step 4b - Inventories
-
 *   From the left side under Resources: click Inventories > add
     *   name: MAC
     *   Organization: HomeLab
 *   save
-*   \\
-
-# Step 4c - Inventories
-
 *   From the left side under Resources: click Inventories > add
-    *   name: HomeLab
+    *   name: HomeLab (Will be used for all Linux servers)
     *   Organization: HomeLab
 *   save
 
-# Step 5a - Hosts
+# Hosts (2)
 
 *   From the left side under Resources: click Inventories > add
     *   name: control.local
     *   Inventory: AAP
 *   save
-*   \\
-
-# Step 5b - Hosts
-
 *   From the left side under Resources: click Inventories > add
     *   name: whatevery\_your\_mac\_hostname
     *   Inventory: MAC
 *   save
-*   \\
 
-# Step 6a - Credentials
+# Credentials (3)
 
 *   From the left side under Resources: click Credentials > add
     *   name: RootAdmin
@@ -212,10 +302,6 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
     *   username: root
     *   password: redhat
 *   save
-*   \\
-
-# Step 6b - Credentials
-
 *   From the left side under Resources: click Credentials > add
     *   name: MacAdmin
     *   Organization: HomeLab
@@ -225,8 +311,17 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
     *   Privilege Escalation Method: sudo
     *   Privilege Escalation Password: redhat
 *   save
+*   From the left side under Resources: click Credentials > add
+    *   name: OracleAdmin
+    *   Organization: HomeLab
+    *   Credential Type: Machine
+    *   username: oracle
+    *   password: oracle
+    *   Privilege Escalation Method: sudo
+    *   Privilege Escalation Password: oracle
+*   save
 
-# Step 7 - Projects
+# Projects 
 
 *   From the left side under Resources: click Projects > copy > then edit
     *   name: Hello
@@ -235,21 +330,18 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 *   save
 *   sync
 
-# Step 8a - Templates
+# Templates (2)
 
 *   From the left side under Resources: click Templates > copy > hello > edit
-    *   name: Linux Hello
+    *   name: 9 Hello Linux
     *   Inventory: AAP
     *   Project: Hello
     *   Execution Environment: RHEL9
     *   Credentials: RootAdmin
 *   save
 *   Launch
-
-# Step 8b - Templates
-
 *   From the left side under Resources: click Templates > copy > hello > edit
-    *   name: Mac Hello
+    *   name: 9 Hello Mac
     *   Inventory: MAC
     *   Project: Hello
     *   Execution Environment: RHEL9
@@ -257,14 +349,16 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 *   save
 *   Launch
 
-# ansible validation complete
+---
 
-    **Hello Linux** should complete sucessfull while **Hello Mac** should fail, we will fix this in next section
+# Validation Complete
 
-# Create project to add GuestInstall
+---
+
+# Create project to add VirtualBox Git Branch 
 
 *   From the left side under Resources: click Projects > add
-    *   name: GuestInstall
+    *   name: Basic Root Operations
     *   Organization: HomeLab
     *   Execution Environment: RHEL9
     *   Source Control Type: Git
@@ -273,10 +367,10 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
     *   Options: Clean
 *   All project will be created in /var/lib/awx/projects \*\*\*\*\*\*
 
-# Create project to add OraDB
+# Create project to add OraBuild Git Branch 
 
 *   From the left side under Resources: click Projects > add
-    *   name: OraB
+    *   name: Oracle Operations
     *   Organization: HomeLab
     *   Execution Environment: RHEL9
     *   Source Control Type: Git
@@ -284,144 +378,249 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
     *   Source Control Branch/Tag/Commit: OraBuild
     *   Options: Clean
 
-# Create Templates from Project GuestInstall
+# Create Templates
+
+> ```
+> Templates
+> - Name: 01 asMac Create VM
+> - Inventory: MAC
+> - Project: Basic Root Operations
+> - Execution Environment: RHEL9
+>     - Playbook: CreateVirtualBoxVM.yml
+>      - Credentials: MacAdmin
+>      - Variables: 
+> #There are 4 variable 
+> #[vbvm | mem | ds | ostv ] this will fail if any are not provided
+> 
+> #Virtual machine name
+> vbvm:
+> #Memory in MB i.e 8GB = 8192 * values used for Oracle build
+> mem:
+> #Disk space in MB 20GB = 40960 
+> ds:
+> #Add OS iso [rhel94, oel78] or
+> #[OracleLinux-R7-U8-Server-x86_64-dvd.iso |  rhel-9.4-x86_64-boot.iso ]
+> ostv:
+>      Click > prompt on launch
+>   - save
+> ```
 
 ```
-- Name: Install GuestAddons DNF
-- Inventory: HomeLab
-- Project: GuestInstall
+Templates
+- Name: 02 Add VM 2 AAP Server
+- Inventory: AAP
+- Project: Basic Root Operations
 - Execution Environment: RHEL9
-    - Playbook: VBox_GuestAddons_rhel.yml
+     - Playbook: AddToHostsFile.yml
      - Credentials: RootAdmin
-     - Variables: vbvm:
-     prompt on launch
+          - Variables:
+# This adds entries in AAP servers /etc/hosts file
+#Virtual Image IP 192.168.xxx.xxx
+vbvmip:
+#Virtual hostname
+vbvm:
+    Click >  prompt on launch
   - save
 ```
 
-# Next Template
-
 ```
-- Name: Install GuestAddons OEL 7.8
-- Inventory: HomeLab
-- Project: GuestInstall
+- Name: 03 SSH Auth Key
+- Inventory: AAP
+- Project: Basic Root Operations
 - Execution Environment: RHEL9
-     - Playbook: VBox_GuestAddons_oel78.yml
+    - Playbook: SetSSHAuth.yml
      - Credentials: RootAdmin
-          - Variables: vbvm:
-     prompt on launch
+          - Variables: 
+# Add fully qualified hostname
+vbvm:
+  Click > prompt on launch
   - save
 ```
 
-# Next Template
-
 ```
-- Name: MacMount
+- Name: 04 Mac Mount VirtualBox CD
 - Inventory: MAC
-- Project: GuestInstall
+- Project: Basic Root Operations
 - Execution Environment: RHEL9
     - Playbook: VirtualBox_MacMount.yml
      - Credentials: MacAdmin
-          - Variables: vbvm:
-     prompt on launch
+          - Variables: 
+# Add fully qualified hostname
+vbvm:
+  Click > prompt on launch
   - save
 ```
-
-# Next Template
-
-```
-- Name: Mac_un_Mount
-- Inventory: MAC
-- Project: GuestInstall
-- Execution Environment: RHEL9
-    - Playbook: VirtualBox_Mac_UnMount.yml
-     - Credentials: MacAdmin
-          - Variables: vbvm:
-     prompt on launch
-  - save
-```
-
-# Next Template
 
 ```
 Add Mac host information
 
-- Name: AddNewVM2Control.Local
-- Inventory: AAP
-- Project: GuestInstall
+- Name: 05 Install GuestAddons DNF
+- Inventory: HomeLab
+- Project: Basic Root Operations
 - Execution Environment: RHEL9
-    - Playbook: AddToHostsFile.yml
+    - Playbook: VBox_GuestAddons_rhel.yml
      - Credentials: RootAdmin
-     - Variables - prompt at launch
-        - vbvmip: 
-        - vbname: <name_of_VBoxVM>
+          - Variables: 
+# Add fully qualified hostname
+vbvm:
+  Click > prompt on launch
+  Click > Limit
   - save
-  - Launch
-          - Enter Variables
-              vbvmip: <IP_Address>
-            vbname: <name_of_VBoxVM>
-  
-  - ReLaunch Template Hello Mac to verify connectivity 
 ```
 
-## Create Oracle VBox Server
-
-*   \\
-*   Configure server with the following
-    *   8192 MB RAM
-    *   40 GB Disk space
-    *   Networking \* Add Bridge Adaptor and/or Host-only Netowk
-    *   Start OS install
-        *   oel7.8 (DB Server) Host Name: dbserver.local
-        *   make sure all networks added are enabled
-            *   When Server is being built you can run AddNewVM2Control.Local, put IP from above and hostname
-        *   Software Selection:
-        *   Minimal Install  
-            \- Begin Install
-
-## Launch AddNewVM2Control.Local to add Oracle Server to AAP control
-
 ```
-- Variables will prompt at launch
-    - vbvmip: 192.168.56.???
-    - vbname: <name_of_VBoxVM>
+Add Mac host information
+
+- Name: 06 Install GuestAddons YUM
+- Inventory: HomeLab
+- Project: Basic Root Operations
+- Execution Environment: RHEL9
+    - Playbook: VBox_GuestAddons_oel78.yml
+     - Credentials: RootAdmin
+          - Variables: 
+# Add fully qualified hostname
+vbvm:
+  Click > prompt on launch
+  Click > Limit
+  - save
 ```
 
-\*\* When Oracle server completes cont....
+```
+- Name: 07 Mac Un-Mount VirtualBox CD
+- Inventory: MAC
+- Project: Basic Root Operations
+- Execution Environment: RHEL9
+    - Playbook: VirtualBox_Mac_UnMount.yml
+     - Credentials: MacAdmin
+          - Variables: 
+# Add fully qualified hostname
+vbvm:
+  Click > prompt on launch
+  - save
+```
 
-# Add all Linux hosts to HomeLab Inventory
+---
 
-# Step 5b - Hosts
+# Create Oracle Server
 
-*   From the left side under Resources: click Inventories > HomeLab
-    *   Hosts: Add Oracle Server, add Control.local
-*   save
-*   From the left side under Resources: click Templates > edit > Linux hello > edit
-    *   Change Inventory = HomeLab
-*   save
-*   Launch
+---
 
-# Create template workflow from newly created templates to add virtualbox guest software to VM
+Template > Launch > `01 asMac Create VM`
+
+> #There are 4 variable   
+> #\[vbvm | mem | ds | ostv \] this will fail if any are not provided
+> 
+> #Virtual machine name  
+> vbvm: oraserv01.local  
+> #Memory in MB i.e 8GB = 8192  
+> mem: 8192  
+> #Disk space in MB 20GB = 20480  
+> ds: 40960  
+> #Add OS iso \[rhel94, oel78\] or  
+> #\[OracleLinux-R7-U8-Server-x86\_64-dvd.iso |  rhel-9.4-x86\_64-boot.iso \]  
+> ostv: oel78 
+
+### First Boot is manual selection of software
 
 ```
-- Add  Workflow Template
-- Name: Install Addon Linux Host
+- Install Oracle Linux 7.8
+    - English > Continue
+        - Installation Destination > Done 
+    	- Security Profile > disable > Done
+    	- NETWORK & HOSTNAME 
+    		 - ethernet > On
+    		 	- Configure
+    		 		- Link Negotiation > Automatic
+    		 		- General > Click Automatically connect to this network when available
+    		 - Repeat for ethernet 2 
+    		 			*** Note IP used on NIC2 as you can add to AAP while server is being built
+    			Host Name:  oraserv01.local > Apply > Done
+    - KDUMP > Disable > Done
+   
+    
+      Begin Install
+    
+    - Root Password
+    	Root Password = redhat
+    	Confirm = redhat > Done
+```
+
+---
+
+## Launch template `02 Add VM 2 AAP Server`
+
+> #Virtual Image IP 192.168.xxx.xxx  
+> vbvmip: 192.168.65.103  
+> #Virtual hostname  
+> vbvm: oraserv01.local
+> 
+> ## Next > Launch
+
+---
+
+> # **Need To add new VM to AAP Hosts**
+> 
+> ###      From the left side under Resources: click Inventories > add
+> 
+> ###           name: control.local
+> 
+> ###           Inventory: HomeLab
+> 
+> \*\* If not already you can add the following
+> 
+> Inventory > Add > Hosts
+> 
+> Add all missing Linux servers. 
+
+## Go Back to oel78 install and click reboot.
+
+---
+
+# **Enable ssh - template**
+
+> ###    template `03 SSH Auth Key`
+> 
+> Launch
+> 
+> \# Add fully qualified hostname  
+> vbvm: oraserv01.local
+> 
+> Next
+> 
+> Launch
+
+---
+
+## Create Workflow to install all Basic root patches (RHEL or OEL)
+
+# template workflow 
+
+```
+- Templates > Add > Workflow Template
+- Name: Update Linux Hosts
 - Organization: HomeLab
+- Inventory: HomeLab
 - Limit: check prompt on Launch
-    - Variables: check prompt on Launch
-    Add: vbvm:
-```
+- Variables:  - check prompt on Launch
+#Virtual VM Name
+vbvm:
+    
+Save
+start
+04 Mac Mount VirtualBox CD Next > Save
+                                + On Sucess > 05 Install GuestAddons DNF + On Sucess > 07 Mac Un-Mount VirtualBox CD
+                                                                         + On Failure > 06 Install GuestAddons YUM + On Sucess > 07 Mac Un-Mount VirtualBox CD
+Save
+Launch
+Limit = oraserv01.local
 
-*   save
-*   Please click the Start button to begin.
-*   Start
-*   Select > MacMount > Next > Save
-*   \\
-    *   On Sucess > Install GuestAddons DNF > Next > Save > On Sucess > Mac\_un\_Mount > Next > Save  
-        \- + On Failure > Install GuestAddons OEL 7.8 > Next > Save > On Sucess > Mac\_un\_Mount > Next > Save
-*   save
-*   Launch
-*   Limit: 
-*   Variable: vbvm:
+Variable:
+#Virtual VM Name
+vbvm: oraserv01.local
+
+Next
+Launch
+```
 
 # Create project to add Oracle
 
