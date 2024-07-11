@@ -1,4 +1,14 @@
-# Simple - Step by Step Ansible Automation Platform
+# Simple - Step by Step 
+
+## Ansible Automation Platform
+
+## Oracle VirtualBox
+
+## Oracle Database
+
+## Event Driven Ansible 
+
+# Event Driven Ansible 
 
 ### To install (AAP)(EDA)(Oracle) , To Configure AAP (), and To Build (Oracle)
 
