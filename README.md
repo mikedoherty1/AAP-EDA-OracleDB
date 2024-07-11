@@ -120,7 +120,7 @@ CreateVirtualBoxVM.yml
 > 
 > Start
 
-*   All other VM's are created with Ansible
+
 
 ```
 - Install Red Hat Enterprise Linux 9.4
