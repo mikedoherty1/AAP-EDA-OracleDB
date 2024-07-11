@@ -449,10 +449,13 @@ vbvm:
 vbvm:
   Click > prompt on launch
   - save
+  
 ```
 
+---
+
 ```
-Add Mac host information
+
 
 - Name: 05 Install GuestAddons DNF
 - Inventory: HomeLab
