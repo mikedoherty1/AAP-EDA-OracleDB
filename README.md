@@ -46,7 +46,7 @@ MacBook Pro
 
 > 1.   `**Ansible & Oracle software will be automatically downloaded and deployed within execution of templates in AAP**` 
 
-> easier when select what ISO to use when executing template
+> easier when adding ISO as variable in template
 > 
 > ln -s /Users/ansible/Downloads/OracleLinux-R7-U8-Server-x86\_64-dvd.iso /Users/ansible/Downloads/oel78  
 > ln -s /Users/ansible/Downloads/rhel-9.4-x86\_64-boot.iso /Users/ansible/Downloads/rhel94
@@ -59,11 +59,11 @@ RedHat Account:  (Free)
 After VirtualBox install & Extension Pack (Install from VirtualBox gui, click three lines > Extensions > install
 
 Newtorking - Host-only Networks > Create > Name = HostNetwork
+*   Mask: 255.255.255.0 ; Lower Bound: 192.168.56.100 ; Upper Bound: 192.168.56.199
+    *   \*\* Used on nic2 
 
 Tools > Media > Optical disks > Add > select ISO's from Downloads
 
-*   Mask: 255.255.255.0 ; Lower Bound: 192.168.56.100 ; Upper Bound: 192.168.56.199
-    *   \*\* Used on nic2 
 
 \*\* Make sure you have enough space / RAM as each VM will be 30TB w/8GB RAM
 
