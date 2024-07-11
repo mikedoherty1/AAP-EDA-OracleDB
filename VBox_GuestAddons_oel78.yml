@@ -1,7 +1,7 @@
 ---
 - hosts: all
   tasks:
-    - name: Installing missing packages kernel-devel
+    - name: Setting Kernel to not use UEK 
       ansible.builtin.shell:
         cmd: grubby --set-default /boot/vmlinuz-3.10.0-1127.el7.x86_64
       register: shell
@@ -20,7 +20,7 @@
       register: shell
     - debug: var=shell.stdout_lines
 # Install wget
-    - name: Installing missing packages git
+    - name: Installing missing packages wget, needed if direct download of software 
       ansible.builtin.shell:
         cmd: yum install wget -y
       register: shell
@@ -44,7 +44,7 @@
       register: shell
     - debug: var=shell.stdout_lines
 # kernel-devel
-    - name: Installing devel kernel specific
+    - name: Installing kernel specific devel packages 
       ansible.builtin.shell:
         cmd: yum install "kernel-devel-uname-r == $(uname -r)" -y
       register: shell

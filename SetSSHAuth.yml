@@ -18,7 +18,7 @@
       lineinfile:
         path: /root/dbhost
         line: "{{ vbvm }} ansible_user=root ansible_password=redhat "
-    - name: Add ssh fingerprint to known_hosts file on AAP server 
+    - name: Add ssh fingerprint to known_hosts file on AAP server for server "{{ vbvm }}"
       ansible.builtin.shell:
         cmd: ssh-keyscan -H "{{ vbvm }}" >> ~/.ssh/known_hosts
       register: shell
