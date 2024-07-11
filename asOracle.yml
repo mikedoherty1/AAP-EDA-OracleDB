@@ -22,8 +22,3 @@
         chdir: /oracle/app/product/19c/network/admin
       register: shell
     - debug: var=shell.stdout_lines
-    - name: Start listener
-      ansible.builtin.shell:
-        cmd: /oracle/app/product/19c/bin/lsnrctl start
-      register: shell
-    - debug: var=shell.stdout_lines
