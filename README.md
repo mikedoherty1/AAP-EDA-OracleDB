@@ -33,6 +33,8 @@ MacBook Pro
 3.  Log into **ansible** for the remainder of operations
 4.  Add passwordless sudo access to ansible
     1.  sudo dscl . -append /groups/wheel GroupMembership ansible
+    2.  sudo vi /etc/sudoers 
+        1.  add > ansible ALL = (ALL) ALL
 
 ---
 
