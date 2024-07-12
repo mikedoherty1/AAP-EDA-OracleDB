@@ -187,7 +187,7 @@ CreateVirtualBoxVM.yml
 > Setup pre-reqs for ansible automation install
 > 
 > 1.  `dnf install git -y`
-> 2.  `https://github.com/mikedoherty1/VirtualBox-AAP-OracleDB.git`
+> 2.  git clone https://github.com/mikedoherty1/VirtualBox-AAP-OracleDB.git
 > 
 >      Setup script to build / Install everything
 > 
