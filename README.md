@@ -186,13 +186,13 @@ CreateVirtualBoxVM.yml
 > 
 > Setup pre-reqs for ansible automation install
 > 
-> 1.  `**dnf install git -y**`
-> 2.  `**git clone**` `**https://github.com/mikedoherty1/AAP-EDA-OracleDB.git**`
+> 1.  `dnf install git -y`
+> 2.  `https://github.com/mikedoherty1/VirtualBox-AAP-OracleDB.git`
 > 
 >      Setup script to build / Install everything
 > 
-> 1.  `**cd AAP-EDA-OracleDB**`
-> 2.   `**./start.sh**`
+> 1.  `cd VirtualBox-AAP-OracleDB`
+> 2.   `./start.sh`
 > 
 >    A couple read in prompts (copy and paste) , a couple hit returns and a type yes ......
 > 
@@ -363,7 +363,7 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
     *   Organization: HomeLab
     *   Execution Environment: RHEL9
     *   Source Control Type: Git
-    *   Source Control URL: https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
+    *   Source Control URL: `https://github.com/mikedoherty1/VirtualBox-AAP-OracleDB.git`
     *   Source Control Branch/Tag/Commit: VirtualBox
     *   Options: Clean
 *   All project will be created in /var/lib/awx/projects \*\*\*\*\*\*
@@ -375,7 +375,7 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
     *   Organization: HomeLab
     *   Execution Environment: RHEL9
     *   Source Control Type: Git
-    *   Source Control URL: https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
+    *   Source Control URL: `https://github.com/mikedoherty1/VirtualBox-AAP-OracleDB.git`
     *   Source Control Branch/Tag/Commit: OraBuild
     *   Options: Clean
 
