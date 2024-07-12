@@ -25,6 +25,6 @@
     - debug: var=shell.stdout_lines
     - name: Work Around for copy file in GUI - gen auth_keys inventory file /root/dbhost on AAP
       ansible.builtin.shell:
-        cmd: ansible-playbook -i /root/dbhost /root/AAP-EDA-OracleDB/keys.yml
+        cmd: ansible-playbook -i /root/dbhost /root/VirtualBox-AAP-OracleDB/keys.yml
       register: shell
     - debug: var=shell.stdout_lines
