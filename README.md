@@ -184,19 +184,19 @@ CreateVirtualBoxVM.yml
 > 
 > Setup pre-reqs for ansible automation install
 > 
-> `dnf install git -y`
-> 
-> git clone https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
+> 1.  `**dnf install git -y**`
+> 2.  `**git clone**` `**https://github.com/mikedoherty1/AAP-EDA-OracleDB.git**`
 > 
 >      Setup script to build / Install everything
 > 
-> cd AAP-EDA-OracleDB
-> 
-> ./start.sh
+> 1.  `**cd AAP-EDA-OracleDB**`
+> 2.   `**./start.sh**`
 > 
 >    A couple read in prompts (copy and paste) , a couple hit returns and a type yes ......
 > 
 > Ansible Automation is Complete
+> 
+> \*\*\* Verify both hosts are in /etc/hosts 
 
 # Ansible Time
 
