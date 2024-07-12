@@ -612,7 +612,7 @@ Launch
 
 ---
 
-# Create Templates from Project - **Oracle Operations**
+# Create Templates  - **Oracle Operations**
 
 ```
 - Name: 08 Oracle Root OS
@@ -641,6 +641,22 @@ Launch
 #Virtual VM Name
 vbvm:
     
+  - save
+  - launch
+```
+
+```
+- Name: 10 asOracle Setup Binaries
+- Inventory: HomeLab
+- Project: Oracle Operations
+- Execution Environment: RHEL9
+    - Playbook: asOracle.yml
+     - Credentials: OracleAdmin
+- Variables:  - check prompt on Launch
+#Virtual VM Name
+vbvm:
+    
+  - Limit: prompt on launch
   - save
   - launch
 ```
