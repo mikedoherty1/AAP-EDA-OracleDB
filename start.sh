@@ -31,8 +31,7 @@ clear
 echo "Enter you Mac IP address (ifconfig | grep inet)"
 read ipsm
 clear
-echo "Enter your Mac fully qualified hostname (hostname)"
-hostname
+echo "Enter your Mac fully qualified hostname (hostname) ??? > "
 read hnm
 
 echo "$ipsm     $hnm" >> /etc/hosts
