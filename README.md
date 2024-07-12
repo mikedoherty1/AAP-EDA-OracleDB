@@ -40,8 +40,8 @@ MacBook Pro
 
 1.  VirtualBox
 2.  VirtualBox Extension Pack
-3.  RedHat 9.4 found here:  [https://access.redhat.com/downloads/content/rhel](https://access.redhat.com/downloads/content/rhel ) \> get Red Hat Enterprise Linux 9.4 Boot ISO 
-4.  OracleLinux 7.8 found here: [https://yum.oracle.com/oracle-linux-isos.html](https://yum.oracle.com/oracle-linux-isos.html ) \> get OracleLinux-R7-U8-Server-x86\_64-dvd.iso
+3.  RedHat 9.4 found here:  [https://access.redhat.com/downloads/content/rhel](https://access.redhat.com/downloads/content/rhel) > get Red Hat Enterprise Linux 9.4 Boot ISO 
+4.  OracleLinux 7.8 found here: [https://yum.oracle.com/oracle-linux-isos.html](https://yum.oracle.com/oracle-linux-isos.html) > get OracleLinux-R7-U8-Server-x86\_64-dvd.iso
 
 > 1.  `**Ansible & Oracle software will be automatically downloaded and deployed within execution of templates in AAP**`
 
