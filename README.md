@@ -30,8 +30,9 @@ MacBook Pro
 
 1.  created new user **ansible** with admin priv, password = redhat (this password is used for practically everything) HomeLab easy
 2.  enabled ssh ( System Settings > General > Remote Login > Click to enable and add **ansible** (mac user)
-3.  Log into **ansible** for the remainder of operations
-4.  sudoers file > . vi etc/sudoers
+3.  Add passwordless sudo access to ansible
+    1.  sudo dscl . -append /groups/wheel GroupMembership ansible
+4.  Log into **ansible** for the remainder of operations
 
 ---
 
@@ -39,8 +40,8 @@ MacBook Pro
 
 1.  VirtualBox
 2.  VirtualBox Extension Pack
-3.  RedHat 9.4 found here:  https://access.redhat.com/downloads/content/rhel > get Red Hat Enterprise Linux 9.4 Boot ISO 
-4.  OracleLinux 7.8 found here: https://yum.oracle.com/oracle-linux-isos.html > get OracleLinux-R7-U8-Server-x86\_64-dvd.iso
+3.  RedHat 9.4 found here:  [https://access.redhat.com/downloads/content/rhel](https://access.redhat.com/downloads/content/rhel ) \> get Red Hat Enterprise Linux 9.4 Boot ISO 
+4.  OracleLinux 7.8 found here: [https://yum.oracle.com/oracle-linux-isos.html](https://yum.oracle.com/oracle-linux-isos.html ) \> get OracleLinux-R7-U8-Server-x86\_64-dvd.iso
 
 > 1.  `**Ansible & Oracle software will be automatically downloaded and deployed within execution of templates in AAP**`
 
