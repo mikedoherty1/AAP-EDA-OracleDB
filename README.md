@@ -30,9 +30,9 @@ MacBook Pro
 
 1.  created new user **ansible** with admin priv, password = redhat (this password is used for practically everything) HomeLab easy
 2.  enabled ssh ( System Settings > General > Remote Login > Click to enable and add **ansible** (mac user)
-3.  Add passwordless sudo access to ansible
+3.  Log into **ansible** for the remainder of operations
+4.  Add passwordless sudo access to ansible
     1.  sudo dscl . -append /groups/wheel GroupMembership ansible
-4.  Log into **ansible** for the remainder of operations
 
 ---
 
@@ -123,7 +123,7 @@ CreateVirtualBoxVM.yml
 - Install Red Hat Enterprise Linux 9.4
     - English > Continue
     - Security Profile > disable > Done
-    - NETWORK & HOSTNAME > Make sure both are enables
+    - NETWORK & HOSTNAME > enable both adapters
             Use the 2nd interface IP 192.168.56.XXX - add this to mac /etc/hosts file
         Host Name:  control.local > Apply > Done
     - KDUMP > Disable > Done
@@ -142,6 +142,8 @@ CreateVirtualBoxVM.yml
 
 ---
 
+> While AAP server is being installed
+> 
 > From Mac > Terminal
 > 
 > hostname
@@ -167,18 +169,24 @@ CreateVirtualBoxVM.yml
 > ###### 192.168.56.101    control.local
 > 
 > ###### 10.0.0.54     Mikes-MacBook-Pro.local
-> 
-> ssh [root@control.local](mailto:root@control.local)  > password = redhat
-> 
-> pwd to verify /root directory
+
+**\*\* Reboot AAP server from intial install**
 
 ---
 
+# AAP Setup
+
+> FYI: all passwords set to redhat for OS and AAP
+> 
+> ssh [root@control.local](mailto:root@control.local)  
+> 
+> pwd to verify /root directory
+> 
 > Setup pre-reqs for ansible automation install
 > 
 > `dnf install git -y`
 > 
-> git clone [https://github.com/mikedoherty1/AAP-EDA-OracleDB.git](https://github.com/mikedoherty1/AAP-EDA-OracleDB.git)
+> git clone https://github.com/mikedoherty1/AAP-EDA-OracleDB.git
 > 
 >      Setup script to build / Install everything
 > 
@@ -193,7 +201,7 @@ CreateVirtualBoxVM.yml
 # Ansible Time
 
 ```
-- from web broweser: https://control.local
+- from web broweser (chrome or firefox): https://control.local
 ```
 
 Proceed to your\_ip\_adress (unsafe)
