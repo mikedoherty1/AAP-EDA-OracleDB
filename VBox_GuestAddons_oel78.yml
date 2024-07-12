@@ -49,6 +49,12 @@
         cmd: yum install "kernel-devel-uname-r == $(uname -r)" -y
       register: shell
     - debug: var=shell.stdout_lines
+    - name: Generate ssh keys
+      ansible.builtin.user:
+        name: root
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
 # mkdir
     - name: make filesystem for mounting cdrom
       ansible.builtin.shell:
