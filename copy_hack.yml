@@ -1,6 +1,33 @@
 ---
 - hosts: all
+  vars:
   tasks:
+    - name: remove inventory file for hack copy
+      ansible.builtin.shell:
+        cmd: rm -rf /root/dbhost
+      register: shell
+    - debug: var=shell.stdout_lines
+# Touch File
+    - name: create inventory file for hack copy
+      ansible.builtin.shell:
+        cmd: touch /root/dbhost
+      register: shell
+    - debug: var=shell.stdout_lines
+# add hack entry
+    - name: Create local inventory file /root/dbhost on AAP server   
+      lineinfile:
+        path: /root/dbhost
+        line: "{{ vbvm }} ansible_user=root ansible_password=redhat "
+    - name: Add ssh fingerprint to known_hosts file on AAP server for server "{{ vbvm }}"
+      ansible.builtin.shell:
+        cmd: ssh-keyscan -H "{{ vbvm }}" >> ~/.ssh/known_hosts
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: Work Around for copy file in GUI - gen auth_keys inventory file /root/dbhost on AAP
+      ansible.builtin.shell:
+        cmd: ansible-playbook -i /root/dbhost /root/VirtualBox-AAP-OracleDB/keys.yml
+      register: shell
+    - debug: var=shell.stdout_lines
     - name: Work Around for copy file in GUI - using hack inv file and pre-built hardcoded yml file
       ansible.builtin.shell:
         cmd: ansible-playbook -i /root/dbhost /root/VirtualBox-AAP-OracleDB/cp_ora.yml
