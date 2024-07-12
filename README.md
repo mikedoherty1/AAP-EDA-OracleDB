@@ -31,9 +31,7 @@ MacBook Pro
 1.  created new user **ansible** with admin priv, password = redhat (this password is used for practically everything) HomeLab easy
 2.  enabled ssh ( System Settings > General > Remote Login > Click to enable and add **ansible** (mac user)
 3.  Log into **ansible** for the remainder of operations
-4.  sudoers file > . vi etc/sudoers 
-
-<table><tbody><tr><td><p>%admin ALL = (ALL) ALL</p><p>ansible ALL = (ALL) ALL</p></td></tr></tbody></table>
+4.  sudoers file > . vi etc/sudoers
 
 ---
 
@@ -44,7 +42,7 @@ MacBook Pro
 3.  RedHat 9.4 found here:  https://access.redhat.com/downloads/content/rhel > get Red Hat Enterprise Linux 9.4 Boot ISO 
 4.  OracleLinux 7.8 found here: https://yum.oracle.com/oracle-linux-isos.html > get OracleLinux-R7-U8-Server-x86\_64-dvd.iso
 
-> 1.   `**Ansible & Oracle software will be automatically downloaded and deployed within execution of templates in AAP**` 
+> 1.  `**Ansible & Oracle software will be automatically downloaded and deployed within execution of templates in AAP**`
 
 > easier when adding ISO as variable in template
 > 
@@ -59,11 +57,11 @@ RedHat Account:  (Free)
 After VirtualBox install & Extension Pack (Install from VirtualBox gui, click three lines > Extensions > install
 
 Newtorking - Host-only Networks > Create > Name = HostNetwork
+
 *   Mask: 255.255.255.0 ; Lower Bound: 192.168.56.100 ; Upper Bound: 192.168.56.199
-    *   \*\* Used on nic2 
+    *   \*\* Used on nic2
 
 Tools > Media > Optical disks > Add > select ISO's from Downloads
-
 
 \*\* Make sure you have enough space / RAM as each VM will be 30TB w/8GB RAM
 
@@ -120,25 +118,23 @@ CreateVirtualBoxVM.yml
 > 
 > Start
 
-
-
 ```
 - Install Red Hat Enterprise Linux 9.4
     - English > Continue
     - Security Profile > disable > Done
     - NETWORK & HOSTNAME > Make sure both are enables
-    		Use the 2nd interface IP 192.168.56.XXX - add this to mac /etc/hosts file
-    	Host Name:  control.local > Apply > Done
+            Use the 2nd interface IP 192.168.56.XXX - add this to mac /etc/hosts file
+        Host Name:  control.local > Apply > Done
     - KDUMP > Disable > Done
     - Installation Destination > Done 
     - Connect to Red Hat > 
-    	username
-    	password > Register > Done
+        username
+        password > Register > Done
     - Software Selection:
         Minimal Install > Select Standard > Done
     - Root Password
-    	Root Password = redhat
-    	Confirm = redhat > Done
+        Root Password = redhat
+        Confirm = redhat > Done
     
     Begin Install
 ```
@@ -155,17 +151,11 @@ CreateVirtualBoxVM.yml
 > 
 > example: 
 > 
-> ###### ##
-> 
 > ###### \# Host Database
-> 
-> ###### #
 > 
 > ###### \# localhost is used to configure the loopback interface
 > 
 > ###### \# when the system is booting.  Do not change this entry.
-> 
-> ###### ##
 > 
 > ###### 127.0.0.1 localhost
 > 
@@ -321,7 +311,7 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
     *   Privilege Escalation Password: oracle
 *   save
 
-# Projects 
+# Projects
 
 *   From the left side under Resources: click Projects > copy > then edit
     *   name: Hello
@@ -355,7 +345,7 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 
 ---
 
-# Create project to add VirtualBox Git Branch 
+# Create project to add VirtualBox Git Branch
 
 *   From the left side under Resources: click Projects > add
     *   name: Basic Root Operations
@@ -367,7 +357,7 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
     *   Options: Clean
 *   All project will be created in /var/lib/awx/projects \*\*\*\*\*\*
 
-# Create project to add OraBuild Git Branch 
+# Create project to add OraBuild Git Branch
 
 *   From the left side under Resources: click Projects > add
     *   name: Oracle Operations
@@ -529,23 +519,23 @@ Template > Launch > `01 asMac Create VM`
 - Install Oracle Linux 7.8
     - English > Continue
         - Installation Destination > Done 
-    	- Security Profile > disable > Done
-    	- NETWORK & HOSTNAME 
-    		 - ethernet > On
-    		 	- Configure
-    		 		- Link Negotiation > Automatic
-    		 		- General > Click Automatically connect to this network when available
-    		 - Repeat for ethernet 2 
-    		 			*** Note IP used on NIC2 as you can add to AAP while server is being built
-    			Host Name:  oraserv01.local > Apply > Done
+        - Security Profile > disable > Done
+        - NETWORK & HOSTNAME 
+             - ethernet > On
+                 - Configure
+                     - Link Negotiation > Automatic
+                     - General > Click Automatically connect to this network when available
+             - Repeat for ethernet 2 
+                         *** Note IP used on NIC2 as you can add to AAP while server is being built
+                Host Name:  oraserv01.local > Apply > Done
     - KDUMP > Disable > Done
    
     
       Begin Install
     
     - Root Password
-    	Root Password = redhat
-    	Confirm = redhat > Done
+        Root Password = redhat
+        Confirm = redhat > Done
 ```
 
 ---
@@ -563,11 +553,11 @@ Template > Launch > `01 asMac Create VM`
 
 > # **Need To add new VM to AAP Hosts**
 > 
-> ###      From the left side under Resources: click Inventories > add
+> ### From the left side under Resources: click Inventories > add
 > 
-> ###           name: control.local
+> ### name: control.local
 > 
-> ###           Inventory: HomeLab
+> ### Inventory: HomeLab
 > 
 > \*\* If not already you can add the following
 > 
@@ -581,7 +571,7 @@ Template > Launch > `01 asMac Create VM`
 
 # **Enable ssh - template**
 
-> ###    template `03 SSH Auth Key`
+> ### template `03 SSH Auth Key`
 > 
 > Launch
 > 
@@ -596,7 +586,7 @@ Template > Launch > `01 asMac Create VM`
 
 ## Create Workflow to install all Basic root patches (RHEL or OEL)
 
-# template workflow 
+# template workflow
 
 ```
 - Templates > Add > Workflow Template
