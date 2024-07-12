@@ -610,33 +610,37 @@ Launch
 
 # Oracle Time
 
-### Add Template:
-
-\- Name: **AddHost4Copy**  
-\- Inventory: AAP  
-\- Project: OraDB  
-\- Execution Environment: RHEL9  
-    - Playbook: AddDBHost\_Inventory.yml  
-     - Credentials: RootAdmin  
-  - save  
-  - Launch  
-          - Enter Variables  
-              vbname: \<name\_of\_VBoxVM>
-
 ---
 
-# Create Templates from Project OraDB
+# Create Templates from Project - **Oracle Operations**
 
 ```
-- Name: Oracle Root OS
+- Name: 08 Oracle Root OS
 - Inventory: HomeLab
-- Project: OraDB
+- Project: Oracle Operations
 - Execution Environment: RHEL9
     - Playbook: Oracle_Root.yml
      - Credentials: RootAdmin
      - Variables: check prompt on Launch
-        Add: opass:
+    # Creating oracle user, set oracle password
+    opass: oracle
+    
      - Limit: prompt on launch
+  - save
+  - launch
+```
+
+```
+- Name: 09 Get Oracle Binaries
+- Inventory: AAP
+- Project: Oracle Operations
+- Execution Environment: RHEL9
+    - Playbook: copy_hack.yml
+     - Credentials: RootAdmin
+- Variables:  - check prompt on Launch
+#Virtual VM Name
+vbvm:
+    
   - save
   - launch
 ```
