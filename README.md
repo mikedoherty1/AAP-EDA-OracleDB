@@ -244,30 +244,6 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 
 ---
 
-# Users - (3)
-
-*   From the left side under Access: click Users > add
-    *   first name: HomeLabRoot
-    *   username: root
-    *   password: redhat
-    *   User Type: System Adminstrator
-    *   Organization: HomeLab
-*   save
-*   From the left side under Access: click Users > add
-    *   first name: HomeLabMc
-    *   username: ansible
-    *   password: redhat
-    *   User Type: System Adminstrator
-    *   Organization: HomeLab
-*   save
-*   From the left side under Access: click Users > add
-    *   first name: OraAdmin
-    *   username: oracle
-    *   password: oracle
-    *   User Type: System Adminstrator
-    *   Organization: HomeLab
-*   save
-
 # Inventories (3)
 
 *   From the left side under Resources: click Inventories > add
@@ -349,6 +325,8 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
     *   Credentials: MacAdmin
 *   save
 *   Launch
+
+To supress warning > edit > 9 Hello Mac > Add Variable > ansible\_python\_interpreter: auto\_silent > save > launch
 
 ---
 
@@ -601,7 +579,7 @@ Template > Launch > `01 asMac Create VM`
 
 ```
 - Templates > Add > Workflow Template
-- Name: Update Linux Hosts
+- Name: 00 Update Linux Hosts
 - Organization: HomeLab
 - Inventory: HomeLab
 - Limit: check prompt on Launch
@@ -611,9 +589,13 @@ vbvm:
     
 Save
 start
-04 Mac Mount VirtualBox CD Next > Save
-                                + On Sucess > 05 Install GuestAddons DNF + On Sucess > 07 Mac Un-Mount VirtualBox CD
-                                                                         + On Failure > 06 Install GuestAddons YUM + On Sucess > 07 Mac Un-Mount VirtualBox CD
+Node Type:
+Approval 
+Name: VirtualBox and packages 
+Save
+   
+VirtualBox and packages + On Sucess > 04 Mac Mount VirtualBox CD + On Sucess > 05 Install GuestAddons DNF + On Sucess > 07 Mac Un-Mount VirtualBox CD
+                                                                                  + On Failure > 06 Install GuestAddons YUM + On Sucess > 07 Mac Un-Mount VirtualBox CD
 Save
 Launch
 Limit = oraserv01.local
@@ -626,14 +608,7 @@ Next
 Launch
 ```
 
-# Create project to add Oracle
-
-*   \\
-
-copy GuestAddons > edit  
-Name: **OraDB**  
-Source Control Branch/Tag/Commit: **OraBuild**  
-Save
+# Oracle Time
 
 ### Add Template:
 
