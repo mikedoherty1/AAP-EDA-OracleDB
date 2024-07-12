@@ -222,7 +222,7 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 
 # Validate its all working
 
-# Execution Environments
+# Execution Environments (not required just something to do)
 
 *   From the left side under Administration: click Execution Environments > copy Default execution environment
     *   edit your copy
