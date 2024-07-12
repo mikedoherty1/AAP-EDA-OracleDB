@@ -95,6 +95,10 @@ wget --header="Host: drive.usercontent.google.com" --header="User-Agent: Mozilla
 mv ora19c.tar.gz /root/software
 mv /root/AAP-EDA-OracleDB/ora_bash_profile /root/software
 clear
+#add ansible module
+ansible-galaxy collection install ansible.posix
+sleep 5
+clear
 echo "All steps complete, everything else will be done in Ansible Automation Platform
 "
 
