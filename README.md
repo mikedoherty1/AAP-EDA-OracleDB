@@ -354,7 +354,7 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 
 ---
 
-# Create project to add VirtualBox Git Branch
+# Create project to add Basic Root Operations - Git Branch VirtualBox
 
 *   From the left side under Resources: click Projects > add
     *   name: Basic Root Operations
@@ -460,7 +460,7 @@ vbvm:
 - Inventory: HomeLab
 - Project: Basic Root Operations
 - Execution Environment: RHEL9
-    - Playbook: VBox_GuestAddons_rhel.yml
+    - Playbook: VBox_GuestAddons_dnf.yml
      - Credentials: RootAdmin
           - Variables: 
 # Add fully qualified hostname
