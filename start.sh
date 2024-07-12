@@ -69,7 +69,12 @@ sed -i "s/REDHAT_PWD/$REDHAT_PWD/g" /root/software/aap-bundle-2.4-6.2/inventory
 clear
 
 #Get Oracle
-echo "Ansible complete start working in GUI - This should also take 15 minutes (pending internet speeds - Oracle software used to automate oel7.8 build via Ansible platform"
+echo "all done goto chrome/firefox https://$ips or https://control.local"
+echo "
+
+
+" 
+echo "Oracle download This should also take 155 minutes (pending internet speeds - Oracle software used to automate oel7.8 build via Ansible platform"
 sleep 10
 echo "
 
@@ -81,6 +86,11 @@ wget --header="Host: drive.usercontent.google.com" --header="User-Agent: Mozilla
 mv ora19c.tar.gz /root/software
 mv /root/AAP-EDA-OracleDB/ora_bash_profile /root/software
 clear
-echo "All OS steps complete, everything else will be done in Ansible Automation Platform
+echo "All steps complete, everything else will be done in Ansible Automation Platform
 "
-echo "all done goto chrome/firefox https://$ips or https://control.local if added to local /etc/hosts file"
+
+echo "
+
+
+" 
+echo "all done goto chrome/firefox https://$ips or https://control.local"
