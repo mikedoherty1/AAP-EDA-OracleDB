@@ -661,13 +661,18 @@ vbvm:
   - launch
 ```
 
+```
+- Name: 11 asOracle start DB and listener
+- Inventory: HomeLab
+- Project: Oracle Operations
+- Execution Environment: RHEL9
+    - Playbook: asOracle_Start_listener_DB.yml
+     - Credentials: OracleAdmin
+- Limit: prompt on launch
+  - save
+  - launch
+```
+
 ---
 
-# Create Oracle Admin user & Credential
-
-# EDA Server Build
-
-*   \\
-*   \\
-
-# EDA to execute tasks for OracleDB
+# Next: EDA To monitor Oracle and automate corrective actions
