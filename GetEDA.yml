@@ -14,7 +14,7 @@
         src: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
         dest: /root/software/aap-bundle-2.4-6.2/AAP-bundle-2.4-6.2-x86_64.tar.gz
       delegate_to: "{{ source_srv }}"
-    - name: Untar Oracle Binaries
+    - name: Untar Binaries
       ansible.builtin.shell:
         cmd: tar -xzvf AAP-bundle-2.4-6.2-x86_64.tar.gz
         chdir: /root/software/aap-bundle-2.4-6.2
