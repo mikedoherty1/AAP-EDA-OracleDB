@@ -307,26 +307,22 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 *   save
 *   sync
 
-# Templates (2)
+# Templates - Testing Connectivity 
 
-*   From the left side under Resources: click Templates > copy > hello > edit
-    *   name: 9 Hello Linux
-    *   Inventory: AAP
+*   From the left side under Resources: click Templates >  edit > [**Demo Job Template**](https://control.local/#/templates/job_template/7)
+    *   name: Test Connect
+    *   Inventory: remove and click prompt
     *   Project: Hello
     *   Execution Environment: RHEL9
-    *   Credentials: RootAdmin
-*   save
-*   Launch
-*   From the left side under Resources: click Templates > copy > hello > edit
-    *   name: 9 Hello Mac
-    *   Inventory: MAC
-    *   Project: Hello
-    *   Execution Environment: RHEL9
-    *   Credentials: MacAdmin
+    *   Credentials: remove and click prompt
 *   save
 *   Launch
 
-To supress warning > edit > 9 Hello Mac > Add Variable > ansible\_python\_interpreter: auto\_silent > save > launch
+Run against all Inventories ....
+
+To supress warning > edit > Add Variable > ansible\_python\_interpreter: auto\_silent 
+
+\> save > launch
 
 ---
 
@@ -440,7 +436,7 @@ vbvm:
 - Inventory: HomeLab
 - Project: Basic Root Operations
 - Execution Environment: RHEL9
-    - Playbook: VBox_GuestAddons_dnf.yml
+    - Playbook: VBox_GuestAddons_DNF.yml
      - Credentials: RootAdmin
           - Variables: 
 # Add fully qualified hostname
@@ -457,7 +453,7 @@ Add Mac host information
 - Inventory: HomeLab
 - Project: Basic Root Operations
 - Execution Environment: RHEL9
-    - Playbook: VBox_GuestAddons_oel78.yml
+    - Playbook: VBox_GuestAddons_YUM.yml
      - Credentials: RootAdmin
           - Variables: 
 # Add fully qualified hostname
