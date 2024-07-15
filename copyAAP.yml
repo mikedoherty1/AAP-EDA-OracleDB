@@ -10,7 +10,7 @@
       register: shell
     - debug: var=shell.stdout_lines
     - name: Copy AAP to remote host
-      ansible.builtin.copy:
+      ansible.builtin.fetch:
         src: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
         dest: /root/AAP-bundle-2.4-6.2-x86_64.tar.gz
         remote_src: no 
