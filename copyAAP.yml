@@ -1,5 +1,5 @@
 ---
-- hosts:"{{ dest_srv }}""
+- hosts: "{{ dest_srv }}"
   vars:
     ansible_python_interpreter: auto_silent
   tasks:
@@ -13,5 +13,5 @@
       ansible.builtin.synchronize:
         src: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
         dest: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
-      delegate_to:"{{ source_srv }}""
+      delegate_to: "{{ source_srv }}"
 
