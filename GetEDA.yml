@@ -6,17 +6,17 @@
 # Touch File
     - name: create software directory 
       ansible.builtin.shell:
-        cmd: mkdir -p /root/software 
+        cmd: mkdir -p /root/software/aap-bundle-2.4-6.2
       register: shell
     - debug: var=shell.stdout_lines
     - name: Copy AAP to remote host
       ansible.builtin.synchronize:
         src: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
-        dest: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
+        dest: /root/software/aap-bundle-2.4-6.2/AAP-bundle-2.4-6.2-x86_64.tar.gz
       delegate_to: "{{ source_srv }}"
     - name: Untar Oracle Binaries
       ansible.builtin.shell:
         cmd: tar -xzvf AAP-bundle-2.4-6.2-x86_64.tar.gz
-        chdir: /root/software
+        chdir: /root/software/aap-bundle-2.4-6.2
       register: shell
     - debug: var=shell.stdout_lines
