@@ -51,7 +51,7 @@ mkdir aap-bundle-2.4-6.2
 mv AAP-bundle-2.4-6.2-x86_64.tar.gz aap-bundle-2.4-6.2
 cd aap-bundle-2.4-6.2
 tar -xzvf AAP-bundle-2.4-6.2-x86_64.tar.gz
-rm AAP-bundle-2.4-6.2-x86_64.tar.gz
+
 
 echo "setup inventory file"
 echo "#
@@ -93,6 +93,8 @@ wget --header="Host: drive.usercontent.google.com" --header="User-Agent: Mozilla
 
 mv ora19c.tar.gz /root/software
 mv /root/VirtualBox-AAP-OracleDB/ora_bash_profile /root/software
+mv /root/VirtualBox-AAP-OracleDB/cp_ora.yml /root/software
+mv /root/VirtualBox-AAP-OracleDB/keys.yml /root/software
 clear
 #add ansible module
 ansible-galaxy collection install ansible.posix

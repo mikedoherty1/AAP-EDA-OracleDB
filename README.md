@@ -307,7 +307,7 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 *   save
 *   sync
 
-# Templates - Testing Connectivity 
+# Templates - Testing Connectivity
 
 *   From the left side under Resources: click Templates >  edit > [**Demo Job Template**](https://control.local/#/templates/job_template/7)
     *   name: Test Connect
