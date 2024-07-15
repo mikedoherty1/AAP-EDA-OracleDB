@@ -24,7 +24,6 @@
       ansible.builtin.shell:
         cmd: cp orig-inventory inventory
         chdir: /root/software/aap-bundle-2.4-6.2
-        ignore_unreachable: true 
       register: shell
     - debug: var=shell.stdout_lines
     - name: backup EDA Inventoy file  
