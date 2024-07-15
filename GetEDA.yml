@@ -22,7 +22,7 @@
     - debug: var=shell.stdout_lines
     - name: cp original EDA Inventoy file  
       ansible.builtin.shell:
-        ignore_unreachable: true
+        ignore_errors: true
         cmd: cp orig-inventory inventory
         chdir: /root/software/aap-bundle-2.4-6.2
       register: shell
