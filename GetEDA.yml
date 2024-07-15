@@ -32,3 +32,19 @@
         chdir: /root/software/aap-bundle-2.4-6.2
       register: shell
     - debug: var=shell.stdout_lines
+    - name: Add ssh fingerprint to known_hosts file on AAP server for server "{{ vbvm }}"
+      ansible.builtin.shell:
+        cmd: ssh-keyscan -H "{{ vbvm }}" >> ~/.ssh/known_hosts
+      register: shell
+    - debug: var=shell.stdout_lines  
+    - name: Generate ssh keys
+      ansible.builtin.user:
+        name: root
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
+    - name: Set authorized key taken from file
+      ansible.posix.authorized_key:
+        user: root
+        state: present
+        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
