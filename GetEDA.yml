@@ -20,3 +20,22 @@
         chdir: /root/software/aap-bundle-2.4-6.2
       register: shell
     - debug: var=shell.stdout_lines
+    - name: cp original EDA Inventoy file  
+      ansible.builtin.shell:
+        cmd: cp orig-inventory inventory
+        chdir: /root/software/aap-bundle-2.4-6.2
+        ignore_errors: true
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: backup EDA Inventoy file  
+      ansible.builtin.shell:
+        cmd: cp inventory orig-inventory
+        chdir: /root/software/aap-bundle-2.4-6.2
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: Update Inventoy file with AAP server 
+      ansible.builtin.shell:
+        cmd: sed -i "s/change_host_name/"{{ aap_srv }}"/g" /root/software/aap-bundle-2.4-6.2/inventory
+        chdir: /root/software/aap-bundle-2.4-6.2
+      register: shell
+    - debug: var=shell.stdout_lines
