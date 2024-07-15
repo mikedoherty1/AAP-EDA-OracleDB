@@ -1,0 +1,16 @@
+---
+- hosts: all
+  vars:
+    ansible_python_interpreter: auto_silent
+  tasks:
+# Touch File
+    - name: create software directory 
+      ansible.builtin.shell:
+        cmd: mkdir -p /root/software 
+      register: shell
+    - debug: var=shell.stdout_lines
+   - name: Copy AAP to remote host
+      ansible.builtin.copy:
+        src: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
+        dest: /root/AAP-bundle-2.4-6.2-x86_64.tar.gz
+
