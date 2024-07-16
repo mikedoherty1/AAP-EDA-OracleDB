@@ -21,8 +21,8 @@
         generate_ssh_key: yes
         ssh_key_bits: 2048
         ssh_key_file: /root/.ssh/id_rsa
-    - name: Copy AAP authorized_keys to remote host
-      ansible.builtin.synchronize:
-        src: /root/.ssh/authorized_keys
-        dest: /root/.ssh/aap-authorized_keys
-      delegate_to: "{{ ansible_nodename }}"
+    - name: Set authorized key taken from file
+      ansible.posix.authorized_key:
+        user: root
+        state: present
+        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
