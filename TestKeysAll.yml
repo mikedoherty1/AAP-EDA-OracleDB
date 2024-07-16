@@ -20,3 +20,4 @@
         user: root
         state: present
         key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      delegate_to: "{{ aap_serv }}"
