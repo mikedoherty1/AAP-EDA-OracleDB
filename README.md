@@ -186,7 +186,7 @@ CreateVirtualBoxVM.yml
 > 1.  `cd VirtualBox-AAP-OracleDB`
 > 2.   `./start.sh`
 > 
->    A couple read in prompts (copy and paste) , a couple hit returns and a type yes ...... This should take 15-30 minutes
+>    A couple read in prompts (copy and paste) , a couple hit returns and a type yes ...... This should take 10-15 minutes
 > 
 > Ansible Automation is Complete
 > 
@@ -296,6 +296,7 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
     *   name: Hello
     *   Organization: HomeLab
     *   Execution Environment: RHEL9
+    *   Inventory: 
 *   save
 *   sync
 
