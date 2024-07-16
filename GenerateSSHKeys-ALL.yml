@@ -18,15 +18,8 @@
       lineinfile:
         path: /root/software/dbhost
         line: "{{ ansible_nodename }} ansible_user=root ansible_password=redhat "
-      loop: "{{ ansible_nodename }}"
     - name: Add ssh fingerprint to known_hosts file on AAP server for server "{{ ansible_nodename }}"
       ansible.builtin.shell:
         cmd: ssh-keyscan -H "{{ ansible_nodename }}" >> ~/.ssh/known_hosts
-      loop: "{{ ansible_nodename }}"
-      register: shell
-    - debug: var=shell.stdout_lines
-    - name: Work Around for copy file in GUI - gen auth_keys inventory file /root/dbhost on AAP
-      ansible.builtin.shell:
-        cmd: ansible-playbook -i /root/software/dbhost /root/software/keys.yml
       register: shell
     - debug: var=shell.stdout_lines
