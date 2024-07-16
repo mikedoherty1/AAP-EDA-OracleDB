@@ -1,6 +1,6 @@
 ---
 #- hosts: all
-- hosts: "{{ aap_serv }}"
+- hosts: "{{ ansible_nodename }}"
   vars:
     ansible_python_interpreter: auto_silent
   tasks:
@@ -20,4 +20,4 @@
         user: root
         state: present
         key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-      delegate_to: "{{ ansible_nodename }}"
+      delegate_to: "{{ aap_serv }}"
