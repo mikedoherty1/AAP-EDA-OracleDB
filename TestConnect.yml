@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: all
   become: false
   gather_facts: true
 
@@ -7,4 +7,4 @@
 
   - name: Show hostname
     debug:
-      msg: "Host: {{ ansible_hostname }} FQDN: {{ ansible_nodename }}"
+      msg: "Host: {{ ansible_hostname }} FQDN: {{ ansible_nodename }} I: {{ inventory_hostname }}"
