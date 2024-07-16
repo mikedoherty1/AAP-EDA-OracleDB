@@ -10,9 +10,9 @@
         cmd: ansible-galaxy collection install ansible.posix
       register: shell
     - debug: var=shell.stdout_lines
-    - name: Add ssh fingerprint to known_hosts file on AAP server for server "{{ aap_srv }}"
+    - name: Add ssh fingerprint to known_hosts file on AAP server for server "{{ ansible_nodename }}"
       ansible.builtin.shell:
-        cmd: ssh-keyscan -H "{{ aap_srv }}" >> ~/.ssh/known_hosts
+        cmd: ssh-keyscan -H "{{ ansible_nodename }}" >> /root/.ssh/known_hosts
       register: shell
     - debug: var=shell.stdout_lines  
     - name: Generate ssh keys
@@ -20,9 +20,9 @@
         name: root
         generate_ssh_key: yes
         ssh_key_bits: 2048
-        ssh_key_file: ~/.ssh/id_rsa
+        ssh_key_file: /root/.ssh/id_rsa
     - name: Copy AAP authorized_keys to remote host
       ansible.builtin.synchronize:
-        src: ~/.ssh/authorized_keys
-        dest: ~/.ssh/aap-authorized_keys
-      delegate_to: "{{ aap_srv }}"
+        src: /root/.ssh/authorized_keys
+        dest: /root/.ssh/aap-authorized_keys
+      delegate_to: "{{ aap_serv }}"
