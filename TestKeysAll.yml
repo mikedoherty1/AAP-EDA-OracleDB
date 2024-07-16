@@ -1,6 +1,6 @@
 ---
-- hosts: all
-#- hosts: "{{ eda_srv }}"
+#- hosts: all
+- hosts: "{{ aap_serv }}"
   vars:
     ansible_python_interpreter: auto_silent
   tasks:
