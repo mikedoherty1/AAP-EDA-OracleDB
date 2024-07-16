@@ -186,7 +186,7 @@ CreateVirtualBoxVM.yml
 > 1.  `cd VirtualBox-AAP-OracleDB`
 > 2.   `./start.sh`
 > 
->    A couple read in prompts (copy and paste) , a couple hit returns and a type yes ......
+>    A couple read in prompts (copy and paste) , a couple hit returns and a type yes ...... This should take 15-30 minutes
 > 
 > Ansible Automation is Complete
 > 
