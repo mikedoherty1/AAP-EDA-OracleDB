@@ -6,7 +6,7 @@
   tasks:
     - name: Add ssh fingerprint to known_hosts file on AAP server for server "{{ ansible_nodename }}"
       ansible.builtin.shell:
-        cmd: ssh-keyscan -H "{{ ansible_nodename }}" >> /root/.ssh/known_hosts
+        cmd: ssh-keyscan -H "{{ ansible_nodename }}" >> ~/.ssh/known_hosts
       register: shell
     - debug: var=shell.stdout_lines  
     - name: Generate ssh keys
@@ -14,9 +14,9 @@
         name: root
         generate_ssh_key: yes
         ssh_key_bits: 2048
-        ssh_key_file: /root/.ssh/id_rsa
+        ssh_key_file: ~/.ssh/id_rsa
     - name: Set authorized key taken from file
       ansible.posix.authorized_key:
         user: root
         state: present
-        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
