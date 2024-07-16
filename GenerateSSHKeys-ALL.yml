@@ -13,11 +13,6 @@
         cmd: touch /root/software/dbhost
       register: shell
     - debug: var=shell.stdout_lines
-# add hack entry
-    - name: Create local inventory file /root/dbhost on AAP server   
-      lineinfile:
-        path: /root/software/dbhost
-        line: "{{ ansible_nodename }} ansible_user=root ansible_password=redhat "
     - name: Add ssh fingerprint to known_hosts file on AAP server for server "{{ ansible_nodename }}"
       ansible.builtin.shell:
         cmd: ssh-keyscan -H "{{ ansible_nodename }}" >> ~/.ssh/known_hosts
