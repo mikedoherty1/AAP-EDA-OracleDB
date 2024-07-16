@@ -2,9 +2,9 @@
 - hosts: all
   vars:
   tasks:
-    - name:  Mount Insert Guest Additions CD Images for server "{{ ansible_nodename }}" ..
+    - name:  Mount Insert Guest Additions CD Images for server "{{ vbvm }}" ..
       ansible.builtin.shell:
-        cmd: /usr/local/bin/VBoxManage storageattach "{{ ansible_nodename }}" --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium /Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso
+        cmd: /usr/local/bin/VBoxManage storageattach "{{ vbvm }}" --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium /Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso
       register: out
     - debug: var=out.stdout_lines
 # Adding pause so vm can mount be iso
