@@ -1,6 +1,6 @@
 ---
 
-# Ansible Automation Platform (GUI)- Built from MacBook
+# Ansible Automation Platform (GUI) Edition - Built on MacBook VirtualBox
 
 ### VirtualBox VM creation
 
@@ -10,19 +10,17 @@
 
 ## Integrate EDA for Oracle - Part Deaux
 
-> ### This is not a hands off build, how to build automation with some basic playbooks and builtin modules:
+> ### Hands on build,  basic playbooks and builtin modules: To create VirtualBox VM's, configure Linux, Setup Oracle Database
 > 
-> ### shell:copy:inline edit:Linux packages:add users:add hosts:projects:templates:GIT:Database etc.....
+> ### \*Not meant to be efficient, steps are purposeful individualized for build practice. 
 > 
-> ### \*Not meant to be efficient, steps are purposeful individualized for build practice. (GUI stuff)
-> 
-> ### simple scripting and simple cmds
+> ### Just some simple cmds and playbooks
 
 ---
 
 ## My Setup / Whats Required:
 
-Mac: Create new user ansible "THERE ARE SOME HARDCODED PATHS"  - Section below what's hardcoded
+### **Mac**: Create new user ansible "THERE ARE SOME HARDCODED PATHS"  - Section below what's hardcoded
 
 ### My setup (naming included)
 
@@ -40,24 +38,18 @@ MacBook Pro
 
 ## Whats Required:
 
-1.  VirtualBox
-2.  VirtualBox Extension Pack
-3.  RedHat 9.4 found here:  [https://access.redhat.com/downloads/content/rhel](https://access.redhat.com/downloads/content/rhel) > get Red Hat Enterprise Linux 9.4 Boot ISO 
-4.  OracleLinux 7.8 found here: [https://yum.oracle.com/oracle-linux-isos.html](https://yum.oracle.com/oracle-linux-isos.html) > get OracleLinux-R7-U8-Server-x86\_64-dvd.iso
+1.  VirtualBox & Extension Pack found here: [https://www.virtualbox.org/wiki/Downloads](https://www.virtualbox.org/wiki/Downloads) 
+2.  RedHat 9.4 found here:  [https://access.redhat.com/downloads/content/rhel](https://access.redhat.com/downloads/content/rhel) > get Red Hat Enterprise Linux 9.4 Boot ISO 
+3.  OracleLinux 7.8 found here: [https://yum.oracle.com/oracle-linux-isos.html](https://yum.oracle.com/oracle-linux-isos.html) > get OracleLinux-R7-U8-Server-x86\_64-dvd.iso
 
 > 1.  `**Ansible & Oracle software will be automatically downloaded and deployed within execution of templates in AAP**`
-
-> easier when adding ISO as variable in template
-> 
-> ln -s /Users/ansible/Downloads/OracleLinux-R7-U8-Server-x86\_64-dvd.iso /Users/ansible/Downloads/oel78  
-> ln -s /Users/ansible/Downloads/rhel-9.4-x86\_64-boot.iso /Users/ansible/Downloads/rhel94
 
 RedHat Account:  (Free)
 
 *   [https://access.redhat.com](https://access.redhat.com) 
     *   This will be used for OS and AAP
 
-After VirtualBox install & Extension Pack (Install from VirtualBox gui, click three lines > Extensions > install
+VirtualBox install & Extension Pack (Install from VirtualBox gui, click three lines > Extensions > install
 
 Newtorking - Host-only Networks > Create > Name = HostNetwork
 
