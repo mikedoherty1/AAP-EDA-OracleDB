@@ -1,5 +1,6 @@
+#A bunch of cmds to configure and install AAP 
 #Downloading software for AAP
-echo " Downloading software for AAP 
+echo " Downloading software for AAP ;
 this should take no longer than 5 minutes (pending internet speeds - AAP Software, special build to automate inventory config"
 #Just some space for screen message
 echo "
