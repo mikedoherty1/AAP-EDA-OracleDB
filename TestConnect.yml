@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  vars:
   tasks:
     - name: "{{ inventory_hostname }} inventory_hostname, {{ hostname }} hostname"
       ansible.builtin.shell:
