@@ -1,10 +1,10 @@
 ---
-- hosts: all
-  vars:
+- hosts: localhost
+  become: false
+  gather_facts: true
+
   tasks:
-    - name: "{{ inventory_hostname }} inventory_hostname, {{ hostname }} hostname"
-      ansible.builtin.shell:
-        cmd: echo "{{ inventory_hostname }} inventory_hostname, {{ hostname }} hostname"
-        chdir: /home
-      register: shell
-    - debug: var=shell.stdout_lines
+
+  - name: Show hostname
+    debug:
+      msg: "Host: {{ ansible_hostname }} FQDN: {{ ansible_nodename }}"
