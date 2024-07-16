@@ -1,9 +1,9 @@
 ---
 - hosts: all
   tasks:
-    - name: This command will change the working directory - Just verifiying connection to host
+    - name: "{{ inventory_hostname }} inventory_hostname, {{ hostname }} hostname"
       ansible.builtin.shell:
-        cmd: ls
+        cmd: echo "{{ inventory_hostname }} inventory_hostname, {{ hostname }} hostname"
         chdir: /home
       register: shell
     - debug: var=shell.stdout_lines
