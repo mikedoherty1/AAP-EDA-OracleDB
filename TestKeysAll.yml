@@ -4,12 +4,6 @@
   vars:
     ansible_python_interpreter: auto_silent
   tasks:
-# Missing Ansible modeules 
-    - name: Install Missing Ansible module ansible.posix
-      ansible.builtin.shell:
-        cmd: ansible-galaxy collection install ansible.posix
-      register: shell
-    - debug: var=shell.stdout_lines
     - name: Add ssh fingerprint to known_hosts file on AAP server for server "{{ ansible_nodename }}"
       ansible.builtin.shell:
         cmd: ssh-keyscan -H "{{ ansible_nodename }}" >> /root/.ssh/known_hosts
