@@ -2,9 +2,9 @@
 - hosts: all
   vars:
   tasks:
-    - name:  Shutdown "{{ vbvm }}" to remove dvd (should be better way) ..
+    - name:  Shutdown "{{ ansible_nodename }}" to remove dvd (should be better way) ..
       ansible.builtin.shell:
-        cmd: /usr/local/bin/VBoxManage controlvm "{{ vbvm }}" poweroff 
+        cmd: /usr/local/bin/VBoxManage controlvm "{{ ansible_nodename }}" poweroff 
       register: shell
     - debug: var=shell.stdout_lines
 # Adding pause so vm can stop to remove locks
@@ -14,12 +14,12 @@
 # Remove dvd
     - name:  Un Mount Guest Additions CD Images ..
       ansible.builtin.shell:
-        cmd: /usr/local/bin/VBoxManage storageattach "{{ vbvm }}" --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium emptydrive
+        cmd: /usr/local/bin/VBoxManage storageattach "{{ ansible_nodename }}" --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium emptydrive
       register: shell
     - debug: var=shell.stdout_lines
 # Startup Control
-    - name:  Startup "{{ vbvm }}" to remove dvd should take 10 Seconds ..
+    - name:  Startup "{{ ansible_nodename }}" to remove dvd should take 10 Seconds ..
       ansible.builtin.shell:
-        cmd: /usr/local/bin/VBoxManage startvm "{{ vbvm }}" --type headless 
+        cmd: /usr/local/bin/VBoxManage startvm "{{ ansible_nodename }}" --type headless 
       register: shell
     - debug: var=shell.stdout_lines
