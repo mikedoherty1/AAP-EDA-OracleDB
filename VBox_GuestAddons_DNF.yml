@@ -31,6 +31,12 @@
         cmd: mkdir -p /media/cdrom
       register: shell
     - debug: var=shell.stdout_lines
+# mkdir
+    - name: make filesystem for Software
+      ansible.builtin.shell:
+        cmd: mkdir -p /root/software
+      register: shell
+    - debug: var=shell.stdout_lines
 # mount
     - name: mount cdrom
       ansible.builtin.shell:
