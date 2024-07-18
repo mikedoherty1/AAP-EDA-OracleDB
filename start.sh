@@ -49,7 +49,7 @@ sleep 2
 cd /root/software
 #AAP
 mkdir aap-bundle-2.4-6.2
-mv AAP-bundle-2.4-6.2-x86_64.tar.gz aap-bundle-2.4-6.2
+cp AAP-bundle-2.4-6.2-x86_64.tar.gz aap-bundle-2.4-6.2
 cd aap-bundle-2.4-6.2
 tar -xzvf AAP-bundle-2.4-6.2-x86_64.tar.gz
 

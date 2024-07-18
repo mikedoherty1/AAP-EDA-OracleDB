@@ -12,7 +12,7 @@
 
 > ### Hands on build,  basic playbooks and builtin modules: To create VirtualBox VM's, configure Linux, Setup Oracle Database
 > 
-> ### \*Not meant to be efficient, steps are purposeful individualized for build practice. 
+> ### \*Not meant to be efficient, steps are purposeful individualized for build practice.
 > 
 > ### Just some simple cmds and playbooks
 
@@ -245,6 +245,7 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 *   From the left side under Resources: click Inventories > add
     *   name: MAC
     *   Organization: HomeLab
+    *   To supress warning  > Add Variable > ansible\_python\_interpreter: auto\_silent
 *   save
 *   From the left side under Resources: click Inventories > add
     *   name: HomeLab (Will be used for all Linux servers)
@@ -296,7 +297,7 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
     *   name: Hello
     *   Organization: HomeLab
     *   Execution Environment: RHEL9
-    *   Inventory: 
+    *   Inventory:
 *   save
 *   sync
 
