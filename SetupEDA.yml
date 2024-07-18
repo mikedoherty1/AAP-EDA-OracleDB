@@ -9,10 +9,15 @@
         cmd: mkdir -p /root/software/aap-bundle-2.4-6.2
       register: shell
     - debug: var=shell.stdout_lines
+    - name: move Binaries
+      ansible.builtin.shell:
+        cmd: mv /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz /root/software/aap-bundle-2.4-6.2
+      register: shell
+    - debug: var=shell.stdout_lines
     - name: Untar Binaries
       ansible.builtin.shell:
         cmd: tar -xzvf AAP-bundle-2.4-6.2-x86_64.tar.gz
-        chdir: /root/software
+        chdir: /root/software/aap-bundle-2.4-6.2
       register: shell
     - debug: var=shell.stdout_lines
     - name: backup EDA Inventoy file  
