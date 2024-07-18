@@ -95,6 +95,7 @@ wget --header="Host: drive.usercontent.google.com" --header="User-Agent: Mozilla
 mv ora19c.tar.gz /root/software
 mv /root/VirtualBox-AAP-OracleDB/ora_bash_profile /root/software
 mv /root/VirtualBox-AAP-OracleDB/cp_ora.yml /root/software
+mv /root/VirtualBox-AAP-OracleDB/cp_eda.yml /root/software
 mv /root/VirtualBox-AAP-OracleDB/keys.yml /root/software
 clear
 #add ansible module
