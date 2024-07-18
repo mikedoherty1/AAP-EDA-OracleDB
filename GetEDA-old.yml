@@ -1,0 +1,54 @@
+---
+- hosts: "{{ eda_srv }}"
+  vars:
+    ansible_python_interpreter: auto_silent
+  tasks:
+# Touch File
+    - name: Missing Ansible modeules 
+      ansible.builtin.shell:
+        cmd: ansible-galaxy collection install ansible.posix
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: create software directory 
+      ansible.builtin.shell:
+        cmd: mkdir -p /root/software/aap-bundle-2.4-6.2
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: Copy AAP to remote host
+      ansible.builtin.synchronize:
+        src: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
+        dest: /root/software/aap-bundle-2.4-6.2/AAP-bundle-2.4-6.2-x86_64.tar.gz
+      delegate_to: "{{ aap_srv }}"
+    - name: Untar Binaries
+      ansible.builtin.shell:
+        cmd: tar -xzvf AAP-bundle-2.4-6.2-x86_64.tar.gz
+        chdir: /root/software/aap-bundle-2.4-6.2
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: backup EDA Inventoy file  
+      ansible.builtin.shell:
+        cmd: cp inventory orig-inventory
+        chdir: /root/software/aap-bundle-2.4-6.2
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: Update Inventoy file with AAP server 
+      ansible.builtin.shell:
+        cmd: sed -i "s/change_host_name/"{{ aap_srv }}"/g" /root/software/aap-bundle-2.4-6.2/inventory
+        chdir: /root/software/aap-bundle-2.4-6.2
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: Add ssh fingerprint to known_hosts file on AAP server for server "{{ vbvm }}"
+      ansible.builtin.shell:
+        cmd: ssh-keyscan -H "{{ vbvm }}" >> ~/.ssh/known_hosts
+      register: shell
+    - debug: var=shell.stdout_lines  
+    - name: Generate ssh keys
+      ansible.builtin.user:
+        name: root
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
+
+
+
+
