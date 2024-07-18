@@ -376,11 +376,11 @@ To supress warning > edit > Add Variable > ansible\_python\_interpreter: auto\_s
 
 ```
 Templates
-- Name: 01 Add VM 2 AAP Server
+- Name: 01 Add Host and Keys to AAP Server
 - Inventory: AAP
 - Project: Basic Root Operations
 - Execution Environment: RHEL9
-     - Playbook: AddToHostsFile.yml
+     - Playbook: AddVM-AAP-SSHKeys.yml
      - Credentials: RootAdmin
           - Variables:
 # This adds entries in AAP servers /etc/hosts file
@@ -393,21 +393,7 @@ vbvm:
 ```
 
 ```
-- Name: 02 SSH Auth Key
-- Inventory: AAP
-- Project: Basic Root Operations
-- Execution Environment: RHEL9
-    - Playbook: SetSSHAuth.yml
-     - Credentials: RootAdmin
-          - Variables: 
-# Add fully qualified hostname
-vbvm:
-  Click > prompt on launch
-  - save
-```
-
-```
-- Name: 03 Mac Mount VirtualBox CD
+- Name: 02 Mac Mount VirtualBox CD
 - Inventory: MAC
 - Project: Basic Root Operations
 - Execution Environment: RHEL9
@@ -424,7 +410,7 @@ vbvm:
 ```
 
 
-- Name: 04 Install GuestAddons DNF
+- Name: 03 Install GuestAddons DNF
 - Inventory: HomeLab
 - Project: Basic Root Operations
 - Execution Environment: RHEL9
@@ -441,7 +427,7 @@ vbvm:
 ```
 Add Mac host information
 
-- Name: 05 Install GuestAddons YUM
+- Name: 04 Install GuestAddons YUM
 - Inventory: HomeLab
 - Project: Basic Root Operations
 - Execution Environment: RHEL9
@@ -456,7 +442,7 @@ vbvm:
 ```
 
 ```
-- Name: 06 Mac Un-Mount VirtualBox CD
+- Name: 05 Mac Un-Mount VirtualBox CD
 - Inventory: MAC
 - Project: Basic Root Operations
 - Execution Environment: RHEL9
