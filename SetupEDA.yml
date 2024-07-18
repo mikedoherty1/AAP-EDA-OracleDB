@@ -1,5 +1,5 @@
 ---
-- hosts: "{{ eda_srv }}"
+- hosts: all
   vars:
     ansible_python_interpreter: auto_silent
   tasks:
@@ -14,15 +14,10 @@
         cmd: mkdir -p /root/software/aap-bundle-2.4-6.2
       register: shell
     - debug: var=shell.stdout_lines
-    - name: Copy AAP to remote host
-      ansible.builtin.synchronize:
-        src: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
-        dest: /root/software/aap-bundle-2.4-6.2/AAP-bundle-2.4-6.2-x86_64.tar.gz
-      delegate_to: "{{ aap_srv }}"
     - name: Untar Binaries
       ansible.builtin.shell:
         cmd: tar -xzvf AAP-bundle-2.4-6.2-x86_64.tar.gz
-        chdir: /root/software/aap-bundle-2.4-6.2
+        chdir: /root/software
       register: shell
     - debug: var=shell.stdout_lines
     - name: backup EDA Inventoy file  
@@ -48,7 +43,3 @@
         generate_ssh_key: yes
         ssh_key_bits: 2048
         ssh_key_file: .ssh/id_rsa
-
-
-
-
