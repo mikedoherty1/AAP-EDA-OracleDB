@@ -351,7 +351,7 @@ To supress warning > edit > Add Variable > ansible\_python\_interpreter: auto\_s
 
 > ```
 > Templates
-> - Name: 01 asMac Create VM
+> - Name: asMac Create VM
 > - Inventory: MAC
 > - Project: Basic Root Operations
 > - Execution Environment: RHEL9
@@ -376,7 +376,7 @@ To supress warning > edit > Add Variable > ansible\_python\_interpreter: auto\_s
 
 ```
 Templates
-- Name: 02 Add VM 2 AAP Server
+- Name: 01 Add VM 2 AAP Server
 - Inventory: AAP
 - Project: Basic Root Operations
 - Execution Environment: RHEL9
@@ -384,7 +384,7 @@ Templates
      - Credentials: RootAdmin
           - Variables:
 # This adds entries in AAP servers /etc/hosts file
-#Virtual Image IP 192.168.xxx.xxx
+#Virtual Image IP 192.168.56.xxx
 vbvmip:
 #Virtual hostname
 vbvm:
@@ -393,7 +393,7 @@ vbvm:
 ```
 
 ```
-- Name: 03 SSH Auth Key
+- Name: 02 SSH Auth Key
 - Inventory: AAP
 - Project: Basic Root Operations
 - Execution Environment: RHEL9
@@ -407,7 +407,7 @@ vbvm:
 ```
 
 ```
-- Name: 04 Mac Mount VirtualBox CD
+- Name: 03 Mac Mount VirtualBox CD
 - Inventory: MAC
 - Project: Basic Root Operations
 - Execution Environment: RHEL9
@@ -421,12 +421,10 @@ vbvm:
   
 ```
 
----
-
 ```
 
 
-- Name: 05 Install GuestAddons DNF
+- Name: 04 Install GuestAddons DNF
 - Inventory: HomeLab
 - Project: Basic Root Operations
 - Execution Environment: RHEL9
@@ -443,7 +441,7 @@ vbvm:
 ```
 Add Mac host information
 
-- Name: 06 Install GuestAddons YUM
+- Name: 05 Install GuestAddons YUM
 - Inventory: HomeLab
 - Project: Basic Root Operations
 - Execution Environment: RHEL9
@@ -458,7 +456,7 @@ vbvm:
 ```
 
 ```
-- Name: 07 Mac Un-Mount VirtualBox CD
+- Name: 06 Mac Un-Mount VirtualBox CD
 - Inventory: MAC
 - Project: Basic Root Operations
 - Execution Environment: RHEL9
