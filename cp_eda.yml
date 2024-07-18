@@ -7,3 +7,7 @@
       ansible.builtin.copy:
         src: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
         dest: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
+    - name: Copy keys to EDA server
+      ansible.builtin.copy:
+        src: /root/software/keys.yml
+        dest: /root/software/keys.yml
