@@ -22,6 +22,11 @@
     lineinfile:
       path: /root/software/dbhost
       line: "{{ vbvm }} ansible_user=root ansible_password=redhat "
+  - name: ansible-galaxy collection install ansible.posix on "{{ vbvm }}"
+    ansible.builtin.shell:
+      cmd: ansible-galaxy collection install ansible.posix
+    register: shell
+  - debug: var=shell.stdout_lines
   - name: Add ssh fingerprint to known_hosts file on AAP server for server "{{ vbvm }}"
     ansible.builtin.shell:
       cmd: ssh-keyscan -H "{{ vbvm }}" >> ~/.ssh/known_hosts
