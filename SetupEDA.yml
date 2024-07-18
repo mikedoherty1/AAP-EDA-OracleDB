@@ -4,11 +4,6 @@
     ansible_python_interpreter: auto_silent
   tasks:
 # Touch File
-    - name: Missing Ansible modeules 
-      ansible.builtin.shell:
-        cmd: ansible-galaxy collection install ansible.posix
-      register: shell
-    - debug: var=shell.stdout_lines
     - name: create software directory 
       ansible.builtin.shell:
         cmd: mkdir -p /root/software/aap-bundle-2.4-6.2
