@@ -23,14 +23,14 @@
         chdir: /root/software/aap-bundle-2.4-6.2
       register: shell
     - debug: var=shell.stdout_lines
-    - name: Copy EDA inventory file from "{{ inventory_hostname }}" from "{{ aap_serv }}" If fails its becuase of hardcoded naming
+    - name: Copy inventory to "{{ inventory_hostname }}" from "{{ aap_serv }}"
       ansible.builtin.synchronize:
         src: /root/software/eda-inventory
-        dest: /root/software/aap-bundle-2.4-6.2/inventory
+        dest: /root/software/eda-inventory
       delegate_to: "{{ aap_serv }}"
-    - name: Install EDA 
-      ansible.builtin.shell:
-        cmd: setup.sh
-        chdir: /root/software/aap-bundle-2.4-6.2
-      register: shell
-    - debug: var=shell.stdout_lines
+#    - name: Install EDA 
+#      ansible.builtin.shell:
+#        cmd: setup.sh
+#        chdir: /root/software/aap-bundle-2.4-6.2
+#      register: shell
+#    - debug: var=shell.stdout_lines
