@@ -22,7 +22,12 @@
     lineinfile:
       path: /root/software/dbhost
       line: "{{ vbvm }} ansible_user=root ansible_password=redhat "
-  - name: ansible-galaxy collection install ansible.posix on "{{ vbvm }}"
+  - name: ansible-core  on "{{ inventory_hostname }}"
+    ansible.builtin.shell:
+      cmd: dnf install ansible-core -y
+    register: shell
+  - debug: var=shell.stdout_lines
+  - name: ansible-galaxy collection install ansible.posix on "{{ inventory_hostname }}"
     ansible.builtin.shell:
       cmd: ansible-galaxy collection install ansible.posix
     register: shell
