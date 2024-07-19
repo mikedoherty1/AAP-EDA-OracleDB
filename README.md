@@ -525,19 +525,6 @@ Template > Launch > `01 asMac Create VM`
 
 ---
 
-# **Enable ssh - template**
-
-> ### template `03 SSH Auth Key`
-> 
-> Launch
-> 
-> \# Add fully qualified hostname  
-> vbvm: oraserv01.local
-> 
-> Next
-> 
-> Launch
-
 ---
 
 ## Create Workflow to install all Basic root patches (RHEL or OEL)
@@ -643,3 +630,13 @@ vbvm:
 ---
 
 # Next: EDA To monitor Oracle and automate corrective actions
+
+Run 01 on AAP > EDA
+
+run 01 on AAP > AAP
+
+Run 01 on EDA > AAP
+
+run 01 on EDA > EDA
+
+run setupedaserver
