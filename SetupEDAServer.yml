@@ -14,20 +14,14 @@
       delegate_to: "{{ aap_serv }}"
     - name: create software directory 
       ansible.builtin.shell:
-        cmd: mkdir -p /root/software/aap-bundle-2.4-6.2
-      register: shell
     - debug: var=shell.stdout_lines
     - name: move Binaries
       ansible.builtin.shell:
         cmd: mv /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz /root/software/aap-bundle-2.4-6.2
-      register: shell
-    - debug: var=shell.stdout_lines
     - name: Untar Binaries
       ansible.builtin.shell:
         cmd: tar -xzvf AAP-bundle-2.4-6.2-x86_64.tar.gz
         chdir: /root/software/aap-bundle-2.4-6.2
-      register: shell
-    - debug: var=shell.stdout_lines
     - name: Copy inventory to "{{ inventory_hostname }}" from "{{ aap_serv }}"
       ansible.builtin.synchronize:
         src: /root/software/eda-inventory
@@ -37,5 +31,3 @@
       ansible.builtin.shell:
         cmd: sh setup.sh
         chdir: /root/software/aap-bundle-2.4-6.2
-      register: shell
-    - debug: var=shell.stdout_lines
