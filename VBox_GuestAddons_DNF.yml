@@ -25,7 +25,15 @@
         cmd: dnf install gcc -y
       register: shell
     - debug: var=shell.stdout_lines
+    - name: Enable Root Login
+      lineinfile:
+        dest: /etc/ssh/sshd_config
+        regexp: '^PermitRootLogin'
+        line: "PermitRootLogin yes"
+        state: present
+        backup: yes
 # mkdir
+  block:
     - name: make filesystem for mounting cdrom
       ansible.builtin.shell:
         cmd: mkdir -p /media/cdrom
@@ -69,10 +77,4 @@
         cmd: umount /media/cdrom
       register: shell
     - debug: var=shell.stdout_lines
-    - name: Enable Root Login
-      lineinfile:
-        dest: /etc/ssh/sshd_config
-        regexp: '^PermitRootLogin'
-        line: "PermitRootLogin yes"
-        state: present
-        backup: yes
+  ignore_errors: true
