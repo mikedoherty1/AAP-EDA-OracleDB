@@ -29,5 +29,5 @@
       delegate_to: "{{ aap_serv }}"
     - name: Install EDA - Should take 30 minutes or less check https://"{{ inventory_hostname }}"
       ansible.builtin.shell:
-        cmd: /root/software/aap-bundle-2.4-6.2/setup.sh
-#        chdir: /root/software/aap-bundle-2.4-6.2
+        cmd: sh setup.sh
+        chdir: /root/software/aap-bundle-2.4-6.2
