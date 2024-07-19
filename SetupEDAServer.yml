@@ -35,7 +35,7 @@
       delegate_to: "{{ aap_serv }}"
     - name: Install EDA 
       ansible.builtin.shell:
-        cmd: setup.sh
+        cmd: sh setup.sh
         chdir: /root/software/aap-bundle-2.4-6.2
       register: shell
     - debug: var=shell.stdout_lines
