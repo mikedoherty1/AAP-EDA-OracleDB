@@ -8,7 +8,7 @@
 
 ### Setup and start Oracle DB (OEL)
 
-## Integrate EDA for Oracle - Part Deaux
+## Integrate EDA for Oracle - In Progress
 
 > ### Hands on build,  basic playbooks and builtin modules: To create VirtualBox VM's, configure Linux, Setup Oracle Database
 > 
@@ -138,7 +138,7 @@ CreateVirtualBoxVM.yml
 
 > While AAP server is being installed
 > 
-> From Mac > Terminal
+> From Mac > Terminal > add whats in bold (use your ip's and naming)
 > 
 > hostname
 > 
@@ -160,9 +160,9 @@ CreateVirtualBoxVM.yml
 > 
 > ###### ::1             localhost
 > 
-> ###### 192.168.56.101    control.local
+> ### **192.168.56.101    control.local**
 > 
-> ###### 10.0.0.54     Mikes-MacBook-Pro.local
+> ### **10.0.0.54     Mikes-MacBook-Pro.local**
 
 **\*\* Reboot AAP server from intial install**
 
@@ -360,7 +360,6 @@ To supress warning > edit > Add Variable > ansible\_python\_interpreter: auto\_s
 >      - Variables: 
 > #There are 4 variable 
 > #[vbvm | mem | ds | ostv ] this will fail if any are not provided
-> 
 > #Virtual machine name
 > vbvm:
 > #Memory in MB i.e 8GB = 8192 * values used for Oracle build
@@ -376,19 +375,21 @@ To supress warning > edit > Add Variable > ansible\_python\_interpreter: auto\_s
 
 ```
 Templates
-- Name: 01 Add Host and Keys to AAP Server
+- Name: 01 Add Host & Passwordless SSH Access 
 - Inventory: AAP
 - Project: Basic Root Operations
 - Execution Environment: RHEL9
-     - Playbook: AddVM-AAP-SSHKeys.yml
+     - Playbook: PasswordlessSSH.yml
      - Credentials: RootAdmin
           - Variables:
-# This adds entries in AAP servers /etc/hosts file
-#Virtual Image IP 192.168.56.xxx
+# This adds entries in /etc/hosts file
+#Target server you want to add  (USING LIMIT as SOURCE) IP 192.168.56.xxx
 vbvmip:
 #Virtual hostname
 vbvm:
-    Click >  prompt on launch
+# Using aap_serv as Seperate Viarable to AAP Server to copy files
+aap_serv: control.local
+Click > Limit
   - save
 ```
 
@@ -400,7 +401,7 @@ vbvm:
     - Playbook: VirtualBox_MacMount.yml
      - Credentials: MacAdmin
           - Variables: 
-# Add fully qualified hostname
+# Add fully qualified hostname - Server you want to mount ISO to 
 vbvm:
   Click > prompt on launch
   - save
@@ -416,10 +417,6 @@ vbvm:
 - Execution Environment: RHEL9
     - Playbook: VBox_GuestAddons_DNF.yml
      - Credentials: RootAdmin
-          - Variables: 
-# Add fully qualified hostname
-vbvm:
-  Click > prompt on launch
   Click > Limit
   - save
 ```
@@ -433,10 +430,6 @@ Add Mac host information
 - Execution Environment: RHEL9
     - Playbook: VBox_GuestAddons_YUM.yml
      - Credentials: RootAdmin
-          - Variables: 
-# Add fully qualified hostname
-vbvm:
-  Click > prompt on launch
   Click > Limit
   - save
 ```
