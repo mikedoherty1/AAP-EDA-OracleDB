@@ -14,7 +14,7 @@
       delegate_to: "{{ aap_serv }}"
     - name: create software directory 
       ansible.builtin.shell:
-    - debug: var=shell.stdout_lines
+        cmd: mkdir -p /root/software/aap-bundle-2.4-6.2
     - name: move Binaries
       ansible.builtin.shell:
         cmd: mv /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz /root/software/aap-bundle-2.4-6.2
