@@ -1,6 +1,6 @@
 ---
 
-# Ansible Automation Platform (GUI) Edition - Built on MacBook VirtualBox
+# Ansible Automation Platform (GUI) Edition - Built with VirtualBox on MacBook 
 
 ### VirtualBox VM creation
 
@@ -179,11 +179,11 @@ CreateVirtualBoxVM.yml
 > Setup pre-reqs for ansible automation install
 > 
 > 1.  `dnf install git -y`
-> 2.  git clone https://github.com/mikedoherty1/VirtualBox-AAP-OracleDB.git
+> 2.  git clone https://github.com/mikedoherty1/AnsibleAutomationPlatform-OracleDB.git
 > 
 >      Setup script to build / Install everything
 > 
-> 1.  `cd VirtualBox-AAP-OracleDB`
+> 1.  `cd **AnsibleAutomationPlatform-OracleDB**`
 > 2.   `./start.sh`
 > 
 >    A couple read in prompts (copy and paste) , a couple hit returns and a type yes ...... This should take 10-15 minutes
@@ -331,7 +331,7 @@ To supress warning > edit > Add Variable > ansible\_python\_interpreter: auto\_s
     *   Organization: HomeLab
     *   Execution Environment: RHEL9
     *   Source Control Type: Git
-    *   Source Control URL: `https://github.com/mikedoherty1/VirtualBox-AAP-OracleDB.git`
+    *   Source Control URL: `https://github.com/mikedoherty1/AnsibleAutomationPlatform-OracleDB.git`
     *   Source Control Branch/Tag/Commit: VirtualBox
     *   Options: Clean
 *   All project will be created in /var/lib/awx/projects \*\*\*\*\*\*
@@ -343,7 +343,7 @@ To supress warning > edit > Add Variable > ansible\_python\_interpreter: auto\_s
     *   Organization: HomeLab
     *   Execution Environment: RHEL9
     *   Source Control Type: Git
-    *   Source Control URL: `https://github.com/mikedoherty1/VirtualBox-AAP-OracleDB.git`
+    *   Source Control URL: `https://github.com/mikedoherty1/AnsibleAutomationPlatform-OracleDB.git`
     *   Source Control Branch/Tag/Commit: OraBuild
     *   Options: Clean
 
@@ -366,7 +366,6 @@ To supress warning > edit > Add Variable > ansible\_python\_interpreter: auto\_s
 > mem:
 > #Disk space in MB 20GB = 40960 
 > ds:
-> #Add OS iso [rhel94, oel78] or
 > #[OracleLinux-R7-U8-Server-x86_64-dvd.iso |  rhel-9.4-x86_64-boot.iso ]
 > ostv:
 >      Click > prompt on launch
