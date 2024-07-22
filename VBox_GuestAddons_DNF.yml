@@ -33,7 +33,6 @@
         state: present
         backup: yes
 # mkdir
-  block:
     - name: make filesystem for mounting cdrom
       ansible.builtin.shell:
         cmd: mkdir -p /media/cdrom
@@ -77,4 +76,3 @@
         cmd: umount /media/cdrom
       register: shell
     - debug: var=shell.stdout_lines
-  ignore_errors: true
