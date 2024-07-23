@@ -93,3 +93,8 @@
       ansible.builtin.shell:
         cmd: sed -i "s/EDA_SERVER/"{{ inventory_hostname }}"/g" /root/software/aap-bundle-2.4-6.2/inventory
         chdir: /root/software/aap-bundle-2.4-6.2
+# add hack entry
+    - name: passwordless to self  "{{ inventory_hostname }}"
+      ansible.builtin.shell:
+        cmd: cat id_rsa.pub >> authorized_keys
+        chdir: /root/.ssh
