@@ -2,6 +2,6 @@
 - hosts: all
   vars:
   tasks:
-    - name: Install EDA - Should take 30 minutes or less check https://"{{ inventory_hostname }}"
+    - name: Install EDA - Should take 30 minutes or less check {{ inventory_hostname }}" /root/software/setup_log.log
       ansible.builtin.shell: /root/software/aap-bundle-2.4-6.2/setup.sh >> /root/software/setup_log.log
 
