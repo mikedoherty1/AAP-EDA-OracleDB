@@ -51,6 +51,11 @@
         cmd: ssh-keyscan -H "{{ aap_serv }}" >> ~/.ssh/known_hosts
       register: shell
     - debug: var=shell.stdout_lines  
+    - name: Add ssh fingerprint to known_hosts file on "{{ inventory_hostname }}"  server for server "{{ aap_serv }}"
+      ansible.builtin.shell:
+        cmd: ssh-keyscan -H "{{ inventory_hostname }}" >> ~/.ssh/known_hosts
+      register: shell
+    - debug: var=shell.stdout_lines  
 # add hack entry
     - name: remove inventory file for hack copy
       ansible.builtin.shell:
