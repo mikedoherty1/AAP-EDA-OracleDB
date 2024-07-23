@@ -73,9 +73,13 @@
         chdir: /root/software/aap-bundle-2.4-6.2
     - name: Update Inventoy file with "{{ aap_serv }}" server 
       ansible.builtin.shell:
-        cmd: sed -i "s/REDHAT_UID/ /g" /root/software/aap-bundle-2.4-6.2/inventory
+        cmd: sed -i "s/REDHAT_UID//g" /root/software/aap-bundle-2.4-6.2/inventory
         chdir: /root/software/aap-bundle-2.4-6.2
     - name: Update Inventoy file with "{{ aap_serv }}" server 
       ansible.builtin.shell:
-        cmd: sed -i "s/REDHAT_PWD/ /g" /root/software/aap-bundle-2.4-6.2/inventory
+        cmd: sed -i "s/REDHAT_PWD//g" /root/software/aap-bundle-2.4-6.2/inventory
+        chdir: /root/software/aap-bundle-2.4-6.2
+    - name: Update Inventoy file with "{{ inventory_hostname }}" server 
+      ansible.builtin.shell:
+        cmd: sed -i "/[automationedacontroller]/a\"{{ inventory_hostname }}" " /root/software/aap-bundle-2.4-6.2/inventory
         chdir: /root/software/aap-bundle-2.4-6.2
