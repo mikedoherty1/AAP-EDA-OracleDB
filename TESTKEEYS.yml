@@ -3,7 +3,7 @@
   vars:
   tasks:
     - name: Copy AAP-bundle to "{{ inventory_hostname }}" from "{{ aap_serv }}"
-      ansible.builtin.copy:
+      synchronize:
         src: /root/software/keys.yml
         dest: /root/software/keys.yml
 #      delegate_to: "{{ aap_serv }}"
