@@ -81,6 +81,7 @@
         chdir: /root/software/aap-bundle-2.4-6.2
     - name: Update Inventoy file with "{{ inventory_hostname }}" server 
       lineinfile:
-        dest: /root/software/aap-bundle-2.4-6.2/inventory
+        path: /root/software/aap-bundle-2.4-6.2/inventory
+        search_string: '[automationedacontroller]'
         insertafter: '[automationedacontroller]'
         line: "{{ inventory_hostname }}"
