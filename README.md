@@ -1,6 +1,6 @@
 ---
 
-# Ansible Automation Platform (GUI) Edition - Built with VirtualBox on MacBook 
+# Ansible Automation Platform (GUI) Edition - Built with VirtualBox on MacBook
 
 ### VirtualBox VM creation
 
@@ -291,24 +291,15 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
     *   Privilege Escalation Password: oracle
 *   save
 
-# Projects
-
-*   From the left side under Resources: click Projects > copy > then edit
-    *   name: Hello
-    *   Organization: HomeLab
-    *   Execution Environment: RHEL9
-    *   Inventory:
-*   save
-*   sync
-
 # Templates - Testing Connectivity
 
 *   From the left side under Resources: click Templates >  edit > [**Demo Job Template**](https://control.local/#/templates/job_template/7)
     *   name: Test Connect
     *   Inventory: remove and click prompt
-    *   Project: Hello
+    *   Project: Demo Project
     *   Execution Environment: RHEL9
     *   Credentials: remove and click prompt
+    *   Limit: click prompt
 *   save
 *   Launch
 
@@ -566,6 +557,23 @@ Launch
 ---
 
 # Create Templates  - **Oracle Operations**
+
+```
+Templates
+- Launch
+ 01 Add Host & Passwordless SSH Access 
+- Inventory: HomeLab
+- Credentials: RootAdmin
+          - Variables:
+# This adds entries in /etc/hosts file
+#Target server you want to add  (USING LIMIT as SOURCE) IP 192.168.56.xxx
+vbvmip: 192.168.56.XXX
+#Virtual hostname
+vbvm: oraserv01.local
+# Using aap_serv as Seperate Viarable to AAP Server to copy files
+aap_serv: control.local
+Limit: control.local
+```
 
 ```
 - Name: 08 Oracle Root OS
