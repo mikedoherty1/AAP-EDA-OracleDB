@@ -36,12 +36,6 @@
         chdir: /root/software/aap-bundle-2.4-6.2
       register: shell
     - debug: var=shell.stdout_lines
-#    - name: Update Inventoy file with AAP server 
-#      ansible.builtin.shell:
-#        cmd: sed -i "s/change_host_name/"{{ aap_srv }}"/g" /root/software/aap-bundle-2.4-6.2/inventory
-#        chdir: /root/software/aap-bundle-2.4-6.2
-#      register: shell
-#    - debug: var=shell.stdout_lines
     - name: Add ssh fingerprint to known_hosts file on "{{ inventory_hostname }}"  server for server "{{ aap_serv }}"
       ansible.builtin.shell:
         cmd: ssh-keyscan -H "{{ aap_serv }}" >> ~/.ssh/known_hosts
@@ -73,3 +67,9 @@
         cmd: ansible-playbook -i /root/software/dbhost /root/software/keys.yml
       register: shell
     - debug: var=shell.stdout_lines
+    - name: Update Inventoy file with "{{ aap_srv }}" server 
+      ansible.builtin.shell:
+        cmd: sed -i "s/change_host_name/"{{ aap_srv }}"/g" /root/software/aap-bundle-2.4-6.2/inventory
+        cmd: sed -i "s/REDHAT_UID/ /g" /root/software/aap-bundle-2.4-6.2/inventory
+        cmd: sed -i "s/REDHAT_PWD/ /g" /root/software/aap-bundle-2.4-6.2/inventory
+        chdir: /root/software/aap-bundle-2.4-6.2
