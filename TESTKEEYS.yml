@@ -1,21 +1,9 @@
 ---
-- hosts: "{{ target }}"
+- hosts: all
   vars:
-    ansible_python_interpreter: auto_silent
   tasks:
-    - name: ansible-core  on "{{ inventory_hostname }}"
-      ansible.builtin.shell:
-        cmd: dnf install ansible-core -y
-      register: shell
-    - debug: var=shell.stdout_lines
-    - name: ansible-galaxy collection install ansible.posix on "{{ inventory_hostname }}"
-      ansible.builtin.shell:
-        cmd: ansible-galaxy collection install ansible.posix
-      register: shell
-    - debug: var=shell.stdout_lines
-    - name: Set authorized key taken from file
-      ansible.posix.authorized_key:
-        user: root
-        state: present
-        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
-      delegate_to: "{{ source_serv }}"
+    - name: Copy AAP-bundle to "{{ inventory_hostname }}" from "{{ aap_serv }}"
+      ansible.builtin.synchronize:
+        src: /root/software/keys.yml
+        dest: /root/software/keys.yml
+      delegate_to: "{{ aap_serv }}"
