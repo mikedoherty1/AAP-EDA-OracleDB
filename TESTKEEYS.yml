@@ -2,8 +2,13 @@
 - hosts: all
   vars:
   tasks:
-    - name: Copy AAP-bundle to "{{ inventory_hostname }}" from "{{ aap_serv }}"
-      synchronize:
+    - name: Check that the file exists
+      stat:
+        path: /root/software/keys.yml
+      register: stat_result
+    - name: Copy files if they do not exist 
+      ansible.builtin.synchronize:
         src: /root/software/keys.yml
         dest: /root/software/keys.yml
-#      delegate_to: "{{ aap_serv }}"
+      when: stat_result.stat.exists == False 
+      delegate_to: "{{ aap_serv }}"
