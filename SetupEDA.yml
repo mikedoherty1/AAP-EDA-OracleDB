@@ -4,6 +4,16 @@
     ansible_python_interpreter: auto_silent
   tasks:
 # Touch File
+    - name: Check that the file exists
+      stat:
+        path: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
+      register: stat_result
+    - name: Copy EDA From "{{ aap_serv }}" to "{{ inventory_hostname }}" 
+      ansible.builtin.synchronize:
+        src: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
+        dest: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
+      when: stat_result.stat.exists == False 
+      delegate_to: "{{ aap_serv }}"
     - name: create software directory 
       ansible.builtin.shell:
         cmd: mkdir -p /root/software/aap-bundle-2.4-6.2
@@ -32,14 +42,9 @@
         chdir: /root/software/aap-bundle-2.4-6.2
       register: shell
     - debug: var=shell.stdout_lines
-    - name: Add ssh fingerprint to known_hosts file on AAP server for server "{{ vbvm }}"
+    - name: Add ssh fingerprint to known_hosts file on "{{ inventory_hostname }}"  server for server "{{ aap_serv }}"
       ansible.builtin.shell:
-        cmd: ssh-keyscan -H "{{ vbvm }}" >> ~/.ssh/known_hosts
+        cmd: ssh-keyscan -H "{{ aap_serv }}" >> ~/.ssh/known_hosts
       register: shell
     - debug: var=shell.stdout_lines  
-    - name: Generate ssh keys
-      ansible.builtin.user:
-        name: root
-        generate_ssh_key: yes
-        ssh_key_bits: 2048
-        ssh_key_file: .ssh/id_rsa
+
