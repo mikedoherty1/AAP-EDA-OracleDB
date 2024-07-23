@@ -3,6 +3,13 @@
   vars:
     ansible_python_interpreter: auto_silent
   tasks:
+    - name: Generate ssh keys
+      ansible.builtin.user:
+        name: root
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
+
     - name: Set authorized key taken from file
       ansible.posix.authorized_key:
         user: root
