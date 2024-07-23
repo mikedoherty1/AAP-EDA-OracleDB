@@ -93,7 +93,7 @@
         cmd: umount /media/cdrom
       register: shell
     - debug: var=shell.stdout_lines
-# Enable Root Login
+ Enable Root Login
     - name: Enable Root Login
       lineinfile:
         dest: /etc/ssh/sshd_config
