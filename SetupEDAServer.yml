@@ -7,11 +7,6 @@
         src: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
         dest: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
       delegate_to: "{{ aap_serv }}"
-    - name: Copy AAP-bundle to "{{ inventory_hostname }}" from "{{ aap_serv }}"
-      ansible.builtin.synchronize:
-        src: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
-        dest: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
-      delegate_to: "{{ aap_serv }}"
     - name: create software directory 
       ansible.builtin.shell:
         cmd: mkdir -p /root/software/aap-bundle-2.4-6.2

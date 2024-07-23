@@ -36,15 +36,40 @@
         chdir: /root/software/aap-bundle-2.4-6.2
       register: shell
     - debug: var=shell.stdout_lines
-    - name: Update Inventoy file with AAP server 
-      ansible.builtin.shell:
-        cmd: sed -i "s/change_host_name/"{{ aap_srv }}"/g" /root/software/aap-bundle-2.4-6.2/inventory
-        chdir: /root/software/aap-bundle-2.4-6.2
-      register: shell
-    - debug: var=shell.stdout_lines
+#    - name: Update Inventoy file with AAP server 
+#      ansible.builtin.shell:
+#        cmd: sed -i "s/change_host_name/"{{ aap_srv }}"/g" /root/software/aap-bundle-2.4-6.2/inventory
+#        chdir: /root/software/aap-bundle-2.4-6.2
+#      register: shell
+#    - debug: var=shell.stdout_lines
     - name: Add ssh fingerprint to known_hosts file on "{{ inventory_hostname }}"  server for server "{{ aap_serv }}"
       ansible.builtin.shell:
         cmd: ssh-keyscan -H "{{ aap_serv }}" >> ~/.ssh/known_hosts
       register: shell
     - debug: var=shell.stdout_lines  
-
+# add hack entry
+    - name: remove inventory file for hack copy
+      ansible.builtin.shell:
+        cmd: rm -rf /root/software/dbhost
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: mkdir 
+      ansible.builtin.shell:
+        cmd: mkdir -p /root/software
+      register: shell
+    - debug: var=shell.stdout_lines
+# Touch File
+    - name: create inventory file for hack copy
+      ansible.builtin.shell:
+        cmd: touch /root/software/dbhost
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: Create local inventory file /root/software/dbhost on "{{ inventory_hostname }}"   
+      lineinfile:
+        path: /root/software/dbhost
+        line: "{{ aap_serv }} ansible_user=root ansible_password=redhat "
+    - name: Work Around for copy file in GUI - gen auth_keys inventory file /root/dbhost on AAP
+      ansible.builtin.shell:
+        cmd: ansible-playbook -i /root/software/dbhost /root/software/keys.yml
+      register: shell
+    - debug: var=shell.stdout_lines
