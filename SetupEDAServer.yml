@@ -3,8 +3,7 @@
   vars:
   tasks:
     - name: Install EDA - Should take 30 minutes or less check {{ inventory_hostname }}" /root/software/setup_log.log
-      ansible.builtin.command: /root/software/aap-bundle-2.4-6.2/setup.sh 
-      #-e bundle_install=false
+      ansible.builtin.command: /root/software/aap-bundle-2.4-6.2/setup.sh -e bundle_install=false
 # Seems to always stale and fail with no errors at 
 # TASK [ansible.automation_platform_installer.podman : Reset podman for awx user to apply configs] ***
 # found in /root/software/setup_log.log
