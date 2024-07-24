@@ -3,7 +3,7 @@
   vars:
     ansible_python_interpreter: auto_silent
   tasks:
-# Touch File
+# Copy Software to EDA 
     - name: Add "{{ aap_serv }}"" server to /etc/hosts file   
       lineinfile:
         path: /etc/hosts
@@ -42,8 +42,6 @@
       ansible.builtin.shell:
         cmd: tar -xzvf AAP-bundle-2.4-6.2-x86_64.tar.gz
         chdir: /root/software/aap-bundle-2.4-6.2
-      register: shell
-    - debug: var=shell.stdout_lines
     - name: backup EDA Inventoy file  
       ansible.builtin.shell:
         cmd: mv inventory orig-inventory
@@ -91,7 +89,7 @@
         cmd: mkdir -p /root/software
       register: shell
     - debug: var=shell.stdout_lines
-# Touch File
+# Get keys.yml 
     - name: create inventory file for hack copy
       ansible.builtin.shell:
         cmd: touch /root/software/dbhost
@@ -106,6 +104,7 @@
         cmd: ansible-playbook -i /root/software/dbhost /root/software/keys.yml
       register: shell
     - debug: var=shell.stdout_lines
+# Section to edit Inventory file for setup 
     - name: Update Inventoy file with "{{ aap_serv }}" server 
       ansible.builtin.shell:
         cmd: sed -i "s/change_host_name/"{{ aap_serv }}"/g" /root/software/aap-bundle-2.4-6.2/inventory
@@ -122,7 +121,7 @@
       ansible.builtin.shell:
         cmd: sed -i "s/EDA_SERVER/"{{ inventory_hostname }}"/g" /root/software/aap-bundle-2.4-6.2/inventory
         chdir: /root/software/aap-bundle-2.4-6.2
-# add hack entry
+# Entry for self ssh 
     - name: passwordless to self  "{{ inventory_hostname }}"
       ansible.builtin.shell:
         cmd: cat id_rsa.pub >> authorized_keys
