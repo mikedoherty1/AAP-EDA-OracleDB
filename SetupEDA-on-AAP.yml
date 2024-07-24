@@ -9,29 +9,7 @@
         chdir: /root/software/aap-bundle-2.4-6.2
       register: shell
     - debug: var=shell.stdout_lines
-# Section to edit Inventory file for setup 
-#    - name: Update Inventoy file with "{{ aap_serv }}" server 
-#      ansible.builtin.shell:
-#        cmd: sed -i "s/change_host_name/"{{ aap_serv }}"/g" /root/software/aap-bundle-2.4-6.2/inventory
-#        chdir: /root/software/aap-bundle-2.4-6.2
-#    - name: Update Inventoy file with "{{ aap_serv }}" server 
-#      ansible.builtin.shell:
-#        cmd: sed -i "s/REDHAT_UID//g" /root/software/aap-bundle-2.4-6.2/inventory
-#        chdir: /root/software/aap-bundle-2.4-6.2
-#    - name: Update Inventoy file with "{{ aap_serv }}" server 
-#      ansible.builtin.shell:
-#        cmd: sed -i "s/REDHAT_PWD//g" /root/software/aap-bundle-2.4-6.2/inventory
-#        chdir: /root/software/aap-bundle-2.4-6.2
-#    - name: Update Inventoy file with "{{ inventory_hostname }}" server 
-#      ansible.builtin.shell:
-#        cmd: sed -i "s/EDA_SERVER/"{{ inventory_hostname }}"/g" /root/software/aap-bundle-2.4-6.2/inventory
-#        chdir: /root/software/aap-bundle-2.4-6.2
-# Entry for self ssh 
-#    - name: passwordless to self  "{{ inventory_hostname }}"
-#      ansible.builtin.shell:
-#        cmd: cat id_rsa.pub >> authorized_keys
-#        chdir: /root/.ssh
 # Install EDA
-    - name: Run /root/software/aap-bundle-2.4-6.2/setup.sh from OS as it will not install when executed in AAP fails with no errors on task [ansible.automation_platform_installer.podman : reset podman for awx user to apply configs]  
+    - name: " Run /root/software/aap-bundle-2.4-6.2/setup.sh from {{ inventory_hostname }} as it will not install GUI [ansible.automation_platform_installer.podman : reset podman for awx user to apply configs]  "
       ansible.builtin.command:
-        cmd: ls 
+        cmd: pwd 
