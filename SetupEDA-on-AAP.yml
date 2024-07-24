@@ -32,8 +32,6 @@
 #        cmd: cat id_rsa.pub >> authorized_keys
 #        chdir: /root/.ssh
 # Install EDA
-    - name: Run /root/software/aap-bundle-2.4-6.2/setup.sh from OS as it will not install when executed in AAP *Bug*  
+    - name: Run /root/software/aap-bundle-2.4-6.2/setup.sh from OS as it will not install when executed in AAP fails with no errors on task [ansible.automation_platform_installer.podman : reset podman for awx user to apply configs]  
       ansible.builtin.command:
-        cmd: echo "Unable to exexcute always fails with no errors on task [ansible.automation_platform_installer.podman : reset podman for awx user to apply configs] ***"
-      register: shell
-    - debug: var=shell.stdout_lines
+        cmd: ls 
