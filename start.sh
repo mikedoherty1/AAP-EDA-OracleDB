@@ -83,7 +83,7 @@ echo "
 
 
 " 
-echo "Oracle download This should also take 155 minutes (pending internet speeds - Oracle software used to automate oel7.8 build via Ansible platform"
+echo "Oracle download This should also take 15 minutes or less (pending internet speeds - Oracle software used to automate oel7.8 build via Ansible platform"
 sleep 10
 echo "
 

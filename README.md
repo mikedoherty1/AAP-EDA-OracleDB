@@ -87,7 +87,7 @@ CreateVirtualBoxVM.yml
 > 
 > Machine > New
 > 
-> Host Name: control.local
+> Host Name: ansiblecontrol
 > 
 > ISO Image: rhel-9.4-x86\_64-boot.iso
 > 
@@ -119,7 +119,7 @@ CreateVirtualBoxVM.yml
     - Security Profile > disable > Done
     - NETWORK & HOSTNAME > enable both adapters
             Use the 2nd interface IP 192.168.56.XXX - add this to mac /etc/hosts file
-        Host Name:  control.local > Apply > Done
+        Host Name:  ansiblecontrol > Apply > Done
     - KDUMP > Disable > Done
     - Installation Destination > Done 
     - Connect to Red Hat > 
@@ -172,7 +172,7 @@ CreateVirtualBoxVM.yml
 
 > FYI: all passwords set to redhat for OS and AAP
 > 
-> ssh [root@control.local](mailto:root@control.local)  
+> ssh [root@ansiblecontrol](mailto:root@control.local)
 > 
 > pwd to verify /root directory
 > 
@@ -195,7 +195,7 @@ CreateVirtualBoxVM.yml
 # Ansible Time
 
 ```
-- from web broweser (chrome or firefox): https://control.local
+- from web broweser (chrome or firefox): https://ansiblecontrol
 ```
 
 Proceed to your\_ip\_adress (unsafe)
@@ -239,7 +239,7 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
 # Inventories (3)
 
 *   From the left side under Resources: click Inventories > add
-    *   name: AAP
+    *   name: HomeLab (Will be used for all Linux servers)
     *   Organization: HomeLab
 *   save
 *   From the left side under Resources: click Inventories > add
@@ -247,16 +247,12 @@ Select your Subscription; then click next to finsih. All done you know have AAP 
     *   Organization: HomeLab
     *   To supress warning  > Add Variable > ansible\_python\_interpreter: auto\_silent
 *   save
-*   From the left side under Resources: click Inventories > add
-    *   name: HomeLab (Will be used for all Linux servers)
-    *   Organization: HomeLab
-*   save
 
 # Hosts (2)
 
 *   From the left side under Resources: click Inventories > add
-    *   name: control.local
-    *   Inventory: AAP
+    *   name: `ansiblecontrol`
+    *   Inventory: HomeLab
 *   save
 *   From the left side under Resources: click Inventories > add
     *   name: whatevery\_your\_mac\_hostname
@@ -324,7 +320,6 @@ To supress warning > edit > Add Variable > ansible\_python\_interpreter: auto\_s
     *   Source Control Type: Git
     *   Source Control URL: `https://github.com/mikedoherty1/AnsibleAutomationPlatform-OracleDB.git`
     *   Source Control Branch/Tag/Commit: VirtualBox
-    *   Options: Clean
 *   All project will be created in /var/lib/awx/projects \*\*\*\*\*\*
 
 # Create project to add OraBuild Git Branch
@@ -369,19 +364,21 @@ Templates
 - Inventory: AAP
 - Project: Basic Root Operations
 - Execution Environment: RHEL9
-     - Playbook: PasswordlessSSH.yml
+     - Playbook: PasswordlessSSH4-AAP.yml
      - Credentials: RootAdmin
           - Variables:
 # This adds entries in /etc/hosts file
 #Target server you want to add  (USING LIMIT as SOURCE) IP 192.168.56.xxx
-vbvmip:
+vbvmip: 192.168.56.xxx
 #Virtual hostname
 vbvm:
 # Using aap_serv as Seperate Viarable to AAP Server to copy files
-aap_serv: control.local
+aap_serv: ansiblecontrol
 Click > Limit
   - save
 ```
+
+NOTE: After executing Template `asMac Create VM * you need to add New server to Hosts and add to` [**HomeLab**](https://ansiblecontrol/#/inventories/inventory/2/details) **Inventory**
 
 ```
 - Name: 02 Mac Mount VirtualBox CD
@@ -638,12 +635,36 @@ vbvm:
 
 # Next: EDA To monitor Oracle and automate corrective actions
 
-Run 01 on AAP > EDA
+```
+Step 1:
+Launch Template - 01 Add Host & Passwordless SSH Access 
+Add Variables and Launch
 
-run 01 on AAP > AAP
+Step 2 - Create Templates
+- Name: Setup EDA Server 
+- Inventory: HomeLab
+- Project: Basic Root Operations
+- Execution Environment: RHEL9
+    - Playbook: SetupEDAServer.yml
+     - Credentials: RootAdmin
+     - Variables: 
+aap_serv: ansiblecontrol
+aap_ip: 192.168.56.22
+inventory_ip: 192.168.56.23
+     Click > prompt on launch
+- Limit: prompt on launch
+  - save
+  
+  * When executing limit to eventsansible
+```
 
-Run 01 on EDA > AAP
-
-run 01 on EDA > EDA
-
-run setupedaserver
+```
+Step 2 - Create Templates
+- Name: Install EDA 
+- Inventory: HomeLab
+- Project: Basic Root Operations
+- Execution Environment: RHEL9
+    - Playbook: SetupEDAServer.yml
+     - Credentials: RootAdmin
+  - save
+```
