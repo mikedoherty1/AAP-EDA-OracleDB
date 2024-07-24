@@ -70,6 +70,11 @@
         cmd: ssh-keyscan -H "{{ inventory_hostname }}" >> ~/.ssh/known_hosts
       register: shell
     - debug: var=shell.stdout_lines  
+    - name: ansible-galaxy collection install ansible.posix on "{{ inventory_hostname }}"
+      ansible.builtin.shell:
+        cmd: ansible-galaxy collection install ansible.posix
+      register: shell
+    - debug: var=shell.stdout_lines
 # add hack entry
     - name: remove inventory file for hack copy
       ansible.builtin.shell:
