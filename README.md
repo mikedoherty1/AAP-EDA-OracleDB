@@ -667,4 +667,8 @@ Step 2 - Create Templates
     - Playbook: SetupEDAServer.yml
      - Credentials: RootAdmin
   - save
+  
+ Launch > Then do below 
+  
+  ** This does not execute setup.sh as it always fails with no errors, stalls, will need to run setup.sh from ansiblecontrol server
 ```
