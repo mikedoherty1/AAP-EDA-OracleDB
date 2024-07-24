@@ -4,6 +4,10 @@
     ansible_python_interpreter: auto_silent
   tasks:
 # Touch File
+    - name: Add "{{ aap_serv }}"" server to /etc/hosts file   
+      lineinfile:
+        path: /etc/hosts
+        line: "{{ aap_ip }}     {{ aap_serv }}"
     - name: Check that the file exists
       stat:
         path: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
@@ -56,10 +60,6 @@
         cmd: ssh-keyscan -H "{{ inventory_hostname }}" >> ~/.ssh/known_hosts
       register: shell
     - debug: var=shell.stdout_lines  
-    - name: Add target server to /etc/hosts file   
-      lineinfile:
-        path: /etc/hosts
-        line: "{{ aap_ip }}     {{ aap_serv }}"
 # add hack entry
     - name: remove inventory file for hack copy
       ansible.builtin.shell:
