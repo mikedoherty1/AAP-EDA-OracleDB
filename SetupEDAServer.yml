@@ -3,11 +3,15 @@
   vars:
     ansible_python_interpreter: auto_silent
   tasks:
-# Copy Software to EDA 
+# hosts  
     - name: Add "{{ aap_serv }}"" server to /etc/hosts file   
       lineinfile:
         path: /etc/hosts
         line: "{{ aap_ip }}     {{ aap_serv }}"
+    - name: Add "{{ inventory_hostname }}"" server to /etc/hosts file   
+      lineinfile:
+        path: /etc/hosts
+        line: "{{ inventory_ip }}     {{ inventory_hostname }}"
     - name: remove inventory file for hack copy
       ansible.builtin.shell:
         cmd: rm -rf /root/software/dbhost
