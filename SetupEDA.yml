@@ -32,8 +32,8 @@
         cmd: cat id_rsa.pub >> authorized_keys
         chdir: /root/.ssh
 # Install EDA
-    - name: Run setup.sh to install EDA  
-      ansible.builtin.command:
-        cmd: /root/software/aap-bundle-2.4-6.2/setup.sh
-      register: shell
-    - debug: var=shell.stdout_lines
+#    - name: Run setup.sh to install EDA  
+#      ansible.builtin.command:
+#        cmd: /root/software/aap-bundle-2.4-6.2/setup.sh
+#      register: shell
+#    - debug: var=shell.stdout_lines

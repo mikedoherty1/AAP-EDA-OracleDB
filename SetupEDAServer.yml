@@ -8,6 +8,26 @@
       lineinfile:
         path: /etc/hosts
         line: "{{ aap_ip }}     {{ aap_serv }}"
+    - name: Add ssh fingerprint to known_hosts file on "{{ inventory_hostname }}"  server for server "{{ aap_serv }}"
+      ansible.builtin.shell:
+        cmd: ssh-keyscan -H "{{ aap_serv }}" >> ~/.ssh/known_hosts
+      register: shell
+    - debug: var=shell.stdout_lines  
+    - name: Add ssh fingerprint to known_hosts file on "{{ inventory_hostname }}"  server for server "{{ aap_serv }}"
+      ansible.builtin.shell:
+        cmd: ssh-keyscan -H "{{ inventory_hostname }}" >> ~/.ssh/known_hosts
+      register: shell
+    - debug: var=shell.stdout_lines  
+    - name: ansible-core  on "{{ inventory_hostname }}"
+      ansible.builtin.shell:
+        cmd: dnf install ansible-core -y
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: ansible-galaxy collection install ansible.posix on "{{ inventory_hostname }}"
+      ansible.builtin.shell:
+        cmd: ansible-galaxy collection install ansible.posix
+      register: shell
+    - debug: var=shell.stdout_lines
     - name: Check that the file exists
       stat:
         path: /root/software/AAP-bundle-2.4-6.2-x86_64.tar.gz
@@ -58,26 +78,6 @@
         dest: /root/software/aap-bundle-2.4-6.2/inventory
       when: stat_result.stat.exists == False 
       delegate_to: "{{ aap_serv }}"
-    - name: Add ssh fingerprint to known_hosts file on "{{ inventory_hostname }}"  server for server "{{ aap_serv }}"
-      ansible.builtin.shell:
-        cmd: ssh-keyscan -H "{{ aap_serv }}" >> ~/.ssh/known_hosts
-      register: shell
-    - debug: var=shell.stdout_lines  
-    - name: Add ssh fingerprint to known_hosts file on "{{ inventory_hostname }}"  server for server "{{ aap_serv }}"
-      ansible.builtin.shell:
-        cmd: ssh-keyscan -H "{{ inventory_hostname }}" >> ~/.ssh/known_hosts
-      register: shell
-    - debug: var=shell.stdout_lines  
-    - name: ansible-core  on "{{ inventory_hostname }}"
-      ansible.builtin.shell:
-        cmd: dnf install ansible-core -y
-      register: shell
-    - debug: var=shell.stdout_lines
-    - name: ansible-galaxy collection install ansible.posix on "{{ inventory_hostname }}"
-      ansible.builtin.shell:
-        cmd: ansible-galaxy collection install ansible.posix
-      register: shell
-    - debug: var=shell.stdout_lines
 # add hack entry
     - name: remove inventory file for hack copy
       ansible.builtin.shell:
