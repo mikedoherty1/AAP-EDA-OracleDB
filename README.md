@@ -483,30 +483,9 @@ Template > Launch > `01 asMac Create VM`
 
 ---
 
-## Launch template `02 Add VM 2 AAP Server`
-
-> #Virtual Image IP 192.168.xxx.xxx  
-> vbvmip: 192.168.65.103  
-> #Virtual hostname  
-> vbvm: oraserv01.local
-> 
-> ## Next > Launch
+## Add New host to inventory HomeLab
 
 ---
-
-> # **Need To add new VM to AAP Hosts**
-> 
-> ### From the left side under Resources: click Inventories > add
-> 
-> ### name: control.local
-> 
-> ### Inventory: HomeLab
-> 
-> \*\* If not already you can add the following
-> 
-> Inventory > Add > Hosts
-> 
-> Add all missing Linux servers. 
 
 ## Go Back to oel78 install and click reboot.
 
@@ -519,6 +498,8 @@ Template > Launch > `01 asMac Create VM`
 # template workflow
 
 ```
+
+
 - Templates > Add > Workflow Template
 - Name: 00 Update Linux Hosts
 - Organization: HomeLab
