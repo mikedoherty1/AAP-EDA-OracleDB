@@ -52,9 +52,9 @@
         dest: /home/ansible/software/get_aap_software
         owner: ansible
         group: ansible
-    - name: Change the working directory to somedir/ before executing the command
-      become: yes
-      become_user: ansible
-      ansible.builtin.command: /home/ansible/software/get_aap_software
-      chdir: /home/ansible/software
+#    - name: Change the working directory to somedir/ before executing the command
+#      become: yes
+#      become_user: ansible
+#      ansible.builtin.command: /home/ansible/software/get_aap_software
+#      chdir: /home/ansible/software
 
