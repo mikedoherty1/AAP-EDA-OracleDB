@@ -51,4 +51,5 @@ ansible-galaxy collection install ansible.posix
 echo ""
 echo ""
 echo ""
+#Ansible to setup user and download software
 ansible-playbook -i hosts create_ansible.yml 
