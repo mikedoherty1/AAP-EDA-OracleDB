@@ -31,7 +31,7 @@ echo "$ipsm     $hnm" >> /etc/hosts
 echo ""
 echo ""
 echo ""
-echo "$hn" >> hosts
+echo "$hn ansible_user=root ansible_password=redhat" >> hosts
 #Generate SSH Key
 ssh-keygen -t rsa
 echo ""
