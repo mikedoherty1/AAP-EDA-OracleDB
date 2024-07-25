@@ -31,6 +31,7 @@ echo "$ipsm     $hnm" >> /etc/hosts
 echo ""
 echo ""
 echo ""
+echo "$hn" >> hosts
 #Generate SSH Key
 ssh-keygen -t rsa
 echo ""
@@ -47,3 +48,7 @@ echo ""
 echo ""
 echo ""
 ansible-galaxy collection install ansible.posix
+echo ""
+echo ""
+echo ""
+ansible-playbook -i hosts create_ansible.yml -e opass=redhat
