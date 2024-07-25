@@ -57,5 +57,5 @@
       become: yes
       become_user: ansible
       ansible.builtin.shell: /home/ansible/software/get_aap_software
-
+      chdir: /home/ansible/software
 
