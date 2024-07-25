@@ -58,6 +58,8 @@
       ansible.builtin.shell:
         cmd: pwd 
         chdir: /home/ansible/software
+      become: true
+      become_user: ansible
       register: shell
     - debug: var=shell.stdout_lines
 
