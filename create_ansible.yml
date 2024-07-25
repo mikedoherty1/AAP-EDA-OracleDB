@@ -131,5 +131,6 @@
         chdir: /home/ansible/software/aap-bundle-2.4-6.2
       become: true
       become_user: ansible
+      become_method: sudo
       register: shell
     - debug: var=shell.stdout_lines    
