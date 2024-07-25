@@ -109,7 +109,7 @@
       become_user: ansible
       register: shell
     - debug: var=shell.stdout_lines
-        - name: untar 
+    - name: untar 
       ansible.builtin.shell:
         cmd: sed -i "s/REDHAT_PWD/"{{ REDHAT_PWD }}"/g" /home/ansible/software/aap-bundle-2.4-6.2/inventory
         chdir: /home/ansible/software/aap-bundle-2.4-6.2
