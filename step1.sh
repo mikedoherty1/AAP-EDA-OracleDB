@@ -13,7 +13,6 @@ echo ""
 #Get ip and hostname to read into variable
 hn=`hostname`
 ips=`ifconfig | grep 192 | awk '{ print $2}'`
-echo "IP and hostname being added to /etc/hosts $hnip : $hn"
 echo "$ips     $hn" >> /etc/hosts
 echo ""
 echo ""
