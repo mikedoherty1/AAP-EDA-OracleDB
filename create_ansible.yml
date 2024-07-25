@@ -77,3 +77,11 @@
       become_user: ansible
       register: shell
     - debug: var=shell.stdout_lines
+    - name: Clean up
+      ansible.builtin.file:
+        path: /home/ansible/software/get_aap_software 
+        state: absent
+    - name: Clean up
+      ansible.builtin.file:
+        path: /home/ansible/software/get_ora_software 
+        state: absent
