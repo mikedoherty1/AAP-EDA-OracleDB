@@ -101,7 +101,7 @@
       become_user: ansible
       register: shell
     - debug: var=shell.stdout_lines
-    - name: untar 
+    - name: Edit inventory set to Ansible Platform control server    
       ansible.builtin.shell:
         cmd: sed -i "s/change_host_name/"{{ inventory_hostname }}"/g" /home/ansible/software/aap-bundle-2.4-6.2/inventory
         chdir: /home/ansible/software/aap-bundle-2.4-6.2
@@ -109,7 +109,7 @@
       become_user: ansible
       register: shell
     - debug: var=shell.stdout_lines
-    - name: untar 
+    - name: Edit inventory file Subscription username  
       ansible.builtin.shell:
         cmd: sed -i "s/REDHAT_UID/"{{ REDHAT_UID }}"/g" /home/ansible/software/aap-bundle-2.4-6.2/inventory
         chdir: /home/ansible/software/aap-bundle-2.4-6.2
@@ -117,7 +117,7 @@
       become_user: ansible
       register: shell
     - debug: var=shell.stdout_lines
-    - name: untar 
+    - name: Edit inventory file Subscription password 
       ansible.builtin.shell:
         cmd: sed -i "s/REDHAT_PWD/"{{ REDHAT_PWD }}"/g" /home/ansible/software/aap-bundle-2.4-6.2/inventory
         chdir: /home/ansible/software/aap-bundle-2.4-6.2
@@ -125,4 +125,11 @@
       become_user: ansible
       register: shell
     - debug: var=shell.stdout_lines
-    
+    - name: Setup AAP if no output then check /home/ansible/software/aap-bundle-2.4-6.2/setup.log
+      ansible.builtin.shell:
+        cmd: tar -xzvf /home/ansible/software/aap-bundle-2.4-6.2/setup.sh
+        chdir: /home/ansible/software/aap-bundle-2.4-6.2
+      become: true
+      become_user: ansible
+      register: shell
+    - debug: var=shell.stdout_lines    
