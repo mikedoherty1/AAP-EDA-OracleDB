@@ -85,3 +85,11 @@
       ansible.builtin.file:
         path: /home/ansible/software/get_ora_software 
         state: absent
+    - name: untar 
+      ansible.builtin.shell:
+        cmd: tar -xzvf /home/ansible/software/aap-bundle-2.4-6.2/AAP-bundle-2.4-6.2-x86_64.tar.gz 
+        chdir: /home/ansible/software/aap-bundle-2.4-6.2
+      become: true
+      become_user: ansible
+      register: shell
+    - debug: var=shell.stdout_lines
