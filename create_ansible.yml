@@ -1,0 +1,33 @@
+---
+- hosts: all
+  tasks:
+# Missing packages GIT
+    - name: Ensure group "ansible" exists
+      ansible.builtin.group:
+        name: ansible
+        state: present
+    - name: Add user 'ansible' with a bash shell, appending the group 'ansible' group
+      ansible.builtin.user:
+        name: ansible
+        shell: /bin/bash
+        groups: ansible
+        append: yes
+        create_home: yes
+        comment: Ansible Admin
+        password: "{{ opass | password_hash('sha512') }}"
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
+# Restart sshd
+    - name: Generate ssh keys
+      ansible.builtin.user:
+        name: ansible
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
+    - name: "Allow ansible user to sudo without a password"
+      lineinfile:
+        dest: "/etc/sudoers" 
+        state: "present"
+        regexp: "^%ansible"
+        line: "ansible ALL=(ALL) NOPASSWD: ALL"
