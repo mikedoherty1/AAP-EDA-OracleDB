@@ -47,6 +47,21 @@
         chown -R ansible:ansible /home/ansible
       register: shell
     - debug: var=shell.stdout_lines
+    - name: Copy Oracle Software get
+      ansible.builtin.copy:
+        src: /root/AnsibleAutomationPlatform-OracleDB/get_ora_software
+        dest: /home/ansible/software/get_ora_software
+        owner: ansible
+        group: ansible
+        mode: '777'
+    - name: Downloading software 
+      ansible.builtin.shell:
+        cmd: /home/ansible/software/get_ora_software 
+        chdir: /home/ansible/software
+      become: true
+      become_user: ansible
+      register: shell
+    - debug: var=shell.stdout_lines
     - name: Copy AAP Software get
       ansible.builtin.copy:
         src: /root/AnsibleAutomationPlatform-OracleDB/get_aap_software
@@ -62,4 +77,3 @@
       become_user: ansible
       register: shell
     - debug: var=shell.stdout_lines
-
