@@ -51,4 +51,4 @@ ansible-galaxy collection install ansible.posix
 echo ""
 echo ""
 echo ""
-ansible-playbook -i hosts create_ansible.yml -e opass=redhat
+ansible-playbook -i hosts create_ansible.yml 
