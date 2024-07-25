@@ -52,6 +52,7 @@
         dest: /home/ansible/software/get_aap_software
         owner: ansible
         group: ansible
+        mode: '777'
 #    - name: Change the working directory to somedir/ before executing the command
 #      become: yes
 #      become_user: ansible
