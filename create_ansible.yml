@@ -43,7 +43,7 @@
         line: "ansible ALL=(ALL) NOPASSWD: ALL"
     - name: mkdir 
       ansible.builtin.shell: |
-        mkdir -p /home/ansible/software
+        mkdir -p /home/ansible/software/aap-bundle-2.4-6.2
         chown -R ansible:ansible /home/ansible
       register: shell
     - debug: var=shell.stdout_lines
@@ -65,21 +65,21 @@
     - name: Copy AAP Software get
       ansible.builtin.copy:
         src: /root/AnsibleAutomationPlatform-OracleDB/get_aap_software
-        dest: /home/ansible/software/get_aap_software
+        dest: /home/ansible/software/aap-bundle-2.4-6.2
         owner: ansible
         group: ansible
         mode: '777'
     - name: Downloading software 
       ansible.builtin.shell:
-        cmd: /home/ansible/software/get_aap_software 
-        chdir: /home/ansible/software
+        cmd: /home/ansible/software/aap-bundle-2.4-6.2/get_aap_software 
+        chdir: /home/ansible/software/aap-bundle-2.4-6.2
       become: true
       become_user: ansible
       register: shell
     - debug: var=shell.stdout_lines
     - name: Clean up
       ansible.builtin.file:
-        path: /home/ansible/software/get_aap_software 
+        path: /home/ansible/software/aap-bundle-2.4-6.2/get_aap_software 
         state: absent
     - name: Clean up
       ansible.builtin.file:
