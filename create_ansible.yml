@@ -42,8 +42,7 @@
         regexp: "^%ansible"
         line: "ansible ALL=(ALL) NOPASSWD: ALL"
     - name: mkdir 
-      ansible.builtin.shell:
-        cmd: |
+      ansible.builtin.shell: |
         mkdir -p /home/ansible/software
         chown -R ansible:ansible /home/ansible
       register: shell
