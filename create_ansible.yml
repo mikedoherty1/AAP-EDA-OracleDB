@@ -56,6 +56,7 @@
     - name: Change the working directory to somedir/ before executing the command
       become: yes
       become_user: ansible
-      ansible.builtin.shell: /home/ansible/software/get_aap_software
+      ansible.builtin.shell: 
+      cmd: /home/ansible/software/get_aap_software
       chdir: /home/ansible/software
 
