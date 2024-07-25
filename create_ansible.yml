@@ -127,7 +127,7 @@
     - debug: var=shell.stdout_lines
     - name: Setup AAP if no output then check /home/ansible/software/aap-bundle-2.4-6.2/setup.log
       ansible.builtin.shell:
-        cmd: tar -xzvf /home/ansible/software/aap-bundle-2.4-6.2/setup.sh
+        cmd: /home/ansible/software/aap-bundle-2.4-6.2/setup.sh
         chdir: /home/ansible/software/aap-bundle-2.4-6.2
       become: true
       become_user: ansible
