@@ -18,7 +18,7 @@
       ansible.builtin.user:
         name: ansible
         shell: /bin/bash
-        groups: ansible
+        groups: root, ansible
         append: yes
         create_home: yes
         comment: Ansible Admin
