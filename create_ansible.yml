@@ -56,7 +56,8 @@
         mode: '777'
     - name: This command will change the working directory to somedir/
       ansible.builtin.shell:
-        cmd: ls -l 
+        cmd: pwd 
         chdir: /home/ansible/software
-
+      register: shell
+    - debug: var=shell.stdout_lines
 
