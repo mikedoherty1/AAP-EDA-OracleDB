@@ -93,3 +93,28 @@
       become_user: ansible
       register: shell
     - debug: var=shell.stdout_lines
+    - name: untar 
+      ansible.builtin.shell:
+        cmd: sed -i "s/change_host_name/"{{ inventory_hostname }}"/g" /home/ansible/software/aap-bundle-2.4-6.2/inventory
+        chdir: /home/ansible/software/aap-bundle-2.4-6.2
+      become: true
+      become_user: ansible
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: untar 
+      ansible.builtin.shell:
+        cmd: sed -i "s/REDHAT_UID/"{{ REDHAT_UID }}"/g" /home/ansible/software/aap-bundle-2.4-6.2/inventory
+        chdir: /home/ansible/software/aap-bundle-2.4-6.2
+      become: true
+      become_user: ansible
+      register: shell
+    - debug: var=shell.stdout_lines
+        - name: untar 
+      ansible.builtin.shell:
+        cmd: sed -i "s/REDHAT_PWD/"{{ REDHAT_PWD }}"/g" /home/ansible/software/aap-bundle-2.4-6.2/inventory
+        chdir: /home/ansible/software/aap-bundle-2.4-6.2
+      become: true
+      become_user: ansible
+      register: shell
+    - debug: var=shell.stdout_lines
+    
