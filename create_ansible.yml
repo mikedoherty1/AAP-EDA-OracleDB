@@ -41,3 +41,22 @@
         state: "present"
         regexp: "^%ansible"
         line: "ansible ALL=(ALL) NOPASSWD: ALL"
+    - name: mkdir 
+      ansible.builtin.shell:
+        cmd: mkdir -p /home/ansible/software
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: Copy AAP Software get
+      ansible.builtin.copy:
+        src: /root/AnsibleAutomationPlatform-OracleDB/get_app_software
+        dest: /home/ansible/software/get_app_software
+        owner: ansible
+        group: ansible
+        mode: '777'
+    - name: Change the working directory to somedir/ before executing the command
+      become: yes
+      become_user: ansible
+      ansible.builtin.shell: get_app_software
+      args:
+        chdir: /home/ansible/software
+
