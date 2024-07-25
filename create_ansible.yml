@@ -1,5 +1,13 @@
 ---
 - hosts: all
+  vars_prompt:
+    - name: REDHAT_UID 
+      prompt: What is your Redhat Subsription username
+      private: false 
+    - name: REDHAT_PWD 
+      prompt: What is your Redhat Subsription password
+    - name: opass  
+      prompt: Set your ansible OS account password 
   tasks:
 # Missing packages GIT
     - name: Ensure group "ansible" exists
