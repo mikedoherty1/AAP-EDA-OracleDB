@@ -1,8 +1,14 @@
----
+# Ansible Automation Platform 
 
-# Ansible Automation Platform (GUI) Edition - Built with VirtualBox on MacBook
+> ### Hands on build,  basic playbooks and builtin modules: To create VirtualBox VM's, configure Linux, Setup Oracle Database
+> 
+> ### \*Not meant to be efficient, basic playbooks for learning the how's / breakit and fixit.
+> 
+> ### Just some simple cmds and playbooks
+> 
+> Youtube video ( just copy paste of cmds below) extra items on breakfix and github integration
 
-### VirtualBox VM creation
+### VirtualBox
 
 ### Linux setup (RHEL & OEL)
 
@@ -10,17 +16,11 @@
 
 ## Integrate EDA for Oracle - In Progress
 
-> ### Hands on build,  basic playbooks and builtin modules: To create VirtualBox VM's, configure Linux, Setup Oracle Database
-> 
-> ### \*Not meant to be efficient, steps are purposeful individualized for build practice.
-> 
-> ### Just some simple cmds and playbooks
-
 ---
 
 ## My Setup / Whats Required:
 
-### **Mac**: Create new user ansible "THERE ARE SOME HARDCODED PATHS"  - Section below what's hardcoded
+## **Mac**: Create new user ansible "THERE ARE SOME HARDCODED PATHS"  - Section below what's hardcoded
 
 ### My setup (naming included)
 
@@ -44,19 +44,16 @@ MacBook Pro
 
 > 1.  `**Ansible & Oracle software will be automatically downloaded and deployed within execution of templates in AAP**`
 
-RedHat Account:  (Free)
-
-*   [https://access.redhat.com](https://access.redhat.com) 
-    *   This will be used for OS and AAP
-
-VirtualBox install & Extension Pack (Install from VirtualBox gui, click three lines > Extensions > install
-
-Newtorking - Host-only Networks > Create > Name = HostNetwork
-
-*   Mask: 255.255.255.0 ; Lower Bound: 192.168.56.100 ; Upper Bound: 192.168.56.199
-    *   \*\* Used on nic2
-
-Tools > Media > Optical disks > Add > select ISO's from Downloads
+> ```xml
+> RedHat Account:  (Free)
+> https://access.redhat.com 
+> This will be used for OS and AAP
+> VirtualBox install & Extension Pack (Install from VirtualBox gui, click three lines > Extensions > install
+> Newtorking - Host-only Networks > Create > Name = HostNetwork
+> Mask: 255.255.255.0 ; Lower Bound: 192.168.56.100 ; Upper Bound: 192.168.56.199
+> ** Used on nic2
+> Tools > Media > Optical disks > Add > select ISO's from Downloads
+> ```
 
 \*\* Make sure you have enough space / RAM as each VM will be 30TB w/8GB RAM
 
@@ -83,37 +80,25 @@ CreateVirtualBoxVM.yml
 
 ### First VM setup Manual - all others are done via Ansible
 
+> ```html
 > VirtualBox to create AAP server
-> 
 > Machine > New
-> 
 > Host Name: ansiblecontrol
-> 
-> ISO Image: rhel-9.4-x86\_64-boot.iso
-> 
+> ISO Image: rhel-9.4-x86_64-boot.iso
 > Type: Linux
-> 
 > Version: Red Hat 9.x (64-bit)
-> 
 > click > skip Unattended Installation
-> 
-> Hardware: 
-> 
->      Base Memory = 8192
-> 
->      Processors = 4
-> 
+> Hardware: 
+>      Base Memory = 8192
+>      Processors = 4
 > Hard Drive:
-> 
->      40GB
-> 
+>      40GB
 > Finish
-> 
 > settings > Network > Adapter 2 > Enable Network Adaprter > Host-Only Network > OK
-> 
 > Start
+> ```
 
-```
+```html
 - Install Red Hat Enterprise Linux 9.4
     - English > Continue
     - Security Profile > disable > Done
@@ -134,63 +119,31 @@ CreateVirtualBoxVM.yml
     Begin Install
 ```
 
----
-
-> While AAP server is being installed
-> 
-> From Mac > Terminal > add whats in bold (use your ip's and naming)
-> 
-> hostname
-> 
-> ifconfig | grep inet (use 192.x.x.x or 10.0.0.x)
-> 
-> Add > IP    hostname  > etc/hosts
-> 
-> example: 
-> 
-> ###### \# Host Database
-> 
-> ###### \# localhost is used to configure the loopback interface
-> 
-> ###### \# when the system is booting.  Do not change this entry.
-> 
-> ###### 127.0.0.1 localhost
-> 
-> ###### 255.255.255.255 broadcasthost
-> 
-> ###### ::1             localhost
-> 
-> ### **192.168.56.101    control.local**
-> 
-> ### **10.0.0.54     Mikes-MacBook-Pro.local**
-
 **\*\* Reboot AAP server from intial install**
 
 ---
 
-# AAP Setup
+# AAP Setup - FYI: all passwords set to redhat for OS and AAP
 
-> FYI: all passwords set to redhat for OS and AAP
-> 
 > ssh [root@ansiblecontrol](mailto:root@control.local)
 > 
 > pwd to verify /root directory
 > 
 > Setup pre-reqs for ansible automation install
 > 
-> 1.  `dnf install git -y`
-> 2.  git clone https://github.com/mikedoherty1/AnsibleAutomationPlatform-OracleDB.git
+> ```html
+> dnf install git -y
+> ```
+> 
+> 1.  git clone https://github.com/mikedoherty1/AnsibleAutomationPlatform-OracleDB.git
 > 
 >      Setup script to build / Install everything
 > 
 > 1.  `cd **AnsibleAutomationPlatform-OracleDB**`
-> 2.   `./start.sh`
-> 
->    A couple read in prompts (copy and paste) , a couple hit returns and a type yes ...... This should take 10-15 minutes
-> 
-> Ansible Automation is Complete
-> 
-> \*\*\* Verify both hosts are in /etc/hosts 
+
+# Two options on install
+
+<table><tbody><tr><td>User ansible owns install</td><td>User root owns install</td></tr><tr><td>./ansible_owns_ansible.sh</td><td>./root_owns_ansible.sh</td></tr></tbody></table>
 
 # Ansible Time
 
