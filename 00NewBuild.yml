@@ -96,14 +96,12 @@
 # Entry for self ssh 
   - name: passwordless to self user ansible "{{ inventory_hostname }}"
     ansible.builtin.shell:
-      user: ansible
-      cmd: cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-      chdir: ~/.ssh/
+      cmd: cat /home/ansible/.ssh/id_rsa.pub >> /home/ansible/.ssh/authorized_keys
 # Entry for self ssh 
   - name: passwordless to self user root "{{ inventory_hostname }}"
     ansible.builtin.shell:
       user: root
-      cmd: cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+      cmd: cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
       chdir: ~/.ssh/
   - name: Copy AAP authorized_keys to remote host
     ansible.builtin.synchronize:
