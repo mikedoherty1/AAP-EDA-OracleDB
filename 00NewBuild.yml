@@ -29,30 +29,30 @@
         password: "{{ opass | password_hash('sha512') }}"
         generate_ssh_key: yes
         ssh_key_bits: 2048
-        ssh_key_file: .ssh/id_rsa
+        ssh_key_file: ~/.ssh/id_rsa
 # Restart sshd
     - name: Generate ssh keys ansible user
       ansible.builtin.user:
         name: ansible
         generate_ssh_key: yes
         ssh_key_bits: 2048
-        ssh_key_file: .ssh/id_rsa
+        ssh_key_file: ~/.ssh/id_rsa
     - name: Generate ssh keys root user
       ansible.builtin.user:
         name: root
         generate_ssh_key: yes
         ssh_key_bits: 2048
-        ssh_key_file: .ssh/id_rsa
-    - name: Set authorized key taken from file
+        ssh_key_file: ~/.ssh/id_rsa
+    - name: Set authorized key taken from file root user
       ansible.posix.authorized_key:
         user: root
         state: present
-        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
-    - name: Set authorized key taken from file
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    - name: Set authorized key taken from file ansible user
       ansible.posix.authorized_key:
         user: ansible
         state: present
-        key: "{{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
     - name: Allow ansible user to sudo without a password
       lineinfile:
         dest: "/etc/sudoers" 
@@ -67,7 +67,7 @@
         state: present
         backup: yes
 # Restart sshd
-    - name: Installing oracle 19c packages
+    - name: Restart sshd
       ansible.builtin.shell:
         cmd: systemctl restart sshd
       register: shell
