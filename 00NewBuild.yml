@@ -105,6 +105,6 @@
       chdir: /root/.ssh
   - name: Copy AAP authorized_keys to remote host
     ansible.builtin.copy:
-      src: ~/.ssh/authorized_keys
-      dest: ~/.ssh/aap-authorized_keys
+      src: /root/.ssh/authorized_keys
+      dest: /root/.ssh/aap-authorized_keys
 
