@@ -74,11 +74,10 @@
     - debug: var=shell.stdout_lines
     - name: Add ssh fingerprint to known_hosts "{{ inventory_hostname }}" 
       ansible.builtin.shell:
-        user: root
         cmd: ssh-keyscan -H "{{ inventory_hostname }}" >> ~/.ssh/known_hosts
       register: shell
     - debug: var=shell.stdout_lines
-    - name: Add ssh fingerprint to known_hosts "{{ inventory_hostname }}" 
+    - name: Add ssh fingerprint to known_hosts user ansible "{{ inventory_hostname }}" 
       ansible.builtin.shell:
         user: ansible
         cmd: ssh-keyscan -H "{{ inventory_hostname }}" >> ~/.ssh/known_hosts
