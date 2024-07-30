@@ -53,7 +53,7 @@
         state: "present"
         regexp: "^%ansible"
         line: "ansible ALL=(ALL) NOPASSWD: ALL"
-     - name: Enable Root Login
+    - name: Enable Root Login
       lineinfile:
         dest: /etc/ssh/sshd_config
         regexp: '^PermitRootLogin'
