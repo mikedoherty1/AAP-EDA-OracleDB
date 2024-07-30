@@ -94,15 +94,15 @@
       group: ansible
       mode: '0644'
 # Entry for self ssh 
-    - name: passwordless to self user ansible "{{ inventory_hostname }}"
-      ansible.builtin.shell:
-        cmd: cat id_rsa.pub >> authorized_keys
-        chdir: /home/ansible/.ssh
+  - name: passwordless to self user ansible "{{ inventory_hostname }}"
+    ansible.builtin.shell:
+      cmd: cat id_rsa.pub >> authorized_keys
+      chdir: /home/ansible/.ssh
 # Entry for self ssh 
-    - name: passwordless to self user root "{{ inventory_hostname }}"
-      ansible.builtin.shell:
-        cmd: cat id_rsa.pub >> authorized_keys
-        chdir: /home/ansible/.ssh
+  - name: passwordless to self user root "{{ inventory_hostname }}"
+    ansible.builtin.shell:
+      cmd: cat id_rsa.pub >> authorized_keys
+      chdir: /home/ansible/.ssh
   - name: Copy AAP authorized_keys to remote host
     ansible.builtin.synchronize:
       user: ansible
