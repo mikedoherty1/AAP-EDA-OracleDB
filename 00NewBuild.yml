@@ -1,0 +1,124 @@
+---
+- hosts: all
+  vars:
+
+  tasks:
+    - name: ansible-core  on "{{ inventory_hostname }}"
+      ansible.builtin.shell:
+        cmd: dnf install ansible-core -y
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: ansible-galaxy collection install ansible.posix on "{{ inventory_hostname }}"
+      ansible.builtin.shell:
+        cmd: ansible-galaxy collection install ansible.posix
+      register: shell
+    - debug: var=shell.stdout_lines
+# Missing packages GIT
+    - name: Ensure group "ansible" exists
+      ansible.builtin.group:
+        name: ansible
+        state: present
+    - name: Add user 'ansible' with a bash shell, appending the group 'ansible' group
+      ansible.builtin.user:
+        name: ansible
+        shell: /bin/bash
+        groups: root, ansible
+        append: yes
+        create_home: yes
+        comment: Ansible Admin
+        password: "{{ {{ opass }} | password_hash('sha512') }}"
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
+# Restart sshd
+    - name: Generate ssh keys
+      ansible.builtin.user:
+        name: ansible
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
+    - name: Set authorized key taken from file
+      ansible.posix.authorized_key:
+        user: root
+        state: present
+        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+    - name: Set authorized key taken from file
+      ansible.posix.authorized_key:
+        user: ansible
+        state: present
+        key: "{{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
+    - name: Allow ansible user to sudo without a password
+      lineinfile:
+        dest: "/etc/sudoers" 
+        state: "present"
+        regexp: "^%ansible"
+        line: "ansible ALL=(ALL) NOPASSWD: ALL"
+     - name: Enable Root Login
+      lineinfile:
+        dest: /etc/ssh/sshd_config
+        regexp: '^PermitRootLogin'
+        line: "PermitRootLogin yes"
+        state: present
+        backup: yes
+# Restart sshd
+    - name: Installing oracle 19c packages
+      ansible.builtin.shell:
+        cmd: systemctl restart sshd
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: Add ssh fingerprint to known_hosts "
+      ansible.builtin.shell:
+        user: root
+        state: present
+        cmd: ssh-keyscan -H "{{ inventory_hostname }}" >> ~/.ssh/known_hosts
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: Add ssh fingerprint to known_hosts "
+      ansible.builtin.shell:
+        user: ansible
+        state: present
+        cmd: ssh-keyscan -H "{{ inventory_hostname }}" >> ~/.ssh/known_hosts
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: Add ssh fingerprint to known_hosts file for server "{{ aap_serv }}"
+      ansible.builtin.shell:
+        user: ansible
+        state: present
+        cmd: ssh-keyscan -H "{{ aap_serv }}" >> ~/.ssh/known_hosts
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: Add ssh fingerprint to known_hosts file for server "{{ aap_serv }}"
+      ansible.builtin.shell:
+        user: root
+        state: present
+        cmd: ssh-keyscan -H "{{ aap_serv }}" >> ~/.ssh/known_hosts
+      register: shell
+    - debug: var=shell.stdout_lines
+    - name: Copy AAP authorized_keys to remote host
+      ansible.builtin.synchronize:
+        user: root
+        state: present
+        src: ~/.ssh/authorized_keys
+        dest: ~/.ssh/aap-authorized_keys
+      delegate_to: "{{ aap_serv }}"
+    - name: Copy AAP authorized_keys to remote host
+      ansible.builtin.synchronize:
+        user: ansible
+        state: present
+        src: ~/.ssh/authorized_keys
+        dest: ~/.ssh/aap-authorized_keys
+      delegate_to: "{{ aap_serv }}"
+# Entry for self ssh 
+    - name: passwordless to self  "{{ inventory_hostname }}"
+      ansible.builtin.shell:
+        user: ansible
+        state: present
+        cmd: cat ~/.ssh/aap-authorized_keys >> ~/.ssh/authorized_keys
+        chdir: ~/.ssh/
+# Entry for self ssh 
+    - name: passwordless to self  "{{ inventory_hostname }}"
+      ansible.builtin.shell:
+        user: root
+        state: present
+        cmd: cat ~/.ssh/aap-authorized_keys >> ~/.ssh/authorized_keys
+        chdir: ~/.ssh/
