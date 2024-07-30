@@ -4,7 +4,7 @@
 
   tasks:
     - name: Add AAP server to /etc/hosts file   
-    lineinfile:
+      lineinfile:
       path: /etc/hosts
       line: "{{ aap_serv_ip }}     {{ aap_serv }}"
     - name: ansible-core  on "{{ inventory_hostname }}"
