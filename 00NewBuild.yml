@@ -75,14 +75,12 @@
     - name: Add ssh fingerprint to known_hosts "{{ inventory_hostname }}" 
       ansible.builtin.shell:
         user: root
-        state: present
         cmd: ssh-keyscan -H "{{ inventory_hostname }}" >> ~/.ssh/known_hosts
       register: shell
     - debug: var=shell.stdout_lines
     - name: Add ssh fingerprint to known_hosts "{{ inventory_hostname }}" 
       ansible.builtin.shell:
         user: ansible
-        state: present
         cmd: ssh-keyscan -H "{{ inventory_hostname }}" >> ~/.ssh/known_hosts
       register: shell
     - debug: var=shell.stdout_lines
@@ -96,7 +94,6 @@
     - name: Add ssh fingerprint to known_hosts file for server "{{ aap_serv }}"
       ansible.builtin.shell:
         user: root
-        state: present
         cmd: ssh-keyscan -H "{{ aap_serv }}" >> ~/.ssh/known_hosts
       register: shell
     - debug: var=shell.stdout_lines
@@ -118,13 +115,11 @@
     - name: passwordless to self  "{{ inventory_hostname }}"
       ansible.builtin.shell:
         user: ansible
-        state: present
         cmd: cat ~/.ssh/aap-authorized_keys >> ~/.ssh/authorized_keys
         chdir: ~/.ssh/
 # Entry for self ssh 
     - name: passwordless to self  "{{ inventory_hostname }}"
       ansible.builtin.shell:
         user: root
-        state: present
         cmd: cat ~/.ssh/aap-authorized_keys >> ~/.ssh/authorized_keys
         chdir: ~/.ssh/
