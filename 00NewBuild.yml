@@ -87,6 +87,7 @@
   - debug: var=shell.stdout_lines
   - name: Copy file with owner and permissions
     ansible.builtin.copy:
+      remote_src: true
       src: /root/.ssh/known_hosts
       dest: /home/ansible/.ssh/known_hosts
       owner: ansible
