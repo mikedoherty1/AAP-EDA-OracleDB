@@ -93,29 +93,22 @@
       owner: ansible
       group: ansible
       mode: '0644'
-  - name: Copy AAP authorized_keys to remote host
-    ansible.builtin.synchronize:
+# Entry for self ssh 
+  - name: passwordless to self user ansible "{{ inventory_hostname }}"
+    ansible.builtin.shell:
+      user: ansible
+      cmd: cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+      chdir: ~/.ssh/
+# Entry for self ssh 
+  - name: passwordless to self user root "{{ inventory_hostname }}"
+    ansible.builtin.shell:
       user: root
-      state: present
-      src: ~/.ssh/authorized_keys
-      dest: ~/.ssh/aap-authorized_keys
-    delegate_to: "{{ aap_serv }}"
+      cmd: cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+      chdir: ~/.ssh/
   - name: Copy AAP authorized_keys to remote host
     ansible.builtin.synchronize:
       user: ansible
       state: present
       src: ~/.ssh/authorized_keys
-      dest: ~/.ssh/aap-authorized_keys
+      dest: /home/ansible/.ssh/aap-authorized_keys
     delegate_to: "{{ aap_serv }}"
-# Entry for self ssh 
-  - name: passwordless to self  "{{ inventory_hostname }}"
-    ansible.builtin.shell:
-      user: ansible
-      cmd: cat ~/.ssh/aap-authorized_keys >> ~/.ssh/authorized_keys
-      chdir: ~/.ssh/
-# Entry for self ssh 
-  - name: passwordless to self  "{{ inventory_hostname }}"
-    ansible.builtin.shell:
-      user: root
-      cmd: cat ~/.ssh/aap-authorized_keys >> ~/.ssh/authorized_keys
-      chdir: ~/.ssh/
