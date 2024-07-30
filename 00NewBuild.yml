@@ -5,7 +5,7 @@
   - name: Add New VBox server to control.local /etc/hosts file   
     lineinfile:
       path: /etc/hosts
-      line: "{{ vbvmip }}     {{ vbvm }}"
+      line: "{{ aap_serv_ip }}     {{ aap_serv }}"
   - name: ansible-core  on "{{ inventory_hostname }}"
     ansible.builtin.shell:
       cmd: dnf install ansible-core -y
