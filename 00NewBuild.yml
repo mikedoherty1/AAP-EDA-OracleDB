@@ -131,5 +131,5 @@
   - name: Copy files from EDA Server to AAP  
     ansible.builtin.synchronize:
       src: /root/.ssh/authorized_keys
-      dest: /home/ansible/software/EDA-authorized_keys
+      dest: /root/software/EDA-authorized_keys
     delegate_to: "{{ inventory_hostname }}"
