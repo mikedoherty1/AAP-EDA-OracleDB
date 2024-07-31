@@ -103,8 +103,9 @@
     ansible.builtin.shell:
       cmd: cat id_rsa.pub >> authorized_keys
       chdir: /root/.ssh
-  - name: Copy AAP authorized_keys to remote host
-    ansible.builtin.copy:
-      src: /root/.ssh/authorized_keys
-      dest: /root/.ssh/aap-authorized_keys
+#Not working
+#  - name: Copy AAP authorized_keys to remote host
+#    ansible.builtin.copy:
+#      src: /root/.ssh/authorized_keys
+#      dest: /root/.ssh/aap-authorized_keys
 
