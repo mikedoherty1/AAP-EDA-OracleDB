@@ -113,7 +113,7 @@
   - name: Copy files if they do not exist 
     ansible.builtin.synchronize:
       src: /root/AnsibleAutomationPlatform-OracleDB/keys.yml
-      dest: /root/software/keys.yml
+      dest: /home/ansible/software/keys.yml
     delegate_to: "{{ aap_serv }}"
 #Not working
 #  - name: Copy AAP authorized_keys to remote host
