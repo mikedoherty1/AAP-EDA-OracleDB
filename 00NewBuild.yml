@@ -46,16 +46,6 @@
       generate_ssh_key: yes
       ssh_key_bits: 2048
       ssh_key_file: ~/.ssh/id_rsa
-#    - name: Set authorized key taken from file root user
-#      ansible.posix.authorized_key:
-#        user: root
-#        state: present
-#        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-#    - name: Set authorized key taken from file ansible user
-#      ansible.posix.authorized_key:
-#        user: ansible
-#        state: present
-#        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
   - name: Allow ansible user to sudo without a password
     lineinfile:
       dest: "/etc/sudoers" 
@@ -128,9 +118,3 @@
     ansible.builtin.shell:
       cmd: cat AAP-authorized_keys >> /home/ansible/.ssh/authorized_keys
       chdir: /home/ansible/software
-  - name: Copy files from EDA Server to AAP  
-    ansible.builtin.synchronize:
-      remote_src: true
-      src: /root/.ssh/authorized_keys
-      dest: /root/software/EDA-authorized_keys
-    delegate_to: "{{ inventory_hostname }}"
