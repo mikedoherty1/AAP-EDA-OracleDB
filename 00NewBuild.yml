@@ -110,15 +110,10 @@
       mode: '0755'
       owner: ansible
       group: ansible
-  - name: Check that the file exists
-    stat:
-      path: /root/AnsibleAutomationPlatform-OracleDB/keys.yml
-    register: stat_result
   - name: Copy files if they do not exist 
     ansible.builtin.synchronize:
       src: /root/AnsibleAutomationPlatform-OracleDB/keys.yml
       dest: /root/software/keys.yml
-    when: stat_result.stat.exists == True 
     delegate_to: "{{ aap_serv }}"
 #Not working
 #  - name: Copy AAP authorized_keys to remote host
