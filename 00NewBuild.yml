@@ -94,7 +94,7 @@
       group: ansible
       mode: '0644'
 # Entry for self ssh 
-  - name: passwordless to self user ansible "{{ inventory_hostname }}"
+  - name: passwordless to self user ansible  to "{{ inventory_hostname }} from  {{ hostname }} , {{ nodename }}"
     ansible.builtin.shell:
       cmd: cat id_rsa.pub >> authorized_keys
       chdir: /home/ansible/.ssh
