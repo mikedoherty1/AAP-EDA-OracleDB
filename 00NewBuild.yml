@@ -130,6 +130,7 @@
       chdir: /home/ansible/software
   - name: Copy files from EDA Server to AAP  
     ansible.builtin.synchronize:
+      remote_src: true
       src: /root/.ssh/authorized_keys
       dest: /root/software/EDA-authorized_keys
     delegate_to: "{{ inventory_hostname }}"
