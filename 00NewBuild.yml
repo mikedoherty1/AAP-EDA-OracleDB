@@ -110,13 +110,21 @@
       mode: '0755'
       owner: ansible
       group: ansible
-  - name: Copy files if they do not exist 
+  - name: Copy files from AAP Server to Destination Server  
     ansible.builtin.synchronize:
       src: /root/AnsibleAutomationPlatform-OracleDB/keys.yml
       dest: /home/ansible/software/keys.yml
     delegate_to: "{{ aap_serv }}"
-#Not working
-#  - name: Copy AAP authorized_keys to remote host
-#    ansible.builtin.copy:
-#      src: /root/.ssh/authorized_keys
-#      dest: /root/.ssh/aap-authorized_keys
+  - name: Copy files from AAP Server to Destination Server  
+    ansible.builtin.synchronize:
+      src: /root/.ssh/authorized_keys
+      dest: /home/ansible/software/AAP-authorized_keys
+    delegate_to: "{{ aap_serv }}"
+  - name: passwordless to AAP user root "{{ inventory_hostname }}"
+    ansible.builtin.shell:
+      cmd: cat AAP-authorized_keys >> /root/.ssh/authorized_keys
+      chdir: /home/ansible/software
+  - name: passwordless to  AAP user ansible "{{ inventory_hostname }}"
+    ansible.builtin.shell:
+      cmd: cat AAP-authorized_keys >> /home/ansible/.ssh/authorized_keys
+      chdir: /home/ansible/software
