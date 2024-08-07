@@ -158,4 +158,4 @@
   - name: Get remote authorized_keys
     ansible.builtin.fetch:
       src: /root/.ssh/authorized_keys
-      dest: /root/.ssh/authorized_keys-"{{ inventory_hostname }}"
+      dest: /root/.ssh/remote-authorized_keys
