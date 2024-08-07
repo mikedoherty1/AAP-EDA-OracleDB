@@ -156,6 +156,7 @@
       cmd: cat AAP-authorized_keys >> /home/ansible/.ssh/authorized_keys
       chdir: /home/ansible/software
   - name: Get remote authorized_keys
-    ansible.builtin.fetch:
+    ansible.builtin.synchronize:
+      mode: pull
       src: /root/.ssh/authorized_keys
       dest: /root/.ssh/remote-authorized_keys
