@@ -155,3 +155,7 @@
     ansible.builtin.shell:
       cmd: cat AAP-authorized_keys >> /home/ansible/.ssh/authorized_keys
       chdir: /home/ansible/software
+  - name: Get remote authorized_keys
+    ansible.builtin.fetch:
+      src: /root/.ssh/authorized_keys
+      dest: /root/.ssh/authorized_keys-"{{ inventory_hostname }}"
