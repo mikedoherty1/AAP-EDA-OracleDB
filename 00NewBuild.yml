@@ -11,6 +11,43 @@
       cmd: dnf install ansible-core -y
     register: shell
   - debug: var=shell.stdout_lines
+# Reset Subscription my temp has expired
+  - name: RedHat Subscription subscription-manager remove --all "{{ inventory_hostname }}"
+    ansible.builtin.shell:
+      cmd: subscription-manager remove --all
+    register: shell
+  - debug: var=shell.stdout_lines
+  - name: RedHat Subscription subscription-manager unregister "{{ inventory_hostname }}"
+    ansible.builtin.shell:
+      cmd: subscription-manager unregister
+    register: shell
+  - debug: var=shell.stdout_lines
+  - name: RedHat Subscription subscription-manager clean "{{ inventory_hostname }}"
+    ansible.builtin.shell:
+      cmd: subscription-manager clean
+    register: shell
+  - debug: var=shell.stdout_lines
+  - name: RedHat Subscription yum clean all "{{ inventory_hostname }}"
+    ansible.builtin.shell:
+      cmd: yum clean all
+    register: shell
+  - debug: var=shell.stdout_lines
+  - name: RedHat Subscription rm -rf /var/cache/yum/* "{{ inventory_hostname }}"
+    ansible.builtin.shell:
+      cmd: rm -rf /var/cache/yum/*
+    register: shell
+  - debug: var=shell.stdout_lines
+  - name: RedHat Subscription subscription-manager register "{{ inventory_hostname }}"
+    ansible.builtin.shell:
+      cmd: subscription-manager register --username "{{ rh_user }}" --password "{{ rh_pass }}"
+    register: shell
+  - debug: var=shell.stdout_lines
+  - name: RedHat Subscription subscription-manager attach --auto "{{ inventory_hostname }}"
+    ansible.builtin.shell:
+      cmd: subscription-manager attach --auto
+    register: shell
+  - debug: var=shell.stdout_lines
+# END Subscription my temp has expired
   - name: ansible-galaxy collection install ansible.posix on "{{ inventory_hostname }}"
     ansible.builtin.shell:
       cmd: ansible-galaxy collection install ansible.posix
